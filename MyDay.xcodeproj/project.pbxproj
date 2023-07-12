@@ -12,6 +12,10 @@
 		1EC638812A5DD3C100512524 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638802A5DD3C100512524 /* ViewController.swift */; };
 		1EC638862A5DD3C200512524 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EC638852A5DD3C200512524 /* Assets.xcassets */; };
 		1EC638892A5DD3C200512524 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EC638872A5DD3C200512524 /* LaunchScreen.storyboard */; };
+		1EC638922A5DE7AF00512524 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638912A5DE7AE00512524 /* CustomTabBarController.swift */; };
+		1EC638982A5E8BEB00512524 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1EC638972A5E8BEB00512524 /* SnapKit */; };
+		1EC6389A2A5E9B3E00512524 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638992A5E9B3E00512524 /* MainViewController.swift */; };
+		1EC6389F2A5F10FE00512524 /* DatesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC6389E2A5F10FE00512524 /* DatesCollectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +26,9 @@
 		1EC638852A5DD3C200512524 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1EC638882A5DD3C200512524 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1EC6388A2A5DD3C200512524 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1EC638912A5DE7AE00512524 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		1EC638992A5E9B3E00512524 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		1EC6389E2A5F10FE00512524 /* DatesCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatesCollectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EC638982A5E8BEB00512524 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,6 +62,9 @@
 		1EC6387B2A5DD3C100512524 /* MyDay */ = {
 			isa = PBXGroup;
 			children = (
+				1EC6389B2A5EFBFA00512524 /* Layouts */,
+				1EC638932A5DEC9900512524 /* Views */,
+				1EC638902A5DD6BA00512524 /* ViewControllers */,
 				1EC6387C2A5DD3C100512524 /* AppDelegate.swift */,
 				1EC6387E2A5DD3C100512524 /* SceneDelegate.swift */,
 				1EC638802A5DD3C100512524 /* ViewController.swift */,
@@ -62,6 +73,30 @@
 				1EC6388A2A5DD3C200512524 /* Info.plist */,
 			);
 			path = MyDay;
+			sourceTree = "<group>";
+		};
+		1EC638902A5DD6BA00512524 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				1EC638912A5DE7AE00512524 /* CustomTabBarController.swift */,
+				1EC638992A5E9B3E00512524 /* MainViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		1EC638932A5DEC9900512524 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1EC6389E2A5F10FE00512524 /* DatesCollectionView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1EC6389B2A5EFBFA00512524 /* Layouts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Layouts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -80,6 +115,9 @@
 			dependencies = (
 			);
 			name = MyDay;
+			packageProductDependencies = (
+				1EC638972A5E8BEB00512524 /* SnapKit */,
+			);
 			productName = MyDay;
 			productReference = 1EC638792A5DD3C100512524 /* MyDay.app */;
 			productType = "com.apple.product-type.application";
@@ -108,6 +146,9 @@
 				Base,
 			);
 			mainGroup = 1EC638702A5DD3C100512524;
+			packageReferences = (
+				1EC638962A5E8BEB00512524 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 1EC6387A2A5DD3C100512524 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -136,7 +177,10 @@
 			files = (
 				1EC638812A5DD3C100512524 /* ViewController.swift in Sources */,
 				1EC6387D2A5DD3C100512524 /* AppDelegate.swift in Sources */,
+				1EC6389F2A5F10FE00512524 /* DatesCollectionView.swift in Sources */,
+				1EC638922A5DE7AF00512524 /* CustomTabBarController.swift in Sources */,
 				1EC6387F2A5DD3C100512524 /* SceneDelegate.swift in Sources */,
+				1EC6389A2A5E9B3E00512524 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,6 +388,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1EC638962A5E8BEB00512524 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1EC638972A5E8BEB00512524 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1EC638962A5E8BEB00512524 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1EC638712A5DD3C100512524 /* Project object */;
 }

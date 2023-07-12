@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class ViewController: UIViewController {
 
@@ -13,8 +14,21 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        view.backgroundColor = .blue
+        view.backgroundColor = .systemBackground
+        
+        view.addSubview(someView)
+        
+        someView.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+            make.width.height.equalTo(200)
+        }
     }
+    
+    private let someView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .red
+        return view
+    }()
 
 
 }
