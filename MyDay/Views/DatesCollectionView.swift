@@ -218,11 +218,7 @@ class DateModel {
         }
     }
     
-    public var delegate: DateModelDelegate? {
-        didSet {
-            print("set delegate")
-        }
-    }
+    public var delegate: DateModelDelegate?
     
     public var selected: Bool = false {
         didSet {
