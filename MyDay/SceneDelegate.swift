@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -20,9 +21,32 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
           
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = ViewController() // Your initial view controller.
+        
+        let tabBarCnt = CustomTabBarController()
+        tabBarCnt.actionHandler = {
+            tabBarCnt.selectedIndex = 0
+        }
+                
+        let mainVC = MainViewController()
+        
+        let statsVc = ViewController()
+        statsVc.title = "Test"
+        statsVc.tabBarItem = UITabBarItem.init(title: "Stats", image: UIImage(systemName: "chart.bar.xaxis"), tag: 0)
+        
+        let settingsVc = ViewController()
+        settingsVc.tabBarItem = UITabBarItem.init(title: "Settings", image: UIImage(systemName: "gearshape"), tag: 0)
+         
+        let controllerArray = [mainVC, statsVc, settingsVc]
+         
+        tabBarCnt.viewControllers = controllerArray.map{ UINavigationController.init(rootViewController: $0)}
+        
+        window.rootViewController = tabBarCnt // Your initial view controller.
         window.makeKeyAndVisible()
         self.window = window
+    }
+    
+    @objc func buttonTapped() {
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -55,4 +79,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
 }
-
