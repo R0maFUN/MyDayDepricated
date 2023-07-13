@@ -16,6 +16,7 @@
 		1EC638982A5E8BEB00512524 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1EC638972A5E8BEB00512524 /* SnapKit */; };
 		1EC6389A2A5E9B3E00512524 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638992A5E9B3E00512524 /* MainViewController.swift */; };
 		1EC6389F2A5F10FE00512524 /* DatesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC6389E2A5F10FE00512524 /* DatesCollectionView.swift */; };
+		1EC638A12A5F40E900512524 /* SectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638A02A5F40E900512524 /* SectionButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		1EC638912A5DE7AE00512524 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		1EC638992A5E9B3E00512524 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		1EC6389E2A5F10FE00512524 /* DatesCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatesCollectionView.swift; sourceTree = "<group>"; };
+		1EC638A02A5F40E900512524 /* SectionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				1EC6389E2A5F10FE00512524 /* DatesCollectionView.swift */,
+				1EC638A02A5F40E900512524 /* SectionButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 				1EC638922A5DE7AF00512524 /* CustomTabBarController.swift in Sources */,
 				1EC6387F2A5DD3C100512524 /* SceneDelegate.swift in Sources */,
 				1EC6389A2A5E9B3E00512524 /* MainViewController.swift in Sources */,
+				1EC638A12A5F40E900512524 /* SectionButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +330,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -353,6 +358,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
