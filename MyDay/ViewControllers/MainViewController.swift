@@ -30,8 +30,8 @@ class MainViewController: UIViewController {
         setupCollectionView()
     }
     
-    init() {
-        self.mainViewModel = MainViewModel()
+    init(mainViewModel: MainViewModel) {
+        self.mainViewModel = mainViewModel
         self.sectionsViewModel = self.mainViewModel.sectionsViewModel
         
         super.init(nibName: nil, bundle: nil)
@@ -206,7 +206,7 @@ extension MainViewController: UICollectionViewDelegate {
     func scroll(to index: Int) {
         let newOffset = collectionView.bounds.width * CGFloat(index) - CGFloat(index) * 2 - 1
         
-        UIView.animate(withDuration: 0.2) {
+        UIView.animate(withDuration: 0.1) {
             self.collectionView.contentOffset.x = CGFloat(newOffset)
         }
     }

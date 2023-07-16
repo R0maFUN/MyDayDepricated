@@ -12,5 +12,6 @@ class RemindersSectionViewModel: SectionViewModel {
         super.init()
         
         self.title = "Reminders"
+        self.addActionTitle = "Reminder"
     }
 }

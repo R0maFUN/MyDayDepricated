@@ -22,12 +22,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
           
         let window = UIWindow(windowScene: windowScene)
         
-        let tabBarCnt = CustomTabBarController()
+        let mainViewModel = MainViewModel()
+        
+        let tabBarCnt = CustomTabBarController(mainViewModel: mainViewModel)
         tabBarCnt.actionHandler = {
             tabBarCnt.selectedIndex = 0
         }
                 
-        let mainVC = MainViewController()
+        let mainVC = MainViewController(mainViewModel: mainViewModel)
         
         let statsVc = ViewController()
         statsVc.title = "Test"

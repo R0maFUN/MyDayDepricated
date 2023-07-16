@@ -12,5 +12,6 @@ class GoalsSectionViewModel: SectionViewModel {
         super.init()
         
         self.title = "Goals"
+        self.addActionTitle = "Goal"
     }
 }

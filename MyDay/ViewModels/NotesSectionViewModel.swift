@@ -12,5 +12,6 @@ class NotesSectionViewModel: SectionViewModel {
         super.init()
         
         self.title = "Notes"
+        self.addActionTitle = "Note"
     }
 }

@@ -33,6 +33,22 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
         }
     }
     
+    init(mainViewModel: MainViewModel) {
+        self.mainViewModel = mainViewModel
+        
+        super.init(nibName: nil, bundle: nil)
+        
+        self.leftButton.setTitle(self.mainViewModel.sectionsViewModel.currentSection.value?.addActionTitle, for: .normal)
+        mainViewModel.sectionsViewModel.currentSection.onChanged {
+            self.leftButton.setTitle(self.mainViewModel.sectionsViewModel.currentSection.value?.addActionTitle, for: .normal)
+            // self.actionHandler = customAction
+        }
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - Private Properties
     private let leftButton: UIButton = {
         var config = UIButton.Configuration.plain()
@@ -49,4 +65,6 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
         actionHandler?()
     }
 
+    private var mainViewModel: MainViewModel
+    
 }

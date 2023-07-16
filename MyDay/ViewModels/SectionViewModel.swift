@@ -18,5 +18,6 @@ class SectionViewModel {
     }
     
     public internal(set) var title: String = ""
+    public internal(set) var addActionTitle: String = ""
     public internal(set) var isActive: PropertyBinding<Bool> = PropertyBinding<Bool>(false)
 }

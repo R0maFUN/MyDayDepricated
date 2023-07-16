@@ -12,5 +12,6 @@ class ScheduleSectionViewModel: SectionViewModel {
         super.init()
         
         self.title = "Schedule"
+        self.addActionTitle = "Action"
     }
 }
