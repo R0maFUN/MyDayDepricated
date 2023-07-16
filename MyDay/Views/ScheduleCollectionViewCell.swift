@@ -105,7 +105,7 @@ class ScheduleCollectionViewCell: UICollectionViewCell {
 
     static let reuseIdentifier = "ScheduleCollectionViewCell"
     
-    public func configure(with model: ScheduleSectionModel) {
+    public func configure(with viewModel: ScheduleSectionViewModel) {
         
     }
     

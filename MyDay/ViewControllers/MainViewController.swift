@@ -7,18 +7,6 @@
 
 import UIKit
 
-class SectionModel {
-    var title: String = ""
-    
-    init(title: String) {
-        self.title = title
-    }
-}
-
-class ScheduleSectionModel: SectionModel {
-    
-}
-
 class MainViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -42,6 +30,19 @@ class MainViewController: UIViewController {
         setupCollectionView()
     }
     
+    init() {
+        self.mainViewModel = MainViewModel()
+        self.sectionsViewModel = self.mainViewModel.sectionsViewModel
+        
+        super.init(nibName: nil, bundle: nil)
+        
+        connectToSectionsViewModel()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - Private Contants
     private enum UIConstants {
         static let contentInset: CGFloat = 16.0
@@ -49,16 +50,13 @@ class MainViewController: UIViewController {
     }
     
     // MARK: - Private Properties
+    private let mainViewModel: MainViewModel
+    private let sectionsViewModel: SectionsViewModel
     
     private let datesCollectionView: DatesCollectionView = {
         let view = DatesCollectionView()
         return view
     }()
-    
-    private let sections: [SectionModel] = [ScheduleSectionModel(title: "Schedule"),
-                                            SectionModel(title: "Notes"),
-                                            SectionModel(title: "Reminders"),
-                                            SectionModel(title: "Goals")]
     
     private let sectionsStackView: UIStackView = {
         let xStack = UIStackView()
@@ -70,7 +68,6 @@ class MainViewController: UIViewController {
     
     private let collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-        //collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.decelerationRate = .fast
         collectionView.showsHorizontalScrollIndicator = false
         return collectionView
@@ -78,7 +75,7 @@ class MainViewController: UIViewController {
     
     private let collectionViewLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 0//UIConstants.collectionViewSpacing
+        layout.minimumLineSpacing = 0
         layout.scrollDirection = .horizontal
         return layout
     }()
@@ -103,43 +100,15 @@ private extension MainViewController {
         
     }
     
-    // TODO: Refactor, get Sections from viewModel
     func getSectionButtons() -> [SectionButton] {
         var buttons: [SectionButton] = []
         
-        for section in sections {
-            let button = SectionButton()
-            button.setTitle(section.title, for: .normal)
+        sectionsViewModel.sections.forEach { section in
+            let button = SectionButton(section: section)
+            button.onTapped {
+                self.sectionsViewModel.select(section: section)
+            }
             buttons.append(button)
-        }
-        
-        buttons[0].activate()
-        buttons[0].onTapped {
-            buttons[0].activate()
-            buttons[1].deactivate()
-            buttons[2].deactivate()
-            buttons[3].deactivate()
-        }
-        
-        buttons[1].onTapped {
-            buttons[0].deactivate()
-            buttons[1].activate()
-            buttons[2].deactivate()
-            buttons[3].deactivate()
-        }
-        
-        buttons[2].onTapped {
-            buttons[0].deactivate()
-            buttons[1].deactivate()
-            buttons[2].activate()
-            buttons[3].deactivate()
-        }
-        
-        buttons[3].onTapped {
-            buttons[0].deactivate()
-            buttons[1].deactivate()
-            buttons[2].deactivate()
-            buttons[3].activate()
         }
         
         return buttons
@@ -153,12 +122,14 @@ private extension MainViewController {
         collectionView.delegate = self
         collectionView.collectionViewLayout = collectionViewLayout
         
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 1, bottom: 0, right: 0)
+        
         collectionView.backgroundColor = .systemGroupedBackground
         
         view.addSubview(collectionView)
         
         collectionView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview()//.inset(UIConstants.contentInset)
+            make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
             make.top.equalTo(sectionsStackView.snp.bottom)
         }
@@ -168,11 +139,11 @@ private extension MainViewController {
 extension MainViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return sections.count
+        return self.sectionsViewModel.sections.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let section = sections[indexPath.item] as? ScheduleSectionModel {
+        if let section = self.sectionsViewModel.sections[indexPath.item] as? ScheduleSectionViewModel {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ScheduleCollectionViewCell.reuseIdentifier, for: indexPath) as? ScheduleCollectionViewCell else { return UICollectionViewCell() }
             cell.configure(with: section)
             return cell
@@ -188,6 +159,13 @@ extension MainViewController: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegate
 extension MainViewController: UICollectionViewDelegate {
+    
+    func connectToSectionsViewModel() {
+        self.sectionsViewModel.currentSectionIndex.onChanged {
+            self.selectSectionAt(self.sectionsViewModel.currentSectionIndex.value!)
+        }
+    }
+    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         updateCurrentSection()
     }
@@ -209,39 +187,34 @@ extension MainViewController: UICollectionViewDelegate {
             return currentOffset
         }
         
-        return CGFloat(index) * collectionView.bounds.width
+        return CGFloat(index) * (collectionView.bounds.width)
     }
     
     func updateCurrentSection() {
         let currentOffset = calculateNewContentOffset(collectionView.contentOffset.x)
         let newIndex = Int(currentOffset / (collectionView.bounds.width))
         
-        selectSectionAt(newIndex)
+        self.sectionsViewModel.selectSectionAt(newIndex)
     }
     
     func selectSectionAt(_ index: Int) {
-        if index >= 0 && index < sections.count {
+        if index >= 0 && index < self.sectionsViewModel.sections.count {
             scroll(to: index)
         }
     }
     
     func scroll(to index: Int) {
-        let newOffset = collectionView.bounds.width * CGFloat(index)
+        let newOffset = collectionView.bounds.width * CGFloat(index) - CGFloat(index) * 2 - 1
         
         UIView.animate(withDuration: 0.2) {
             self.collectionView.contentOffset.x = CGFloat(newOffset)
         }
-    }
-    
-    func scroll(_ scrollView: UIScrollView, to model: DateModel) {
-        //guard let index = self.dates.firstIndex(where: { $0.date == model.date }) else { return }
-        //scroll(scrollView, to: index)
     }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
 extension MainViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height)
+        return CGSize(width: collectionView.bounds.width - 2, height: collectionView.bounds.height)
     }
 }

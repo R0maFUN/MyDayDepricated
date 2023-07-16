@@ -18,6 +18,14 @@
 		1EC6389F2A5F10FE00512524 /* DatesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC6389E2A5F10FE00512524 /* DatesCollectionView.swift */; };
 		1EC638A12A5F40E900512524 /* SectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638A02A5F40E900512524 /* SectionButton.swift */; };
 		1EC638A32A6070B500512524 /* ScheduleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638A22A6070B500512524 /* ScheduleCollectionViewCell.swift */; };
+		1EC638A62A63E46B00512524 /* SectionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638A52A63E46B00512524 /* SectionsViewModel.swift */; };
+		1EC638A82A63E63500512524 /* SectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638A72A63E63500512524 /* SectionViewModel.swift */; };
+		1EC638AA2A63E65400512524 /* ScheduleSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638A92A63E65400512524 /* ScheduleSectionViewModel.swift */; };
+		1EC638AC2A63E67300512524 /* NotesSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638AB2A63E67300512524 /* NotesSectionViewModel.swift */; };
+		1EC638AE2A63E69300512524 /* RemindersSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638AD2A63E69300512524 /* RemindersSectionViewModel.swift */; };
+		1EC638B02A63E6B100512524 /* GoalsSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638AF2A63E6B100512524 /* GoalsSectionViewModel.swift */; };
+		1EC638B32A63E85B00512524 /* PropertyBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638B22A63E85B00512524 /* PropertyBinding.swift */; };
+		1EC638B52A63ED3400512524 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638B42A63ED3400512524 /* MainViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +41,14 @@
 		1EC6389E2A5F10FE00512524 /* DatesCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatesCollectionView.swift; sourceTree = "<group>"; };
 		1EC638A02A5F40E900512524 /* SectionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionButton.swift; sourceTree = "<group>"; };
 		1EC638A22A6070B500512524 /* ScheduleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCollectionViewCell.swift; sourceTree = "<group>"; };
+		1EC638A52A63E46B00512524 /* SectionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsViewModel.swift; sourceTree = "<group>"; };
+		1EC638A72A63E63500512524 /* SectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionViewModel.swift; sourceTree = "<group>"; };
+		1EC638A92A63E65400512524 /* ScheduleSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSectionViewModel.swift; sourceTree = "<group>"; };
+		1EC638AB2A63E67300512524 /* NotesSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesSectionViewModel.swift; sourceTree = "<group>"; };
+		1EC638AD2A63E69300512524 /* RemindersSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersSectionViewModel.swift; sourceTree = "<group>"; };
+		1EC638AF2A63E6B100512524 /* GoalsSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsSectionViewModel.swift; sourceTree = "<group>"; };
+		1EC638B22A63E85B00512524 /* PropertyBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyBinding.swift; sourceTree = "<group>"; };
+		1EC638B42A63ED3400512524 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +82,8 @@
 		1EC6387B2A5DD3C100512524 /* MyDay */ = {
 			isa = PBXGroup;
 			children = (
+				1EC638B12A63E84300512524 /* Extensions */,
+				1EC638A42A63E44C00512524 /* ViewModels */,
 				1EC6389B2A5EFBFA00512524 /* Layouts */,
 				1EC638932A5DEC9900512524 /* Views */,
 				1EC638902A5DD6BA00512524 /* ViewControllers */,
@@ -103,6 +121,28 @@
 			children = (
 			);
 			path = Layouts;
+			sourceTree = "<group>";
+		};
+		1EC638A42A63E44C00512524 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				1EC638A52A63E46B00512524 /* SectionsViewModel.swift */,
+				1EC638A72A63E63500512524 /* SectionViewModel.swift */,
+				1EC638A92A63E65400512524 /* ScheduleSectionViewModel.swift */,
+				1EC638AB2A63E67300512524 /* NotesSectionViewModel.swift */,
+				1EC638AD2A63E69300512524 /* RemindersSectionViewModel.swift */,
+				1EC638AF2A63E6B100512524 /* GoalsSectionViewModel.swift */,
+				1EC638B42A63ED3400512524 /* MainViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		1EC638B12A63E84300512524 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1EC638B22A63E85B00512524 /* PropertyBinding.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,10 +225,18 @@
 				1EC6387D2A5DD3C100512524 /* AppDelegate.swift in Sources */,
 				1EC6389F2A5F10FE00512524 /* DatesCollectionView.swift in Sources */,
 				1EC638922A5DE7AF00512524 /* CustomTabBarController.swift in Sources */,
+				1EC638A62A63E46B00512524 /* SectionsViewModel.swift in Sources */,
+				1EC638B02A63E6B100512524 /* GoalsSectionViewModel.swift in Sources */,
 				1EC6387F2A5DD3C100512524 /* SceneDelegate.swift in Sources */,
 				1EC638A32A6070B500512524 /* ScheduleCollectionViewCell.swift in Sources */,
 				1EC6389A2A5E9B3E00512524 /* MainViewController.swift in Sources */,
+				1EC638AC2A63E67300512524 /* NotesSectionViewModel.swift in Sources */,
+				1EC638AA2A63E65400512524 /* ScheduleSectionViewModel.swift in Sources */,
+				1EC638B32A63E85B00512524 /* PropertyBinding.swift in Sources */,
+				1EC638AE2A63E69300512524 /* RemindersSectionViewModel.swift in Sources */,
+				1EC638A82A63E63500512524 /* SectionViewModel.swift in Sources */,
 				1EC638A12A5F40E900512524 /* SectionButton.swift in Sources */,
+				1EC638B52A63ED3400512524 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

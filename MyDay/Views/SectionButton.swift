@@ -9,28 +9,25 @@ import UIKit
 
 class SectionButton: UIButton {
     
-    public func activate() {
-        self.isActive = true
-    }
-    
-    public func deactivate() {
-        self.isActive = false
-    }
-    
     public func onTapped(_ handler: @escaping () -> Void) {
         self.handler = handler
     }
     
-    init() {
+    init(section: SectionViewModel) {
+        self.sectionViewModel = section
+        
         super.init(frame: .zero)
         
-        //self.configuration = UIButton.Configuration.plain()
+        self.isActive = self.sectionViewModel.isActive.value ?? false
+        self.sectionViewModel.isActive.onChanged {
+            self.isActive = self.sectionViewModel.isActive.value!
+        }
+        
+        self.setTitle(section.title, for: .normal)
+        
         updateView()
         
         self.addTarget(self, action: #selector(onTappedObjc), for: .touchUpInside)
-        
-        //self.backgroundColor = .green
-        //self.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20)
     }
     
     required init?(coder: NSCoder) {
@@ -71,7 +68,7 @@ class SectionButton: UIButton {
         self.handler?()
     }
     
-    private var isActive: Bool = false { // TODO: watch this value from viewModel
+    private var isActive: Bool = false {
         didSet {
             onIsActiveChanged()
         }
@@ -79,6 +76,7 @@ class SectionButton: UIButton {
     
     private var handler: (() -> Void)?
     
+    private var sectionViewModel: SectionViewModel
 }
 
 // MainViewModel - currentSection (mb SectionModel -> ScheduleModel | NotesModel | RemindersModel | GoalsModel)
