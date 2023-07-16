@@ -67,6 +67,7 @@ class DatesCollectionView: UIView {
 // MARK: - Initialize
 private extension DatesCollectionView {
     func initialize() {
+        collectionView.backgroundColor = .systemGroupedBackground
         
         collectionView.register(DateCollectionViewCell.self, forCellWithReuseIdentifier: DateCollectionViewCell.identifier)
         collectionView.dataSource = self
@@ -147,7 +148,7 @@ extension DatesCollectionView: UICollectionViewDelegate {
     }
     
     func updateSelectedDate(_ scrollView: UIScrollView) {
-        let currentOffset = calculateNewContentOffset(scrollView.contentOffset.x + UIConstants.theMostMagicNumber)
+        let currentOffset = calculateNewContentOffset(scrollView.contentOffset.x + collectionView.contentInset.left)
         let newIndex = Int(currentOffset / (UIConstants.dateItemWidth + UIConstants.collectionViewSpacing))
         
         selectDateAt(newIndex)
@@ -168,7 +169,7 @@ extension DatesCollectionView: UICollectionViewDelegate {
     }
     
     func scroll(_ scrollView: UIScrollView, to index: Int) {
-        let newOffset = CGFloat(index * Int(UIConstants.dateItemWidth + UIConstants.collectionViewSpacing)) - UIConstants.theMostMagicNumber
+        let newOffset = CGFloat(index * Int(UIConstants.dateItemWidth + UIConstants.collectionViewSpacing)) - collectionView.contentInset.left
         
         UIView.animate(withDuration: 0.2) {
              scrollView.contentOffset.x = CGFloat(newOffset)
