@@ -11,7 +11,9 @@ class MainViewModel {
     
     init() {
         self.sectionsViewModel = SectionsViewModel()
+        self.notificationsViewModel = NotificationsViewModel()
     }
     
     public private(set) var sectionsViewModel: SectionsViewModel
+    public private(set) var notificationsViewModel: NotificationsViewModel
 }

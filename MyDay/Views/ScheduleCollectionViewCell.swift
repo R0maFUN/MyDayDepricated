@@ -203,16 +203,6 @@ extension ScheduleCollectionViewCell: UITableViewDataSource {
 extension ScheduleCollectionViewCell: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let model = self.sections[indexPath.section].items[indexPath.row]
-        
-//        switch model.self {
-//        case .common(let model):
-//            model.handler()
-//        case .textField(let model):
-//            return
-//        case .switcher(let model):
-//            return
-//        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

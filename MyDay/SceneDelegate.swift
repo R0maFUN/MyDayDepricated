@@ -25,9 +25,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let mainViewModel = MainViewModel()
         
         let tabBarCnt = CustomTabBarController(mainViewModel: mainViewModel)
-        tabBarCnt.actionHandler = {
-            tabBarCnt.selectedIndex = 0
-        }
+//        tabBarCnt.actionHandler = {
+//            tabBarCnt.selectedIndex = 0
+//        }
                 
         let mainVC = MainViewController(mainViewModel: mainViewModel)
         

@@ -38,9 +38,18 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
         
         super.init(nibName: nil, bundle: nil)
         
+        self.actionHandler = {
+            let vc = AddScheduleItemViewController(self.mainViewModel.notificationsViewModel)
+            self.present(vc, animated: true)
+        }
+        
         self.leftButton.setTitle(self.mainViewModel.sectionsViewModel.currentSection.value?.addActionTitle, for: .normal)
         mainViewModel.sectionsViewModel.currentSection.onChanged {
             self.leftButton.setTitle(self.mainViewModel.sectionsViewModel.currentSection.value?.addActionTitle, for: .normal)
+            self.actionHandler = {
+                let vc = AddScheduleItemViewController(self.mainViewModel.notificationsViewModel)
+                self.present(vc, animated: true)
+            }
             // self.actionHandler = customAction
         }
     }
