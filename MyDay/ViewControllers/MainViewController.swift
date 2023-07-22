@@ -34,6 +34,8 @@ class MainViewController: UIViewController {
         self.mainViewModel = mainViewModel
         self.sectionsViewModel = self.mainViewModel.sectionsViewModel
         
+        self.datesCollectionView = DatesCollectionView(mainViewModel: self.mainViewModel)
+        
         super.init(nibName: nil, bundle: nil)
         
         connectToSectionsViewModel()
@@ -53,10 +55,7 @@ class MainViewController: UIViewController {
     private let mainViewModel: MainViewModel
     private let sectionsViewModel: SectionsViewModel
     
-    private let datesCollectionView: DatesCollectionView = {
-        let view = DatesCollectionView()
-        return view
-    }()
+    private let datesCollectionView: DatesCollectionView
     
     private let sectionsStackView: UIStackView = {
         let xStack = UIStackView()

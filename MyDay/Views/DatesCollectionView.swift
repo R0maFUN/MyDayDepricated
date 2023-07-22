@@ -10,11 +10,17 @@ import UIKit
 class DatesCollectionView: UIView {
     
     // MARK: - Init
-    init() {
+    init(mainViewModel: MainViewModel) {
+        self.mainViewModel = mainViewModel
+        
         super.init(frame: .zero)
         
-        self.dates = getDates()
+        self.dates = self.mainViewModel.visibleDates
         self.selectedDate = self.dates[0] // anyways - no matters 0 shit
+        
+        self.mainViewModel.currentDate.onChanged {
+            self.selectedDate = self.mainViewModel.currentDate.value!
+        }
         
         initialize()
     }
@@ -26,7 +32,7 @@ class DatesCollectionView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        self.selectDateAt(10) // index of today - fucking important string
+        self.selectDateAt(self.mainViewModel.getIndexOfCurrentDate()!) // index of today - fucking important string
     }
     
     // MARK: - Private Constants
@@ -39,6 +45,7 @@ class DatesCollectionView: UIView {
     }
     
     // MARK: - Private Properties
+    private var mainViewModel: MainViewModel
     private var dates: [DateModel] = [] // TODO: Get list from ViewModel
     private var selectedDate: DateModel? { // TODO: Watch this from ViewModel
         didSet {
@@ -79,31 +86,6 @@ private extension DatesCollectionView {
         collectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-    }
-    
-    func getDates() -> [DateModel] {
-        let calendar = Calendar.current
-        let currentDate = Date()
-
-        let startDateComponents = calendar.dateComponents([.year, .month], from: currentDate)
-        let endDateComponents = DateComponents(year: startDateComponents.year, month: startDateComponents.month! + 1, day: 0)
-
-        let startDate = calendar.date(from: startDateComponents)!
-        let endDate = calendar.date(from: endDateComponents)!
-
-        var dateArray: [DateModel] = []
-
-        calendar.enumerateDates(startingAfter: startDate, matching: DateComponents(hour: 0, minute: 0, second: 0), matchingPolicy: .nextTime) { (date, _, stop) in
-            guard let date = date else { return }
-            
-            if date <= endDate {
-                dateArray.append(DateModel(date: date))
-            } else {
-                stop = true
-            }
-        }
-
-        return dateArray
     }
 }
 
@@ -157,14 +139,7 @@ extension DatesCollectionView: UICollectionViewDelegate {
     func selectDateAt(_ index: Int) {
         if index >= 0 && index < dates.count {
             let newSelectedDate = self.dates[index]
-            
-            if newSelectedDate.day != selectedDate!.day {
-                selectedDate!.selected = false
-                selectedDate = newSelectedDate
-                newSelectedDate.selected = true
-            } else {
-                scroll(self.collectionView, to: newSelectedDate)
-            }
+            self.mainViewModel.setCurrentDate(to: newSelectedDate)
         }
     }
     
@@ -200,6 +175,12 @@ class DateModel {
             dateFormatter.dateFormat = "MMM"
             // "MAY"
             return dateFormatter.string(from: date).uppercased()
+        }
+    }
+    
+    public var monthInt: Int {
+        get {
+            return Calendar.current.component(.month, from: date)
         }
     }
     
