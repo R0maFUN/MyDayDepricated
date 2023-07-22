@@ -11,8 +11,9 @@ class ScheduleItemTitleTableViewCell: UITableViewCell, UITextFieldDelegate {
     public static let reuseIdentifier = "ScheduleItemTitleTableViewCell"
     public private(set) var height: CGFloat = 68
     
-    public func configure(with model: AddScheduleItemTitleModel) {
-        self.textField.text = model.title
+    public func configure(with viewModel: ScheduleItemViewModel) {
+        self.itemViewModel = viewModel
+        self.textField.text = viewModel.title
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -26,7 +27,9 @@ class ScheduleItemTitleTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.itemViewModel?.setTitle(title: textField.text ?? "")
         textField.resignFirstResponder()
+        return true
     }
     
     private func initialize() {
@@ -45,6 +48,8 @@ class ScheduleItemTitleTableViewCell: UITableViewCell, UITextFieldDelegate {
         //textField.becomeFirstResponder()
     }
     
+    private var itemViewModel: ScheduleItemViewModel?
+    
     private var textField: UITextField = {
         let textField = UITextField()
         return textField
@@ -55,8 +60,8 @@ class ScheduleItemDateTableViewCell: UITableViewCell {
     static let reuseIdentifier = "ScheduleItemDateTableViewCell"
     public private(set) var height: CGFloat = 356
     
-    public func configure(with model: AddScheduleItemDateModel) {
-        
+    public func configure(with viewModel: ScheduleItemViewModel) {
+        self.itemViewModel = viewModel
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -72,10 +77,18 @@ class ScheduleItemDateTableViewCell: UITableViewCell {
     private func initialize() {
         contentView.addSubview(datePicker)
         
+        datePicker.addTarget(self, action: #selector(onDateChanged), for: .allEvents)
+        
         datePicker.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
+    
+    @objc func onDateChanged() {
+        self.itemViewModel?.setDate(date: datePicker.date)
+    }
+    
+    private var itemViewModel: ScheduleItemViewModel?
     
     private var datePicker: UIDatePicker = {
         let picker = UIDatePicker()
@@ -89,8 +102,8 @@ class ScheduleItemStartTimeTableViewCell: UITableViewCell {
     static let reuseIdentifier = "ScheduleItemStartTimeTableViewCell"
     public private(set) var height: CGFloat = 68
     
-    public func configure(with model: AddScheduleItemStartTimeModel) {
-        
+    public func configure(with viewModel: ScheduleItemViewModel) {
+        self.itemViewModel = viewModel
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -107,6 +120,8 @@ class ScheduleItemStartTimeTableViewCell: UITableViewCell {
         contentView.addSubview(label)
         contentView.addSubview(timePicker)
         
+        timePicker.addTarget(self, action: #selector(onTimeChanged), for: .allEvents)
+        
         label.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.leading.equalToSuperview().inset(16)
@@ -117,6 +132,12 @@ class ScheduleItemStartTimeTableViewCell: UITableViewCell {
             make.trailing.equalToSuperview().inset(16)
         }
     }
+    
+    @objc func onTimeChanged() {
+        self.itemViewModel?.setStartDate(date: timePicker.date)
+    }
+    
+    private var itemViewModel: ScheduleItemViewModel?
     
     private var label: UILabel = {
         let label = UILabel()
@@ -137,8 +158,8 @@ class ScheduleItemEndTimeTableViewCell: UITableViewCell {
     static let reuseIdentifier = "ScheduleItemEndTimeTableViewCell"
     public private(set) var height: CGFloat = 68
     
-    public func configure(with model: AddScheduleItemEndTimeModel) {
-        
+    public func configure(with viewModel: ScheduleItemViewModel) {
+        self.itemViewModel = viewModel
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -155,6 +176,8 @@ class ScheduleItemEndTimeTableViewCell: UITableViewCell {
         contentView.addSubview(label)
         contentView.addSubview(timePicker)
         
+        timePicker.addTarget(self, action: #selector(onTimeChanged), for: .allEvents)
+        
         label.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.leading.equalToSuperview().inset(16)
@@ -165,6 +188,12 @@ class ScheduleItemEndTimeTableViewCell: UITableViewCell {
             make.trailing.equalToSuperview().inset(16)
         }
     }
+    
+    @objc func onTimeChanged() {
+        self.itemViewModel?.setStartDate(date: timePicker.date)
+    }
+    
+    private var itemViewModel: ScheduleItemViewModel?
     
     private var label: UILabel = {
         let label = UILabel()
@@ -258,8 +287,8 @@ class ScheduleItemNotificationTableViewCell: UITableViewCell {
     }
     
     private func initialize() {
-        contentView.backgroundColor = .tertiarySystemBackground
-        contentView.layer.opacity = 0.8
+        contentView.backgroundColor = .lightGray
+        contentView.layer.opacity = 0.5
         
         contentView.addSubview(label)
         contentView.addSubview(iconImageView)
@@ -284,7 +313,7 @@ class ScheduleItemNotificationTableViewCell: UITableViewCell {
     private var label: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 20, weight: .medium)
-        label.text = "End at"
+        label.text = ""
         return label
     }()
 }

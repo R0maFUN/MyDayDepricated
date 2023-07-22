@@ -8,27 +8,11 @@
 import UIKit
 
 enum AddScheduleItemSection {
-    case title(model: AddScheduleItemTitleModel)
-    case date(model: AddScheduleItemDateModel)
-    case startTime(model: AddScheduleItemStartTimeModel)
-    case endTime(model: AddScheduleItemEndTimeModel)
-    case notifications(model: NotificationsViewModel)
-}
-
-struct AddScheduleItemTitleModel {
-    var title: String = ""
-}
-
-struct AddScheduleItemDateModel {
-    var date: Date = Date()
-}
-
-struct AddScheduleItemStartTimeModel {
-    var time: Date = Date()
-}
-
-struct AddScheduleItemEndTimeModel {
-    var time: Date = Date()
+    case title(viewModel: ScheduleItemViewModel)
+    case date(viewModel: ScheduleItemViewModel)
+    case startTime(viewModel: ScheduleItemViewModel)
+    case endTime(viewModel: ScheduleItemViewModel)
+    case notifications(viewModel: NotificationsViewModel)
 }
 
 class AddScheduleItemViewController: UIViewController {
@@ -39,12 +23,18 @@ class AddScheduleItemViewController: UIViewController {
         initialize()
     }
     
-    init(_ notificationsViewModel: NotificationsViewModel) {
+    init(_ notificationsViewModel: NotificationsViewModel, _ sectionsViewModel: SectionsViewModel) {
         self.notificationsViewModel = notificationsViewModel
+        self.sectionsViewModel = sectionsViewModel
+        self.itemViewModel = ScheduleItemViewModel()
         
         super.init(nibName: .none, bundle: .none)
         
-        self.sections.append(.notifications(model: self.notificationsViewModel))
+        self.sections.append(.title(viewModel: self.itemViewModel))
+        self.sections.append(.date(viewModel: self.itemViewModel))
+        self.sections.append(.startTime(viewModel: self.itemViewModel))
+        self.sections.append(.endTime(viewModel: self.itemViewModel))
+        self.sections.append(.notifications(viewModel: self.notificationsViewModel))
         
         self.notificationsViewModel.isEnabled.onChanged {
             self.notificationsTurnedOn = self.notificationsViewModel.isEnabled.value!
@@ -74,15 +64,21 @@ class AddScheduleItemViewController: UIViewController {
         table.register(ScheduleItemNotificationTableViewCell.self, forCellReuseIdentifier: ScheduleItemNotificationTableViewCell.reuseIdentifier)
         return table
     }()
+    
+    private let doneButton: UIButton = {
+        var config = UIButton.Configuration.filled()
+        config.title = "Done"
+        let button = UIButton(configuration: config)
+        return button
+    }()
 
-    private var sections: [AddScheduleItemSection] = [.title(model: AddScheduleItemTitleModel()),
-                                                      .date(model: AddScheduleItemDateModel()),
-                                                      .startTime(model: AddScheduleItemStartTimeModel()),
-                                                      .endTime(model: AddScheduleItemEndTimeModel())]
+    private var sections: [AddScheduleItemSection] = []
     
     private var notificationsTurnedOn: Bool = false
     
     private var notificationsViewModel: NotificationsViewModel
+    private var sectionsViewModel: SectionsViewModel
+    private var itemViewModel: ScheduleItemViewModel
 }
 
 private extension AddScheduleItemViewController {
@@ -93,12 +89,37 @@ private extension AddScheduleItemViewController {
         tableView.delegate = self
         tableView.allowsSelection = false
         tableView.sectionHeaderTopPadding = 50
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 80, right: 0)
         
         self.view.addSubview(tableView)
         
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        
+        self.view.addSubview(doneButton)
+        
+        doneButton.addTarget(self, action: #selector(onDoneButtonPressed), for: .touchUpInside)
+        
+        doneButton.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.bottom.equalToSuperview().inset(50)
+            make.height.equalTo(50)
+        }
+    }
+    
+    @objc func onDoneButtonPressed() {
+        guard let scheduleSectionManager = self.sectionsViewModel.currentSectionManager.value! as? ScheduleSectionsManager else { return }
+        if let scheduleSection = scheduleSectionManager.getSection(by: self.itemViewModel.date) as? ScheduleSectionViewModel {
+            scheduleSection.add(self.itemViewModel)
+            dismiss(animated: true)
+        } else {
+            let scheduleSection = ScheduleSectionViewModel(date: self.itemViewModel.date)
+            scheduleSectionManager.add(section: scheduleSection)
+            scheduleSection.add(self.itemViewModel)
+            dismiss(animated: true)
+        }
+        //scheduleSectionManager.addScheduleItem(date: Date, title: <#T##String#>, startTime: <#T##Date#>, endTime: <#T##Date#>)
     }
 }
 
@@ -131,17 +152,17 @@ extension AddScheduleItemViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ScheduleItemTitleTableViewCell.reuseIdentifier, for: indexPath) as? ScheduleItemTitleTableViewCell else { return UITableViewCell() }
             cell.configure(with: model)
             return cell
-        case .date(model: let model):
+        case .date(viewModel: let viewModel):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ScheduleItemDateTableViewCell.reuseIdentifier, for: indexPath) as? ScheduleItemDateTableViewCell else { return UITableViewCell() }
-            cell.configure(with: model)
+            cell.configure(with: viewModel)
             return cell
-        case .startTime(model: let model):
+        case .startTime(viewModel: let viewModel):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ScheduleItemStartTimeTableViewCell.reuseIdentifier, for: indexPath) as? ScheduleItemStartTimeTableViewCell else { return UITableViewCell() }
-            cell.configure(with: model)
+            cell.configure(with: viewModel)
             return cell
-        case .endTime(model: let model):
+        case .endTime(viewModel: let viewModel):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ScheduleItemEndTimeTableViewCell.reuseIdentifier, for: indexPath) as? ScheduleItemEndTimeTableViewCell else { return UITableViewCell() }
-            cell.configure(with: model)
+            cell.configure(with: viewModel)
             return cell
         case .notifications(_):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ScheduleItemNotificationsTableViewCell.reuseIdentifier, for: indexPath) as? ScheduleItemNotificationsTableViewCell else { return UITableViewCell() }

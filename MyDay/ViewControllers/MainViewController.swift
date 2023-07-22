@@ -103,7 +103,7 @@ private extension MainViewController {
     func getSectionButtons() -> [SectionButton] {
         var buttons: [SectionButton] = []
         
-        sectionsViewModel.sections.forEach { section in
+        sectionsViewModel.sectionManagers.forEach { section in
             let button = SectionButton(section: section)
             button.onTapped {
                 self.sectionsViewModel.select(section: section)
@@ -139,11 +139,11 @@ private extension MainViewController {
 extension MainViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.sectionsViewModel.sections.count
+        return self.sectionsViewModel.sectionManagers.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let section = self.sectionsViewModel.sections[indexPath.item] as? ScheduleSectionViewModel {
+        if let section = self.sectionsViewModel.sectionManagers[indexPath.item] as? ScheduleSectionsManager {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ScheduleCollectionViewCell.reuseIdentifier, for: indexPath) as? ScheduleCollectionViewCell else { return UICollectionViewCell() }
             cell.configure(with: section)
             return cell
@@ -161,8 +161,8 @@ extension MainViewController: UICollectionViewDataSource {
 extension MainViewController: UICollectionViewDelegate {
     
     func connectToSectionsViewModel() {
-        self.sectionsViewModel.currentSectionIndex.onChanged {
-            self.selectSectionAt(self.sectionsViewModel.currentSectionIndex.value!)
+        self.sectionsViewModel.currentSectionManagerIndex.onChanged {
+            self.selectSectionAt(self.sectionsViewModel.currentSectionManagerIndex.value!)
         }
     }
     
@@ -198,7 +198,7 @@ extension MainViewController: UICollectionViewDelegate {
     }
     
     func selectSectionAt(_ index: Int) {
-        if index >= 0 && index < self.sectionsViewModel.sections.count {
+        if index >= 0 && index < self.sectionsViewModel.sectionManagers.count {
             scroll(to: index)
         }
     }

@@ -7,11 +7,27 @@
 
 import Foundation
 
-class GoalsSectionViewModel: SectionViewModel {
-    override init() {
-        super.init()
+class GoalsSectionsManager: SectionsManager {
+    
+    override init(minDate: Date, maxDate: Date) {
+        super.init(minDate: minDate, maxDate: maxDate)
         
         self.title = "Goals"
-        self.addActionTitle = "Goal"
+        self.addActionTitle = "Note"
     }
+}
+
+class GoalsSectionViewModel: SectionViewModel {
+
+}
+
+class GoalsItemViewModel: SectionItemViewModel {
+    
+    init(title: String, description: String = "", editDate: Date, date: Date) {
+        super.init(title: title, description: description, date: date)
+
+        self.editDate = editDate
+    }
+
+    public private(set) var editDate: Date = Date()
 }

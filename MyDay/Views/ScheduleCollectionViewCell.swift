@@ -7,25 +7,25 @@
 
 import UIKit
 
-struct ScheduleItemModel {
-    var title: String
-    var description: String
-    var startDate: Date
-    var endDate: Date
-}
+//struct ScheduleItemModel {
+//    var title: String
+//    var description: String
+//    var startDate: Date
+//    var endDate: Date
+//}
 
 struct ScheduleSection {
     let title: String
-    let items: [ScheduleItemModel]
+    let items: [SectionItemViewModel]
 }
 
 class ScheduleItemTableViewCell: UITableViewCell {
     static let reuseIdentifier = "ScheduleItemTableViewCell"
     
-    public func configure(with model: ScheduleItemModel) {
-        titleLabel.text = model.title
-        descriptionLabel.text = model.description
-        timeLabel.text = convertToString(model.startDate, model.endDate)
+    public func configure(with viewModel: ScheduleItemViewModel) {
+        titleLabel.text = viewModel.title
+        descriptionLabel.text = viewModel.description
+        timeLabel.text = convertToString(viewModel.startDate, viewModel.endDate)
     }
     
     // MARK: - Init
@@ -105,8 +105,16 @@ class ScheduleCollectionViewCell: UICollectionViewCell {
 
     static let reuseIdentifier = "ScheduleCollectionViewCell"
     
-    public func configure(with viewModel: ScheduleSectionViewModel) {
+    public func configure(with viewModel: ScheduleSectionsManager) {
+        self.viewModel = viewModel
         
+        if let scheduleSectionViewModel = self.viewModel?.currentSection.value as? ScheduleSectionViewModel {
+            scheduleSectionViewModel.onItemsChanged {
+                self.updateSections()
+            }
+        }
+        
+        updateSections()
     }
     
     override init(frame: CGRect) {
@@ -125,8 +133,7 @@ class ScheduleCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Private Properties
-    // private var viewModel: ScheduleViewModel
-    private var items: [ScheduleItemModel] = []
+    private var viewModel: ScheduleSectionsManager?
     private var sections: [ScheduleSection] = []
     
     private var tableView: UITableView = {
@@ -138,28 +145,27 @@ class ScheduleCollectionViewCell: UICollectionViewCell {
 
 private extension ScheduleCollectionViewCell {
     func initialize() {
-        initializeSections()
+        updateSections()
         
         setupTableView()
     }
     
-    // TODO: refactor, get items from viewModel
-    func initializeSections() {
-        self.sections = [
-            ScheduleSection(title: "", items: [
-                ScheduleItemModel(title: "Wake up", description: "Some description", startDate: Date(), endDate: Date()),
-                ScheduleItemModel(title: "Wake up", description: "Some description", startDate: Date(), endDate: Date()),
-                ScheduleItemModel(title: "Wake up", description: "Some description", startDate: Date(), endDate: Date()),
-                ScheduleItemModel(title: "Wake up", description: "Some description", startDate: Date(), endDate: Date()),
-                ScheduleItemModel(title: "Wake up", description: "Some description", startDate: Date(), endDate: Date()),
-            ]),
-            ScheduleSection(title: "In Progress", items: [
-                ScheduleItemModel(title: "Wake up", description: "Some description", startDate: Date(), endDate: Date()),
-            ]),
-            ScheduleSection(title: "Next Task", items: [
-                ScheduleItemModel(title: "Wake up", description: "Some description", startDate: Date(), endDate: Date()),
-            ])
-        ]
+    func updateSections() {
+        guard let scheduleSectionViewModel = self.viewModel?.currentSection.value as? ScheduleSectionViewModel else { return }
+        self.sections = []
+        if scheduleSectionViewModel.items.count > 0 {
+            self.sections.append(ScheduleSection(title: "", items: scheduleSectionViewModel.items))
+            
+            if scheduleSectionViewModel.inProgressItems.count > 0 {
+                self.sections.append(ScheduleSection(title: "In Progress", items: scheduleSectionViewModel.inProgressItems))
+            }
+            
+            if scheduleSectionViewModel.nextItems.count > 0 {
+                self.sections.append(ScheduleSection(title: "Next Task", items: scheduleSectionViewModel.nextItems))
+            }
+        }
+        
+        self.tableView.reloadData()
     }
 }
 
@@ -179,7 +185,9 @@ private extension ScheduleCollectionViewCell {
 
 extension ScheduleCollectionViewCell: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.sections.count
+        //guard let scheduleSectionViewModel = self.viewModel?.currentSection.value as? ScheduleSectionViewModel else { return 0 }
+        //return scheduleSectionViewModel.items.count > 0 ? 1 : 0 + scheduleSectionViewModel.inProgressItems.count > 0 ? 1 : 0 + scheduleSectionViewModel.nextItems.count > 0 ? 1 : 0
+        self.sections.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -191,10 +199,10 @@ extension ScheduleCollectionViewCell: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let model = self.sections[indexPath.section].items[indexPath.row]
+        guard let viewModel = self.sections[indexPath.section].items[indexPath.row] as? ScheduleItemViewModel else { return UITableViewCell() }
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ScheduleItemTableViewCell.reuseIdentifier, for: indexPath) as? ScheduleItemTableViewCell else { return UITableViewCell() }
-        cell.configure(with: model)
+        cell.configure(with: viewModel)
         
         return cell
     }

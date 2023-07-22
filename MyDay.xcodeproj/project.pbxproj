@@ -31,6 +31,7 @@
 		1EC638BB2A6A842800512524 /* AddScheduleItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638BA2A6A842800512524 /* AddScheduleItemViewController.swift */; };
 		1EC638BD2A6AA39E00512524 /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638BC2A6AA39E00512524 /* NotificationsViewModel.swift */; };
 		1EC638BF2A6AAE5B00512524 /* ScheduleItemTableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638BE2A6AAE5B00512524 /* ScheduleItemTableViewCells.swift */; };
+		1EC638C22A6B040600512524 /* SectionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638C12A6B040600512524 /* SectionsManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,7 @@
 		1EC638BA2A6A842800512524 /* AddScheduleItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddScheduleItemViewController.swift; sourceTree = "<group>"; };
 		1EC638BC2A6AA39E00512524 /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
 		1EC638BE2A6AAE5B00512524 /* ScheduleItemTableViewCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleItemTableViewCells.swift; sourceTree = "<group>"; };
+		1EC638C12A6B040600512524 /* SectionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 		1EC6387B2A5DD3C100512524 /* MyDay */ = {
 			isa = PBXGroup;
 			children = (
+				1EC638C02A6B03F300512524 /* Managers */,
 				1EC638B12A63E84300512524 /* Extensions */,
 				1EC638A42A63E44C00512524 /* ViewModels */,
 				1EC6389B2A5EFBFA00512524 /* Layouts */,
@@ -158,6 +161,14 @@
 				1EC638B22A63E85B00512524 /* PropertyBinding.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1EC638C02A6B03F300512524 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				1EC638C12A6B040600512524 /* SectionsManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,6 +254,7 @@
 				1EC638BB2A6A842800512524 /* AddScheduleItemViewController.swift in Sources */,
 				1EC638922A5DE7AF00512524 /* CustomTabBarController.swift in Sources */,
 				1EC638BD2A6AA39E00512524 /* NotificationsViewModel.swift in Sources */,
+				1EC638C22A6B040600512524 /* SectionsManager.swift in Sources */,
 				1EC638A62A63E46B00512524 /* SectionsViewModel.swift in Sources */,
 				1EC638B02A63E6B100512524 /* GoalsSectionViewModel.swift in Sources */,
 				1EC6387F2A5DD3C100512524 /* SceneDelegate.swift in Sources */,

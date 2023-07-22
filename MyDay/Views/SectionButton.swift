@@ -13,14 +13,14 @@ class SectionButton: UIButton {
         self.handler = handler
     }
     
-    init(section: SectionViewModel) {
-        self.sectionViewModel = section
+    init(section: SectionsManager) {
+        self.sectionsManager = section
         
         super.init(frame: .zero)
         
-        self.isActive = self.sectionViewModel.isActive.value ?? false
-        self.sectionViewModel.isActive.onChanged {
-            self.isActive = self.sectionViewModel.isActive.value!
+        self.isActive = self.sectionsManager.isActive.value ?? false
+        self.sectionsManager.isActive.onChanged {
+            self.isActive = self.sectionsManager.isActive.value!
         }
         
         self.setTitle(section.title, for: .normal)
@@ -76,7 +76,7 @@ class SectionButton: UIButton {
     
     private var handler: (() -> Void)?
     
-    private var sectionViewModel: SectionViewModel
+    private var sectionsManager: SectionsManager
 }
 
 // MainViewModel - currentSection (mb SectionModel -> ScheduleModel | NotesModel | RemindersModel | GoalsModel)

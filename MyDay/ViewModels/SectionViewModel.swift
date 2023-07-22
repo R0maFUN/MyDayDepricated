@@ -9,15 +9,51 @@ import Foundation
 
 class SectionViewModel {
     
-    public func activate() {
-        self.isActive.value = true
+    init(date: Date) {
+        self.date = date
     }
     
-    public func deactivate() {
-        self.isActive.value = false
+    public func add(_ item: SectionItemViewModel) {
+        self.items.append(item)
+        
+        // save to database
+        
+        for handler in onItemsChangedHandlers {
+            handler()
+        }
     }
     
-    public internal(set) var title: String = ""
-    public internal(set) var addActionTitle: String = ""
-    public internal(set) var isActive: PropertyBinding<Bool> = PropertyBinding<Bool>(false)
+    public func onItemsChanged(_ handler: @escaping () -> Void) {
+        onItemsChangedHandlers.append(handler)
+    }
+    
+    public internal(set) var items: [SectionItemViewModel] = []
+    public internal(set) var date: Date = Date()
+    
+    private var onItemsChangedHandlers: [() -> Void] = []
+}
+
+class SectionItemViewModel {
+    
+    init(title: String, description: String = "", date: Date) {
+        self.title = title
+        self.description = description
+        self.date = date
+    }
+    
+    public func setTitle(title: String) {
+        self.title = title
+    }
+    
+    public func setDescription(description: String) {
+        self.description = description
+    }
+    
+    public func setDate(date: Date) {
+        self.date = date
+    }
+    
+    public private(set) var title: String = ""
+    public private(set) var description: String = ""
+    public private(set) var date: Date = Date()
 }
