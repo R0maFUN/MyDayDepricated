@@ -41,7 +41,7 @@ class DatesCollectionView: UIView {
         static let dateItemWidth: CGFloat = 30.0
         static let dateItemHeight: CGFloat = 64.0
         static let selectedDateItemHeight: CGFloat = 64.0
-        static let theMostMagicNumber: CGFloat = 165.0 // Idk how to describe TODO: mb think about fix
+        static let collectionViewContentInsets: CGFloat = UIScreen.main.bounds.width / 2 - 16 - dateItemWidth / 2
     }
     
     // MARK: - Private Properties
@@ -58,7 +58,7 @@ class DatesCollectionView: UIView {
         collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.decelerationRate = .fast
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.contentInset = UIEdgeInsets(top: 0.0, left: UIConstants.theMostMagicNumber, bottom: 0, right: UIConstants.theMostMagicNumber)
+        collectionView.contentInset = UIEdgeInsets(top: 0.0, left: UIConstants.collectionViewContentInsets, bottom: 0, right: UIConstants.collectionViewContentInsets)
         return collectionView
     }()
     
@@ -200,6 +200,12 @@ class DateModel {
         }
     }
     
+    public var isToday: Bool {
+        get {
+            return Calendar.current.dateComponents([.month, .day], from: self.date) == Calendar.current.dateComponents([.month, .day], from: Date())
+        }
+    }
+    
     public var delegate: DateModelDelegate?
     
     public var selected: Bool = false {
@@ -237,6 +243,7 @@ class DateCollectionViewCell: UICollectionViewCell {
         dayWeekLabel.text = model.dayOfWeek
 
         selectedDate = model.selected
+        isToday = model.isToday
         
         model.delegate = self
     }
@@ -277,13 +284,19 @@ class DateCollectionViewCell: UICollectionViewCell {
             dayLabel.transform = CGAffineTransform(scaleX: scale, y: scale)
             dayWeekLabel.transform = CGAffineTransform(scaleX: scale, y: scale)
             
-            monthLabel.textColor = selectedDate ? .label : .secondaryLabel
-            dayLabel.textColor = selectedDate ? .label : .secondaryLabel
-            dayWeekLabel.textColor = selectedDate ? .label : .secondaryLabel
+            monthLabel.textColor = selectedDate ? .label : isToday ? .link : .secondaryLabel
+            dayLabel.textColor = selectedDate ? .label : isToday ? .link : .secondaryLabel
+            dayWeekLabel.textColor = selectedDate ? .label : isToday ? .link : .secondaryLabel
         }
     }
     
     private var selectedDate: Bool = false {
+        didSet {
+            updateView()
+        }
+    }
+    
+    private var isToday: Bool = false {
         didSet {
             updateView()
         }
