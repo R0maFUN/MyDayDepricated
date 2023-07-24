@@ -32,6 +32,14 @@ class ScheduleItemTitleTableViewCell: UITableViewCell, UITextFieldDelegate {
         return true
     }
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return false }
+        
+        self.itemViewModel?.setTitle(title: text)
+        
+        return true
+    }
+    
     private func initialize() {
         textField.delegate = self
         
@@ -46,6 +54,61 @@ class ScheduleItemTitleTableViewCell: UITableViewCell, UITextFieldDelegate {
         }
         
         //textField.becomeFirstResponder()
+    }
+    
+    private var itemViewModel: ScheduleItemViewModel?
+    
+    private var textField: UITextField = {
+        let textField = UITextField()
+        return textField
+    }()
+}
+
+class ScheduleItemDescriptionTableViewCell: UITableViewCell, UITextFieldDelegate {
+    public static let reuseIdentifier = "ScheduleItemDescriptionTableViewCell"
+    public private(set) var height: CGFloat = 68
+    
+    public func configure(with viewModel: ScheduleItemViewModel) {
+        self.itemViewModel = viewModel
+        self.textField.text = viewModel.description
+    }
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        initialize()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.itemViewModel?.setDescription(description: textField.text ?? "")
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return false }
+        
+        self.itemViewModel?.setDescription(description: text)
+        
+        return true
+    }
+    
+    private func initialize() {
+        textField.delegate = self
+        
+        textField.font = .systemFont(ofSize: 20, weight: .regular)
+        textField.placeholder = "Description"
+        textField.tintColor = .label
+        
+        contentView.addSubview(textField)
+        
+        textField.snp.makeConstraints { make in
+            make.edges.equalToSuperview().inset(16)
+        }
     }
     
     private var itemViewModel: ScheduleItemViewModel?

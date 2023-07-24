@@ -23,6 +23,10 @@ class SectionViewModel {
         }
     }
     
+    public func update() {
+        
+    }
+    
     public func onItemsChanged(_ handler: @escaping () -> Void) {
         onItemsChangedHandlers.append(handler)
     }
@@ -30,5 +34,5 @@ class SectionViewModel {
     public internal(set) var items: [SectionItemViewModel] = []
     public internal(set) var date: DateModel
     
-    private var onItemsChangedHandlers: [() -> Void] = []
+    internal var onItemsChangedHandlers: [() -> Void] = []
 }

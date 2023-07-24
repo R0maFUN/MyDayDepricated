@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ScheduleSectionsManager: SectionsManager {
+final class ScheduleSectionsManager: SectionsManager {
     
     override init(minDate: DateModel, maxDate: DateModel) {
         super.init(minDate: minDate, maxDate: maxDate)
@@ -31,7 +31,7 @@ class ScheduleSectionsManager: SectionsManager {
         //let sections = restore()
     }
     
-    func initialize(visibleDates: [DateModel]) {
+    private func initialize(visibleDates: [DateModel]) {
         let restoredSections = restore()
         
         restoredSections.forEach({ key, value in
@@ -43,14 +43,14 @@ class ScheduleSectionsManager: SectionsManager {
                 return key == dateModel
             }) {
                 let section = ScheduleSectionViewModel(date: dateModel)
-                section.add(ScheduleItemViewModel(title: "Test \(dateModel.month)", startDate: Date(), endDate: Date(), date: dateModel.date))
-                section.add(ScheduleItemViewModel(title: "Test \(dateModel.day)", startDate: Date(), endDate: Date(), date: dateModel.date))
+                section.add(ScheduleItemViewModel(title: "Test \(dateModel.month)", description: "No Desc", startDate: Date(), endDate: Date(), date: dateModel.date))
+                section.add(ScheduleItemViewModel(title: "Test \(dateModel.day)", description: "No Desc", startDate: Date(), endDate: Date(), date: dateModel.date))
                 add(section: section)
             }
         }
     }
     
-    func restore() -> [DateModel:ScheduleSectionViewModel] {
+    private func restore() -> [DateModel:ScheduleSectionViewModel] {
         let realmManager = SectionsRealmManager<ScheduleItemViewModel>()
         let scheduleItems = realmManager.restore()
         

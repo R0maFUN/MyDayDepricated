@@ -9,6 +9,7 @@ import UIKit
 
 enum AddScheduleItemSection {
     case title(viewModel: ScheduleItemViewModel)
+    case description(viewModel: ScheduleItemViewModel)
     case date(viewModel: ScheduleItemViewModel)
     case startTime(viewModel: ScheduleItemViewModel)
     case endTime(viewModel: ScheduleItemViewModel)
@@ -31,6 +32,7 @@ class AddScheduleItemViewController: UIViewController {
         super.init(nibName: .none, bundle: .none)
         
         self.sections.append(.title(viewModel: self.itemViewModel))
+        self.sections.append(.description(viewModel: self.itemViewModel))
         self.sections.append(.date(viewModel: self.itemViewModel))
         self.sections.append(.startTime(viewModel: self.itemViewModel))
         self.sections.append(.endTime(viewModel: self.itemViewModel))
@@ -57,6 +59,7 @@ class AddScheduleItemViewController: UIViewController {
     private let tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .insetGrouped)
         table.register(ScheduleItemTitleTableViewCell.self, forCellReuseIdentifier: ScheduleItemTitleTableViewCell.reuseIdentifier)
+        table.register(ScheduleItemDescriptionTableViewCell.self, forCellReuseIdentifier: ScheduleItemDescriptionTableViewCell.reuseIdentifier)
         table.register(ScheduleItemDateTableViewCell.self, forCellReuseIdentifier: ScheduleItemDateTableViewCell.reuseIdentifier)
         table.register(ScheduleItemStartTimeTableViewCell.self, forCellReuseIdentifier: ScheduleItemStartTimeTableViewCell.reuseIdentifier)
         table.register(ScheduleItemEndTimeTableViewCell.self, forCellReuseIdentifier: ScheduleItemEndTimeTableViewCell.reuseIdentifier)
@@ -153,6 +156,10 @@ extension AddScheduleItemViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ScheduleItemTitleTableViewCell.reuseIdentifier, for: indexPath) as? ScheduleItemTitleTableViewCell else { return UITableViewCell() }
             cell.configure(with: model)
             return cell
+        case .description(let model):
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ScheduleItemDescriptionTableViewCell.reuseIdentifier, for: indexPath) as? ScheduleItemDescriptionTableViewCell else { return UITableViewCell() }
+            cell.configure(with: model)
+            return cell
         case .date(viewModel: let viewModel):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ScheduleItemDateTableViewCell.reuseIdentifier, for: indexPath) as? ScheduleItemDateTableViewCell else { return UITableViewCell() }
             cell.configure(with: viewModel)
@@ -183,7 +190,7 @@ extension AddScheduleItemViewController: UITableViewDataSource {
 
 extension AddScheduleItemViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 1 {
+        if indexPath.section == 2 {
             return 356
         } else if indexPath.section >= sections.count {
             return 40

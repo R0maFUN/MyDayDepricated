@@ -56,6 +56,7 @@ class SectionsManager {
     private var currentDate: DateModel? {
         didSet {
             self.currentSection.value = self.sections.value![getSectionKeyFrom(date: currentDate!)]
+            self.currentSection.value?.update()
         }
     }
 }
