@@ -33,6 +33,11 @@
 		1EC638BF2A6AAE5B00512524 /* ScheduleItemTableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638BE2A6AAE5B00512524 /* ScheduleItemTableViewCells.swift */; };
 		1EC638C22A6B040600512524 /* SectionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638C12A6B040600512524 /* SectionsManager.swift */; };
 		1EC638C52A6E78C500512524 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 1EC638C42A6E78C500512524 /* RealmSwift */; };
+		1EC638CF2A6E7D5500512524 /* ScheduleItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638CE2A6E7D5500512524 /* ScheduleItemViewModel.swift */; };
+		1EC638D12A6E7D7200512524 /* ScheduleSectionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638D02A6E7D7200512524 /* ScheduleSectionsManager.swift */; };
+		1EC638D32A6E7DB200512524 /* ScheduleItemRealmObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638D22A6E7DB200512524 /* ScheduleItemRealmObject.swift */; };
+		1EC638D52A6E7E9800512524 /* SectionsRealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638D42A6E7E9800512524 /* SectionsRealmManager.swift */; };
+		1EC638D72A6E9A7100512524 /* SectionItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638D62A6E9A7100512524 /* SectionItemViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +67,11 @@
 		1EC638BC2A6AA39E00512524 /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
 		1EC638BE2A6AAE5B00512524 /* ScheduleItemTableViewCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleItemTableViewCells.swift; sourceTree = "<group>"; };
 		1EC638C12A6B040600512524 /* SectionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsManager.swift; sourceTree = "<group>"; };
+		1EC638CE2A6E7D5500512524 /* ScheduleItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleItemViewModel.swift; sourceTree = "<group>"; };
+		1EC638D02A6E7D7200512524 /* ScheduleSectionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSectionsManager.swift; sourceTree = "<group>"; };
+		1EC638D22A6E7DB200512524 /* ScheduleItemRealmObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleItemRealmObject.swift; sourceTree = "<group>"; };
+		1EC638D42A6E7E9800512524 /* SectionsRealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsRealmManager.swift; sourceTree = "<group>"; };
+		1EC638D62A6E9A7100512524 /* SectionItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionItemViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				1EC638C12A6B040600512524 /* SectionsManager.swift */,
+				1EC638D42A6E7E9800512524 /* SectionsRealmManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -181,6 +192,7 @@
 			children = (
 				1EC638A72A63E63500512524 /* SectionViewModel.swift */,
 				1EC638A52A63E46B00512524 /* SectionsViewModel.swift */,
+				1EC638D62A6E9A7100512524 /* SectionItemViewModel.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -189,6 +201,9 @@
 			isa = PBXGroup;
 			children = (
 				1EC638A92A63E65400512524 /* ScheduleSectionViewModel.swift */,
+				1EC638CE2A6E7D5500512524 /* ScheduleItemViewModel.swift */,
+				1EC638D02A6E7D7200512524 /* ScheduleSectionsManager.swift */,
+				1EC638D22A6E7DB200512524 /* ScheduleItemRealmObject.swift */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -316,6 +331,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EC638812A5DD3C100512524 /* ViewController.swift in Sources */,
+				1EC638D52A6E7E9800512524 /* SectionsRealmManager.swift in Sources */,
 				1EC6387D2A5DD3C100512524 /* AppDelegate.swift in Sources */,
 				1EC6389F2A5F10FE00512524 /* DatesCollectionView.swift in Sources */,
 				1EC638BF2A6AAE5B00512524 /* ScheduleItemTableViewCells.swift in Sources */,
@@ -323,13 +339,17 @@
 				1EC638922A5DE7AF00512524 /* CustomTabBarController.swift in Sources */,
 				1EC638BD2A6AA39E00512524 /* NotificationsViewModel.swift in Sources */,
 				1EC638C22A6B040600512524 /* SectionsManager.swift in Sources */,
+				1EC638D12A6E7D7200512524 /* ScheduleSectionsManager.swift in Sources */,
 				1EC638A62A63E46B00512524 /* SectionsViewModel.swift in Sources */,
 				1EC638B02A63E6B100512524 /* GoalsSectionViewModel.swift in Sources */,
 				1EC6387F2A5DD3C100512524 /* SceneDelegate.swift in Sources */,
+				1EC638CF2A6E7D5500512524 /* ScheduleItemViewModel.swift in Sources */,
 				1EC638A32A6070B500512524 /* ScheduleCollectionViewCell.swift in Sources */,
+				1EC638D72A6E9A7100512524 /* SectionItemViewModel.swift in Sources */,
 				1EC638B92A652E6200512524 /* NoteWithListCollectionViewCell.swift in Sources */,
 				1EC6389A2A5E9B3E00512524 /* MainViewController.swift in Sources */,
 				1EC638AC2A63E67300512524 /* NotesSectionViewModel.swift in Sources */,
+				1EC638D32A6E7DB200512524 /* ScheduleItemRealmObject.swift in Sources */,
 				1EC638AA2A63E65400512524 /* ScheduleSectionViewModel.swift in Sources */,
 				1EC638B32A63E85B00512524 /* PropertyBinding.swift in Sources */,
 				1EC638AE2A63E69300512524 /* RemindersSectionViewModel.swift in Sources */,
