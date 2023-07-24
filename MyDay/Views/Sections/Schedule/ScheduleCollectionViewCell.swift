@@ -43,7 +43,7 @@ class ScheduleItemTableViewCell: UITableViewCell {
     private enum UIConstants {
         static let contentInset: CGFloat = 16
         static let horizontalInset: CGFloat = 20
-        static let verticalInset: CGFloat = 6
+        static let verticalInset: CGFloat = 8
     }
     
     // MARK: - Private Properties
@@ -126,7 +126,7 @@ class ScheduleCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Private Constants
     private enum UIConstants {
-        static let rowHeight: CGFloat = 50
+        static let rowHeight: CGFloat = 54
     }
     
     // MARK: - Private Properties
