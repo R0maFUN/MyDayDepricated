@@ -46,8 +46,8 @@ class DatesCollectionView: UIView {
     
     // MARK: - Private Properties
     private var mainViewModel: MainViewModel
-    private var dates: [DateModel] = [] // TODO: Get list from ViewModel
-    private var selectedDate: DateModel? { // TODO: Watch this from ViewModel
+    private var dates: [DateModel] = []
+    private var selectedDate: DateModel? {
         didSet {
             self.scroll(collectionView, to: selectedDate!)
         }
@@ -214,6 +214,17 @@ class DateModel {
     
     public private(set) var date: Date = Date()
     private let dateFormatter = DateFormatter()
+}
+
+extension DateModel: Hashable {
+    static func == (lhs: DateModel, rhs: DateModel) -> Bool {
+        return lhs.day == rhs.day && lhs.monthInt == rhs.monthInt
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(monthInt)
+        hasher.combine(day)
+    }
 }
 
 // MARK: - DateCollectionViewCell

@@ -32,6 +32,7 @@
 		1EC638BD2A6AA39E00512524 /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638BC2A6AA39E00512524 /* NotificationsViewModel.swift */; };
 		1EC638BF2A6AAE5B00512524 /* ScheduleItemTableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638BE2A6AAE5B00512524 /* ScheduleItemTableViewCells.swift */; };
 		1EC638C22A6B040600512524 /* SectionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638C12A6B040600512524 /* SectionsManager.swift */; };
+		1EC638C52A6E78C500512524 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 1EC638C42A6E78C500512524 /* RealmSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EC638C52A6E78C500512524 /* RealmSwift in Frameworks */,
 				1EC638982A5E8BEB00512524 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -123,12 +125,8 @@
 		1EC638932A5DEC9900512524 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1EC638CC2A6E79E100512524 /* Sections */,
 				1EC6389E2A5F10FE00512524 /* DatesCollectionView.swift */,
-				1EC638A02A5F40E900512524 /* SectionButton.swift */,
-				1EC638A22A6070B500512524 /* ScheduleCollectionViewCell.swift */,
-				1EC638B62A652E5000512524 /* NoteCollectionViewCell.swift */,
-				1EC638B82A652E6200512524 /* NoteWithListCollectionViewCell.swift */,
-				1EC638BE2A6AAE5B00512524 /* ScheduleItemTableViewCells.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -143,14 +141,9 @@
 		1EC638A42A63E44C00512524 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				1EC638A52A63E46B00512524 /* SectionsViewModel.swift */,
-				1EC638A72A63E63500512524 /* SectionViewModel.swift */,
-				1EC638A92A63E65400512524 /* ScheduleSectionViewModel.swift */,
-				1EC638AB2A63E67300512524 /* NotesSectionViewModel.swift */,
-				1EC638AD2A63E69300512524 /* RemindersSectionViewModel.swift */,
-				1EC638AF2A63E6B100512524 /* GoalsSectionViewModel.swift */,
-				1EC638B42A63ED3400512524 /* MainViewModel.swift */,
 				1EC638BC2A6AA39E00512524 /* NotificationsViewModel.swift */,
+				1EC638B42A63ED3400512524 /* MainViewModel.swift */,
+				1EC638C62A6E78EE00512524 /* Sections */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -171,6 +164,79 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		1EC638C62A6E78EE00512524 /* Sections */ = {
+			isa = PBXGroup;
+			children = (
+				1EC638C72A6E78F900512524 /* Base */,
+				1EC638C82A6E790300512524 /* Schedule */,
+				1EC638C92A6E790D00512524 /* Notes */,
+				1EC638CA2A6E791600512524 /* Reminders */,
+				1EC638CB2A6E791F00512524 /* Goals */,
+			);
+			path = Sections;
+			sourceTree = "<group>";
+		};
+		1EC638C72A6E78F900512524 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				1EC638A72A63E63500512524 /* SectionViewModel.swift */,
+				1EC638A52A63E46B00512524 /* SectionsViewModel.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		1EC638C82A6E790300512524 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				1EC638A92A63E65400512524 /* ScheduleSectionViewModel.swift */,
+			);
+			path = Schedule;
+			sourceTree = "<group>";
+		};
+		1EC638C92A6E790D00512524 /* Notes */ = {
+			isa = PBXGroup;
+			children = (
+				1EC638AB2A63E67300512524 /* NotesSectionViewModel.swift */,
+			);
+			path = Notes;
+			sourceTree = "<group>";
+		};
+		1EC638CA2A6E791600512524 /* Reminders */ = {
+			isa = PBXGroup;
+			children = (
+				1EC638AD2A63E69300512524 /* RemindersSectionViewModel.swift */,
+			);
+			path = Reminders;
+			sourceTree = "<group>";
+		};
+		1EC638CB2A6E791F00512524 /* Goals */ = {
+			isa = PBXGroup;
+			children = (
+				1EC638AF2A63E6B100512524 /* GoalsSectionViewModel.swift */,
+			);
+			path = Goals;
+			sourceTree = "<group>";
+		};
+		1EC638CC2A6E79E100512524 /* Sections */ = {
+			isa = PBXGroup;
+			children = (
+				1EC638A02A5F40E900512524 /* SectionButton.swift */,
+				1EC638CD2A6E7A0100512524 /* Schedule */,
+				1EC638B62A652E5000512524 /* NoteCollectionViewCell.swift */,
+				1EC638B82A652E6200512524 /* NoteWithListCollectionViewCell.swift */,
+			);
+			path = Sections;
+			sourceTree = "<group>";
+		};
+		1EC638CD2A6E7A0100512524 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				1EC638A22A6070B500512524 /* ScheduleCollectionViewCell.swift */,
+				1EC638BE2A6AAE5B00512524 /* ScheduleItemTableViewCells.swift */,
+			);
+			path = Schedule;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -189,6 +255,7 @@
 			name = MyDay;
 			packageProductDependencies = (
 				1EC638972A5E8BEB00512524 /* SnapKit */,
+				1EC638C42A6E78C500512524 /* RealmSwift */,
 			);
 			productName = MyDay;
 			productReference = 1EC638792A5DD3C100512524 /* MyDay.app */;
@@ -220,6 +287,7 @@
 			mainGroup = 1EC638702A5DD3C100512524;
 			packageReferences = (
 				1EC638962A5E8BEB00512524 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				1EC638C32A6E78C500512524 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 			);
 			productRefGroup = 1EC6387A2A5DD3C100512524 /* Products */;
 			projectDirPath = "";
@@ -488,6 +556,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		1EC638C32A6E78C500512524 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -495,6 +571,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1EC638962A5E8BEB00512524 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		1EC638C42A6E78C500512524 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1EC638C32A6E78C500512524 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

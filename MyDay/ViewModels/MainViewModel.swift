@@ -10,7 +10,6 @@ import Foundation
 class MainViewModel {
     
     init() {
-        self.sectionsViewModel = SectionsViewModel()
         self.notificationsViewModel = NotificationsViewModel()
         
         let currentDate = Date()
@@ -25,7 +24,15 @@ class MainViewModel {
             date1 = Calendar.current.date(byAdding: .day, value: 1, to: date1)!
         }
         
+        self.sectionsViewModel = SectionsViewModel(visibleDates: visibleDates, currentDate: DateModel(date: currentDate))
+        
         self.setCurrentDate(to: self.getVisibleDateModel(by: currentDate)!)
+        
+        self.currentDate.onChanged {
+            for manager in self.sectionsViewModel.sectionManagers {
+                manager.setDate(date: self.currentDate.value!)
+            }
+        }
     }
     
     public func setCurrentDate(to date: DateModel) {

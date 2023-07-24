@@ -7,14 +7,15 @@
 
 import Foundation
 
-public func getSectionKeyFrom(date: Date) -> Int {
-    let components = Calendar.current.dateComponents([.month, .day], from: date)
-    return 31 * components.month! + components.day!
+func getSectionKeyFrom(date: DateModel) -> Int {
+    return 31 * date.monthInt + date.day
+//    let components = Calendar.current.dateComponents([.month, .day], from: date)
+//    return 31 * components.month! + components.day!
 }
 
 class SectionsManager {
     
-    init(minDate: Date, maxDate: Date) {
+    init(minDate: DateModel, maxDate: DateModel) {
         self.minDate = minDate
         self.maxDate = maxDate
     }
@@ -27,11 +28,11 @@ class SectionsManager {
         self.isActive.value = false
     }
     
-    public func setDate(date: Date) {
+    public func setDate(date: DateModel) {
         self.currentDate = date
     }
     
-    public func getSection(by date: Date) -> SectionViewModel? {
+    public func getSection(by date: DateModel) -> SectionViewModel? {
         return self.sections.value![getSectionKeyFrom(date: date)]
     }
     
@@ -49,12 +50,12 @@ class SectionsManager {
     public internal(set) var sections: PropertyBinding<[Int: SectionViewModel]> = PropertyBinding<[Int: SectionViewModel]>([:])
     public internal(set) var currentSection: PropertyBinding<SectionViewModel> = PropertyBinding()
     
-    internal var minDate: Date = Date()
-    internal var maxDate: Date = Date()
+    internal var minDate: DateModel
+    internal var maxDate: DateModel
     
-    private var currentDate: Date = Date() {
+    private var currentDate: DateModel? {
         didSet {
-            self.currentSection.value = self.sections.value![getSectionKeyFrom(date: currentDate)]
+            self.currentSection.value = self.sections.value![getSectionKeyFrom(date: currentDate!)]
         }
     }
 }

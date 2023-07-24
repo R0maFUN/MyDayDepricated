@@ -7,13 +7,6 @@
 
 import UIKit
 
-//struct ScheduleItemModel {
-//    var title: String
-//    var description: String
-//    var startDate: Date
-//    var endDate: Date
-//}
-
 struct ScheduleSection {
     let title: String
     let items: [SectionItemViewModel]
@@ -112,6 +105,10 @@ class ScheduleCollectionViewCell: UICollectionViewCell {
             scheduleSectionViewModel.onItemsChanged {
                 self.updateSections()
             }
+        }
+        
+        self.viewModel?.currentSection.onChanged {
+            self.updateSections()
         }
         
         updateSections()

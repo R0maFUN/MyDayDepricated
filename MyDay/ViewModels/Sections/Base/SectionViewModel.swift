@@ -9,7 +9,7 @@ import Foundation
 
 class SectionViewModel {
     
-    init(date: Date) {
+    init(date: DateModel) {
         self.date = date
     }
     
@@ -28,7 +28,7 @@ class SectionViewModel {
     }
     
     public internal(set) var items: [SectionItemViewModel] = []
-    public internal(set) var date: Date = Date()
+    public internal(set) var date: DateModel
     
     private var onItemsChangedHandlers: [() -> Void] = []
 }
@@ -55,5 +55,5 @@ class SectionItemViewModel {
     
     public private(set) var title: String = ""
     public private(set) var description: String = ""
-    public private(set) var date: Date = Date()
+    public private(set) var date: Date
 }

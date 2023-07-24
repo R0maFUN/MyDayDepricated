@@ -62,6 +62,7 @@ class ScheduleItemDateTableViewCell: UITableViewCell {
     
     public func configure(with viewModel: ScheduleItemViewModel) {
         self.itemViewModel = viewModel
+        self.itemViewModel?.setDate(date: datePicker.date)
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -85,6 +86,7 @@ class ScheduleItemDateTableViewCell: UITableViewCell {
     }
     
     @objc func onDateChanged() {
+        // TODO: Date is wrong here
         self.itemViewModel?.setDate(date: datePicker.date)
     }
     
@@ -104,6 +106,7 @@ class ScheduleItemStartTimeTableViewCell: UITableViewCell {
     
     public func configure(with viewModel: ScheduleItemViewModel) {
         self.itemViewModel = viewModel
+        self.itemViewModel?.setStartDate(date: timePicker.date)
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -160,6 +163,7 @@ class ScheduleItemEndTimeTableViewCell: UITableViewCell {
     
     public func configure(with viewModel: ScheduleItemViewModel) {
         self.itemViewModel = viewModel
+        self.itemViewModel?.setEndDate(date: timePicker.date)
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -190,7 +194,7 @@ class ScheduleItemEndTimeTableViewCell: UITableViewCell {
     }
     
     @objc func onTimeChanged() {
-        self.itemViewModel?.setStartDate(date: timePicker.date)
+        self.itemViewModel?.setEndDate(date: timePicker.date)
     }
     
     private var itemViewModel: ScheduleItemViewModel?

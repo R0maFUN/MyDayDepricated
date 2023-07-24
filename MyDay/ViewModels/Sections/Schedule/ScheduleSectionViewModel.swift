@@ -9,7 +9,7 @@ import Foundation
 
 class ScheduleSectionsManager: SectionsManager {
     
-    override init(minDate: Date, maxDate: Date) {
+    override init(minDate: DateModel, maxDate: DateModel) {
         super.init(minDate: minDate, maxDate: maxDate)
         
         self.title = "Schedule"
@@ -18,21 +18,35 @@ class ScheduleSectionsManager: SectionsManager {
         initialize()
     }
     
+    init(visibleDates: [DateModel]) {
+        super.init(minDate: visibleDates.first!, maxDate: visibleDates.last!)
+        
+        self.title = "Schedule"
+        self.addActionTitle = "Action"
+        
+        initialize(visibleDates: visibleDates)
+    }
+    
     override func initialize() {
-        let calendar = Calendar.current
-
-        // TODO: Refactor
-        // Replace the hour (time) of both dates with 00:00
-        var date1 = calendar.startOfDay(for: self.minDate)
-        let date2 = calendar.startOfDay(for: self.maxDate)
-
-        while date1 <= date2 {
-            let section = ScheduleSectionViewModel(date: date1)
-            section.add(ScheduleItemViewModel(title: "Test 123", startDate: Date(), endDate: Date(), date: date1))
-            section.add(ScheduleItemViewModel(title: "Test 456", startDate: Date(), endDate: Date(), date: date1))
-            self.sections.value![getSectionKeyFrom(date: date1)] = section
-            date1 = Calendar.current.date(byAdding: .day, value: 1, to: date1)!
+        //let sections = restore()
+    }
+    
+    func initialize(visibleDates: [DateModel]) {
+        let restoredSections = restore()
+        for dateModel in visibleDates {
+            if !restoredSections.keys.contains(where: { key in
+                return key == dateModel
+            }) {
+                let section = ScheduleSectionViewModel(date: dateModel)
+                section.add(ScheduleItemViewModel(title: "Test \(dateModel.month)", startDate: Date(), endDate: Date(), date: dateModel.date))
+                section.add(ScheduleItemViewModel(title: "Test \(dateModel.day)", startDate: Date(), endDate: Date(), date: dateModel.date))
+                add(section: section)
+            }
         }
+    }
+    
+    func restore() -> [DateModel:ScheduleSectionViewModel] {
+        return [:]
     }
 }
 
@@ -49,6 +63,8 @@ class ScheduleItemViewModel: SectionItemViewModel {
     
     init(title: String, description: String = "", startDate: Date, endDate: Date, date: Date) {
         super.init(title: title, description: description, date: date)
+        
+        self.setDescription(description: "Description")
         
         self.startDate = startDate
         self.endDate = endDate

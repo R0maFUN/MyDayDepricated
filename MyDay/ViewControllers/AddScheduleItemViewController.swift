@@ -109,12 +109,13 @@ private extension AddScheduleItemViewController {
     }
     
     @objc func onDoneButtonPressed() {
+        // TODO: DATE is wrong
         guard let scheduleSectionManager = self.sectionsViewModel.currentSectionManager.value! as? ScheduleSectionsManager else { return }
-        if let scheduleSection = scheduleSectionManager.getSection(by: self.itemViewModel.date) as? ScheduleSectionViewModel {
+        if let scheduleSection = scheduleSectionManager.getSection(by: DateModel(date: self.itemViewModel.date)) as? ScheduleSectionViewModel {
             scheduleSection.add(self.itemViewModel)
             dismiss(animated: true)
         } else {
-            let scheduleSection = ScheduleSectionViewModel(date: self.itemViewModel.date)
+            let scheduleSection = ScheduleSectionViewModel(date: DateModel(date: self.itemViewModel.date))
             scheduleSectionManager.add(section: scheduleSection)
             scheduleSection.add(self.itemViewModel)
             dismiss(animated: true)

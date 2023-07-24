@@ -9,7 +9,7 @@ import Foundation
 
 class NotesSectionsManager: SectionsManager {
     
-    override init(minDate: Date, maxDate: Date) {
+    override init(minDate: DateModel, maxDate: DateModel) {
         super.init(minDate: minDate, maxDate: maxDate)
         
         self.title = "Notes"
