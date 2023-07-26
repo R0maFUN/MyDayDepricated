@@ -6,11 +6,44 @@
 //
 
 import Foundation
+import RealmSwift
 
-class SectionViewModel {
+protocol SectionCreator {
+    associatedtype Input
+    associatedtype Output: SectionViewModel
+    static func create(config: Input) -> Output
+}
+
+class SectionViewModel: SectionCreator {
     
-    init(date: DateModel) {
+    enum Unforgivable {
+        case base
+        case schedule
+        case notes
+        case reminders
+        case goals
+    }
+    
+    required init(date: DateModel) {
         self.date = date
+    }
+    
+    public func fillWithCommonItems() {
+        
+    }
+    
+    public class func create(config: DateModel) -> SectionViewModel {
+        return SectionViewModel(date: config)
+    }
+    
+    // TODO: Refactor
+    public class func createItem(config: Object) -> SectionItemViewModel? {
+        return nil
+    }
+    
+    // TODO: Refactor, class should not know about realm at all
+    public class func updateRealmItem(item: SectionItemViewModel) -> Bool {
+        return false
     }
     
     public func add(_ item: SectionItemViewModel) {
@@ -33,6 +66,10 @@ class SectionViewModel {
     
     public internal(set) var items: [SectionItemViewModel] = []
     public internal(set) var date: DateModel
+    
+    public class func type() -> Unforgivable {
+        return .base
+    }
     
     internal var onItemsChangedHandlers: [() -> Void] = []
 }

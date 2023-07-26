@@ -7,10 +7,10 @@
 
 import Foundation
 
-class GoalsSectionsManager: SectionsManager {
+final class GoalsSectionsManager: SectionsManager<GoalsSectionViewModel> {
     
-    override init(minDate: DateModel, maxDate: DateModel) {
-        super.init(minDate: minDate, maxDate: maxDate)
+    override init(visibleDates: [DateModel]) {
+        super.init(visibleDates: visibleDates)
         
         self.title = "Goals"
         self.addActionTitle = "Note"
@@ -18,7 +18,9 @@ class GoalsSectionsManager: SectionsManager {
 }
 
 class GoalsSectionViewModel: SectionViewModel {
-
+    override public class func type() -> Unforgivable {
+        return .goals
+    }
 }
 
 class GoalsItemViewModel: SectionItemViewModel {

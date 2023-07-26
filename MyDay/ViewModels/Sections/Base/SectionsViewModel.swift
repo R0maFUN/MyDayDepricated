@@ -10,11 +10,12 @@ import Foundation
 class SectionsViewModel {
     
     init(visibleDates: [DateModel], currentDate: DateModel) {
+
         self.sectionManagers = [
             ScheduleSectionsManager(visibleDates: visibleDates),
-            NotesSectionsManager(minDate: visibleDates.first!, maxDate: visibleDates.last!),
-            RemindersSectionsManager(minDate: visibleDates.first!, maxDate: visibleDates.last!),
-            GoalsSectionsManager(minDate: visibleDates.first!, maxDate: visibleDates.last!)
+            NotesSectionsManager(visibleDates: visibleDates),
+            RemindersSectionsManager(visibleDates: visibleDates),
+            GoalsSectionsManager(visibleDates: visibleDates)
         ]
         
         for manager in self.sectionManagers {
@@ -37,12 +38,12 @@ class SectionsViewModel {
         self.currentSectionManager.value?.activate()
     }
     
-    public func select(section: SectionsManager) {
+    public func select(section: ISectionsManager) {
         guard let index = self.sectionManagers.firstIndex(where: { $0.title == section.title }) else { return }
         self.selectSectionAt(index)
     }
     
-    public private(set) var sectionManagers: [SectionsManager] = []
-    public private(set) var currentSectionManager = PropertyBinding<SectionsManager>()
+    public private(set) var sectionManagers: [ISectionsManager] = []
+    public private(set) var currentSectionManager = PropertyBinding<ISectionsManager>()
     public private(set) var currentSectionManagerIndex = PropertyBinding<Int>()
 }

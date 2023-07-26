@@ -28,7 +28,7 @@ class SectionItemViewModel {
     }
     
     public private(set) var title: String = ""
-    public private(set) var description: String = ""
+    public internal(set) var description: String = ""
     public private(set) var date: Date
     
     public internal(set) var id: String = UUID().uuidString

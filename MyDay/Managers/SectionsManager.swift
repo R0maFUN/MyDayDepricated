@@ -13,13 +13,33 @@ func getSectionKeyFrom(date: DateModel) -> Int {
 //    return 31 * components.month! + components.day!
 }
 
-class SectionsManager {
+protocol ISectionsManager {
     
-    init(minDate: DateModel, maxDate: DateModel) {
-        self.minDate = minDate
-        self.maxDate = maxDate
+    // MARK: - Public Methods
+    func activate()
+    func deactivate()
+    
+    func setDate(date: DateModel)
+    
+    func getSection(by date: DateModel) -> SectionViewModel?
+    
+    func add(section: SectionViewModel)
+    
+    // MARK: - Properties
+    var title: String { get }
+    var addActionTitle: String { get }
+    var isActive: PropertyBinding<Bool> { get }
+    var sections: PropertyBinding<[Int: SectionViewModel]> { get }
+    var currentSection: PropertyBinding<SectionViewModel> { get }
+}
+
+class SectionsManager<T: SectionViewModel>: ISectionsManager {
+    // MARK: - Init
+    init(visibleDates: [DateModel]) {
+        initialize(visibleDates: visibleDates)
     }
     
+    // MARK: - Public Methods
     public func activate() {
         self.isActive.value = true
     }
@@ -40,19 +60,69 @@ class SectionsManager {
         self.sections.value![getSectionKeyFrom(date: section.date)] = section
     }
     
-    public func initialize() {
+    // MARK: - Internal Methods
+    
+    // MARK: - Private Methods
+    private func initialize(visibleDates: [DateModel]) {
+        let restoredSections = restoreSections(T.self)
         
+        restoredSections.forEach({ key, value in
+            self.add(section: value)
+        })
+        
+        for dateModel in visibleDates {
+            if !restoredSections.keys.contains(where: { key in
+                return key == dateModel
+            }) {
+                let section = T.create(config: dateModel)
+                section.fillWithCommonItems()
+                add(section: section)
+            }
+        }
+    }
+    private func restoreSections<T: SectionViewModel>(_ t: T.Type) -> [DateModel:T] {
+        var restoredItems: [SectionItemViewModel] = []
+        // TODO: Refactor pizdec
+        switch T.type() {
+        case .base:
+            return [:]
+        case .schedule:
+            let realmManager = SectionsRealmManager<T, ScheduleItemRealmObject>()
+            restoredItems = realmManager.restore()
+        case .notes:
+            let realmManager = SectionsRealmManager<T, NotesItemRealmObject>()
+            restoredItems = realmManager.restore()
+        case .reminders:
+            //let realmManager = SectionsRealmManager<T, ScheduleItemRealmObject>()
+            return [:]
+        case .goals:
+            //let realmManager = SectionsRealmManager<T, ScheduleItemRealmObject>()
+            return [:]
+        }
+        
+        var result: [DateModel:T] = [:]
+        
+        for item in restoredItems {
+            let dateModel = DateModel(date: item.date)
+            
+            if !result.keys.contains(where: { $0.day == dateModel.day && $0.monthInt == dateModel.monthInt }) {
+                result[dateModel] = T(date: dateModel)
+            }
+            
+            result[dateModel]?.add(item)
+        }
+        
+        return result
     }
     
+    // MARK: - Properties
     public internal(set) var title: String = ""
     public internal(set) var addActionTitle: String = ""
     public internal(set) var isActive: PropertyBinding<Bool> = PropertyBinding<Bool>(false)
     public internal(set) var sections: PropertyBinding<[Int: SectionViewModel]> = PropertyBinding<[Int: SectionViewModel]>([:])
     public internal(set) var currentSection: PropertyBinding<SectionViewModel> = PropertyBinding()
     
-    internal var minDate: DateModel
-    internal var maxDate: DateModel
-    
+    // MARK: - Private Properties
     private var currentDate: DateModel? {
         didSet {
             self.currentSection.value = self.sections.value![getSectionKeyFrom(date: currentDate!)]

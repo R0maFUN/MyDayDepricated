@@ -16,8 +16,6 @@ class ScheduleItemViewModel: SectionItemViewModel {
     init(title: String, description: String = "", startDate: Date, endDate: Date, date: Date) {
         super.init(title: title, description: description, date: date)
         
-        //self.setDescription(description: "Description")
-        
         self.startDate = startDate
         self.endDate = endDate
     }

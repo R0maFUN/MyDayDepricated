@@ -7,10 +7,10 @@
 
 import Foundation
 
-class RemindersSectionsManager: SectionsManager {
+class RemindersSectionsManager: SectionsManager<RemindersSectionViewModel> {
     
-    override init(minDate: DateModel, maxDate: DateModel) {
-        super.init(minDate: minDate, maxDate: maxDate)
+    override init(visibleDates: [DateModel]) {
+        super.init(visibleDates: visibleDates)
         
         self.title = "Reminders"
         self.addActionTitle = "Reminder"
@@ -18,7 +18,9 @@ class RemindersSectionsManager: SectionsManager {
 }
 
 class RemindersSectionViewModel: SectionViewModel {
-
+    override public class func type() -> Unforgivable {
+        return .reminders
+    }
 }
 
 class RemindersItemViewModel: SectionItemViewModel {

@@ -13,7 +13,7 @@ class SectionButton: UIButton {
         self.handler = handler
     }
     
-    init(section: SectionsManager) {
+    init(section: ISectionsManager) {
         self.sectionsManager = section
         
         super.init(frame: .zero)
@@ -76,8 +76,6 @@ class SectionButton: UIButton {
     
     private var handler: (() -> Void)?
     
-    private var sectionsManager: SectionsManager
+    private var sectionsManager: ISectionsManager
 }
-
-// MainViewModel - currentSection (mb SectionModel -> ScheduleModel | NotesModel | RemindersModel | GoalsModel)
 
