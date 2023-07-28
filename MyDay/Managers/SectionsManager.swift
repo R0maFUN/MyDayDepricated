@@ -81,17 +81,15 @@ class SectionsManager<T: SectionViewModel>: ISectionsManager {
         }
     }
     private func restoreSections<T: SectionViewModel>(_ t: T.Type) -> [DateModel:T] {
-        var restoredItems: [SectionItemViewModel] = []
+        var restoredItems: [SectionItemViewModelManagedByRealm] = []
         // TODO: Refactor pizdec
         switch T.type() {
         case .base:
             return [:]
         case .schedule:
-            let realmManager = SectionsRealmManager<T, ScheduleItemRealmObject>()
-            restoredItems = realmManager.restore()
+            restoredItems = SectionsRealmManager<ScheduleItemRealmObject>.restore(ScheduleItemsFactory())
         case .notes:
-            let realmManager = SectionsRealmManager<T, NotesItemRealmObject>()
-            restoredItems = realmManager.restore()
+            restoredItems = SectionsRealmManager<NotesItemRealmObject>.restore(NoteItemsFactory())
         case .reminders:
             //let realmManager = SectionsRealmManager<T, ScheduleItemRealmObject>()
             return [:]

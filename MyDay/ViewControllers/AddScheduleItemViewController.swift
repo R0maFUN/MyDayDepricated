@@ -112,7 +112,7 @@ private extension AddScheduleItemViewController {
         // TODO: DATE is wrong
         guard let scheduleSectionManager = self.sectionsViewModel.currentSectionManager.value! as? ScheduleSectionsManager else { return }
         if let scheduleSection = scheduleSectionManager.getSection(by: DateModel(date: self.itemViewModel.date)) as? ScheduleSectionViewModel {
-            scheduleSection.add(self.itemViewModel)
+            scheduleSection.update(self.itemViewModel)
             dismiss(animated: true)
         } else {
             let scheduleSection = ScheduleSectionViewModel(date: DateModel(date: self.itemViewModel.date))

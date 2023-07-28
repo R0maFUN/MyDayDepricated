@@ -8,24 +8,18 @@
 import Foundation
 import RealmSwift
 
-protocol ISectionsRealmManager {
-    associatedtype SectionItemType: SectionItemViewModel
-    func restore() -> [SectionItemType]
-    func update(item: SectionItemType)
-}
-
-class SectionsRealmManager<T: SectionViewModel, RealmObjectType: Object>: ISectionsRealmManager {
-    func restore() -> [SectionItemViewModel] {
-        print("SectionsRealmManager, restore [base]")
-        
+struct SectionsRealmManager<RealmObjectType: Object> {
+    static func restore<Output: SectionItemViewModel, Factory: IGenericFactory>(_ object: Factory) -> [Output] where Factory.Input == RealmObjectType,
+                                                                                                     Factory.Output == Output {
         let config = Realm.Configuration.defaultConfiguration
         let realm = try! Realm(configuration: config)
         
         let realmItems = realm.objects(RealmObjectType.self)
-        return realmItems.compactMap { return T.createItem(config: $0) }
+        return realmItems.compactMap { return object.build(config: $0) }
     }
     
-    func update(item: SectionItemViewModel) {
-        T.updateRealmItem(item: item)
+    static func update(item: SectionRealmItemsUpdaterVisitable) {
+        let updater = SectionRealmItemsUpdater()
+        updater.update(item: item)
     }
 }

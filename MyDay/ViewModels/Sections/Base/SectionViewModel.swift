@@ -36,20 +36,23 @@ class SectionViewModel: SectionCreator {
         return SectionViewModel(date: config)
     }
     
-    // TODO: Refactor
-    public class func createItem(config: Object) -> SectionItemViewModel? {
-        return nil
-    }
-    
-    // TODO: Refactor, class should not know about realm at all
-    public class func updateRealmItem(item: SectionItemViewModel) -> Bool {
-        return false
-    }
-    
-    public func add(_ item: SectionItemViewModel) {
+    public func add(_ item: SectionItemViewModelManagedByRealm) {
         self.items.append(item)
         
-        // save to database
+        item.updateRealm()
+        
+        for handler in onItemsChangedHandlers {
+            handler()
+        }
+    }
+    
+    public func update(_ item: SectionItemViewModelManagedByRealm) {
+        if !self.items.contains(where: { $0.id == item.id }) {
+            add(item)
+            return
+        }
+        
+        item.updateRealm()
         
         for handler in onItemsChangedHandlers {
             handler()
@@ -64,7 +67,7 @@ class SectionViewModel: SectionCreator {
         onItemsChangedHandlers.append(handler)
     }
     
-    public internal(set) var items: [SectionItemViewModel] = []
+    public internal(set) var items: [SectionItemViewModelManagedByRealm] = []
     public internal(set) var date: DateModel
     
     public class func type() -> Unforgivable {

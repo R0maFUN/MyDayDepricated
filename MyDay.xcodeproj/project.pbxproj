@@ -38,12 +38,13 @@
 		1EC638D32A6E7DB200512524 /* ScheduleItemRealmObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638D22A6E7DB200512524 /* ScheduleItemRealmObject.swift */; };
 		1EC638D52A6E7E9800512524 /* SectionsRealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638D42A6E7E9800512524 /* SectionsRealmManager.swift */; };
 		1EC638D72A6E9A7100512524 /* SectionItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638D62A6E9A7100512524 /* SectionItemViewModel.swift */; };
-		1EC638D92A6EF43200512524 /* AddNotesItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638D82A6EF43200512524 /* AddNotesItemViewController.swift */; };
+		1EC638D92A6EF43200512524 /* EditNotesItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638D82A6EF43200512524 /* EditNotesItemViewController.swift */; };
 		1EC638DB2A6EF64600512524 /* NotesItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638DA2A6EF64600512524 /* NotesItemViewModel.swift */; };
 		1EC638DD2A6EF66B00512524 /* NotesSectionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638DC2A6EF66B00512524 /* NotesSectionsManager.swift */; };
 		1EC638E02A6EFA5000512524 /* NotesItemTableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638DF2A6EFA5000512524 /* NotesItemTableViewCells.swift */; };
 		1EC638E62A7120C500512524 /* NotesItemRealmObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638E52A7120C500512524 /* NotesItemRealmObject.swift */; };
 		1EC638E82A7134E000512524 /* SectionsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638E72A7134E000512524 /* SectionsFactory.swift */; };
+		1EC638EA2A73A70A00512524 /* SectionRealmItemsUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638E92A73A70A00512524 /* SectionRealmItemsUpdater.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,12 +79,13 @@
 		1EC638D22A6E7DB200512524 /* ScheduleItemRealmObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleItemRealmObject.swift; sourceTree = "<group>"; };
 		1EC638D42A6E7E9800512524 /* SectionsRealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsRealmManager.swift; sourceTree = "<group>"; };
 		1EC638D62A6E9A7100512524 /* SectionItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionItemViewModel.swift; sourceTree = "<group>"; };
-		1EC638D82A6EF43200512524 /* AddNotesItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNotesItemViewController.swift; sourceTree = "<group>"; };
+		1EC638D82A6EF43200512524 /* EditNotesItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNotesItemViewController.swift; sourceTree = "<group>"; };
 		1EC638DA2A6EF64600512524 /* NotesItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesItemViewModel.swift; sourceTree = "<group>"; };
 		1EC638DC2A6EF66B00512524 /* NotesSectionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesSectionsManager.swift; sourceTree = "<group>"; };
 		1EC638DF2A6EFA5000512524 /* NotesItemTableViewCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesItemTableViewCells.swift; sourceTree = "<group>"; };
 		1EC638E52A7120C500512524 /* NotesItemRealmObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesItemRealmObject.swift; sourceTree = "<group>"; };
 		1EC638E72A7134E000512524 /* SectionsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsFactory.swift; sourceTree = "<group>"; };
+		1EC638E92A73A70A00512524 /* SectionRealmItemsUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionRealmItemsUpdater.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,7 +142,7 @@
 				1EC638912A5DE7AE00512524 /* CustomTabBarController.swift */,
 				1EC638992A5E9B3E00512524 /* MainViewController.swift */,
 				1EC638BA2A6A842800512524 /* AddScheduleItemViewController.swift */,
-				1EC638D82A6EF43200512524 /* AddNotesItemViewController.swift */,
+				1EC638D82A6EF43200512524 /* EditNotesItemViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -185,6 +187,7 @@
 				1EC638C12A6B040600512524 /* SectionsManager.swift */,
 				1EC638D42A6E7E9800512524 /* SectionsRealmManager.swift */,
 				1EC638E72A7134E000512524 /* SectionsFactory.swift */,
+				1EC638E92A73A70A00512524 /* SectionRealmItemsUpdater.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -386,8 +389,9 @@
 				1EC638A82A63E63500512524 /* SectionViewModel.swift in Sources */,
 				1EC638A12A5F40E900512524 /* SectionButton.swift in Sources */,
 				1EC638B72A652E5000512524 /* NoteCollectionViewCell.swift in Sources */,
-				1EC638D92A6EF43200512524 /* AddNotesItemViewController.swift in Sources */,
+				1EC638D92A6EF43200512524 /* EditNotesItemViewController.swift in Sources */,
 				1EC638B52A63ED3400512524 /* MainViewModel.swift in Sources */,
+				1EC638EA2A73A70A00512524 /* SectionRealmItemsUpdater.swift in Sources */,
 				1EC638E82A7134E000512524 /* SectionsFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

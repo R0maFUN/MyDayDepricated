@@ -7,8 +7,9 @@
 
 import Foundation
 
-class ScheduleItemViewModel: SectionItemViewModel {
+class ScheduleItemViewModel: SectionItemViewModelManagedByRealm {
     
+    // MARK: - Init
     init() {
         super.init(title: "", date: Date())
     }
@@ -26,12 +27,21 @@ class ScheduleItemViewModel: SectionItemViewModel {
         self.id = realmObject.id
     }
     
+    // MARK: - Public Methods
     public func setStartDate(date: Date) {
         self.startDate = date
+        
+        self.updateRealm()
     }
     
     public func setEndDate(date: Date) {
         self.endDate = date
+        
+        self.updateRealm()
+    }
+    
+    override func accept(_ updater: SectionRealmItemsUpdater) {
+        updater.visit(self)
     }
     
     public func toRealmObject() -> ScheduleItemRealmObject {
@@ -45,6 +55,7 @@ class ScheduleItemViewModel: SectionItemViewModel {
         object.date = self.date
         object.startDate = self.startDate
         object.endDate = self.endDate
+        object.id = self.id
         
         self.realmObject = object
         return object
