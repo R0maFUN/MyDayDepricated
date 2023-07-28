@@ -27,7 +27,6 @@
 		1EC638B32A63E85B00512524 /* PropertyBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638B22A63E85B00512524 /* PropertyBinding.swift */; };
 		1EC638B52A63ED3400512524 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638B42A63ED3400512524 /* MainViewModel.swift */; };
 		1EC638B72A652E5000512524 /* NoteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638B62A652E5000512524 /* NoteCollectionViewCell.swift */; };
-		1EC638B92A652E6200512524 /* NoteWithListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638B82A652E6200512524 /* NoteWithListCollectionViewCell.swift */; };
 		1EC638BB2A6A842800512524 /* AddScheduleItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638BA2A6A842800512524 /* AddScheduleItemViewController.swift */; };
 		1EC638BD2A6AA39E00512524 /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638BC2A6AA39E00512524 /* NotificationsViewModel.swift */; };
 		1EC638BF2A6AAE5B00512524 /* ScheduleItemTableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638BE2A6AAE5B00512524 /* ScheduleItemTableViewCells.swift */; };
@@ -69,7 +68,6 @@
 		1EC638B22A63E85B00512524 /* PropertyBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyBinding.swift; sourceTree = "<group>"; };
 		1EC638B42A63ED3400512524 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		1EC638B62A652E5000512524 /* NoteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCollectionViewCell.swift; sourceTree = "<group>"; };
-		1EC638B82A652E6200512524 /* NoteWithListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteWithListCollectionViewCell.swift; sourceTree = "<group>"; };
 		1EC638BA2A6A842800512524 /* AddScheduleItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddScheduleItemViewController.swift; sourceTree = "<group>"; };
 		1EC638BC2A6AA39E00512524 /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
 		1EC638BE2A6AAE5B00512524 /* ScheduleItemTableViewCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleItemTableViewCells.swift; sourceTree = "<group>"; };
@@ -274,7 +272,6 @@
 		1EC638DE2A6EFA1100512524 /* Notes */ = {
 			isa = PBXGroup;
 			children = (
-				1EC638B82A652E6200512524 /* NoteWithListCollectionViewCell.swift */,
 				1EC638B62A652E5000512524 /* NoteCollectionViewCell.swift */,
 				1EC638DF2A6EFA5000512524 /* NotesItemTableViewCells.swift */,
 			);
@@ -379,7 +376,6 @@
 				1EC638DD2A6EF66B00512524 /* NotesSectionsManager.swift in Sources */,
 				1EC638A32A6070B500512524 /* ScheduleCollectionViewCell.swift in Sources */,
 				1EC638D72A6E9A7100512524 /* SectionItemViewModel.swift in Sources */,
-				1EC638B92A652E6200512524 /* NoteWithListCollectionViewCell.swift in Sources */,
 				1EC6389A2A5E9B3E00512524 /* MainViewController.swift in Sources */,
 				1EC638AC2A63E67300512524 /* NotesSectionViewModel.swift in Sources */,
 				1EC638D32A6E7DB200512524 /* ScheduleItemRealmObject.swift in Sources */,

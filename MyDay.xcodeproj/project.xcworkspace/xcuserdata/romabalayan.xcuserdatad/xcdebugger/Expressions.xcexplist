@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "AddScheduleItemViewController.initialize():AddScheduleItemViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.tableView.backgroundColor">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in MainViewModel.getVisibleDateModel(by:):MainViewModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MainViewModel.getVisibleDateModel(by:):MainViewModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ScheduleSectionsManager.initialize():ScheduleSectionViewModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "AddScheduleItemViewController.tableView(_:cellForRowAt:):AddScheduleItemViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ScheduleSectionsManager.initialize(visibleDates:):ScheduleSectionViewModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SectionButton.updateView():SectionButton.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in ScheduleSectionsManager.initialize(visibleDates:):ScheduleSectionsManager.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SectionButton.title.didset:SectionButton.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ScheduleCollectionViewCell.updateSections():ScheduleCollectionViewCell.swift">
+      </ContextState>
+      <ContextState
+         contextName = "NotesItemDescriptionTableViewCell.textViewDidEndEditing(_:):NotesItemTableViewCells.swift">
+      </ContextState>
+      <ContextState
+         contextName = "AddNotesItemViewController.numberOfSections(in:):AddNotesItemViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in AddNotesItemViewController.updateSections():AddNotesItemViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SectionsManager.restoreSections&lt;&#x3c4;_0_0&gt;(_:):SectionsManager.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SectionsManager.currentDate.didset:SectionsManager.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ScheduleItemTitleTableViewCell.init(style:reuseIdentifier:):AddScheduleItemViewController.swift">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
