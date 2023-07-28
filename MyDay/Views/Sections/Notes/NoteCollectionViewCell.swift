@@ -17,7 +17,7 @@ class NotesItemTableViewCell: UITableViewCell {
     
     public func configure(with viewModel: NotesItemViewModel) {
         titleLabel.text = viewModel.title
-        descriptionLabel.text = viewModel.descriptions.first?.text ?? "No description"
+        descriptionLabel.text = viewModel.descriptions.first?.text.isEmpty ?? false ? "No Description" : viewModel.descriptions.first?.text
     }
     
     // MARK: - Init
