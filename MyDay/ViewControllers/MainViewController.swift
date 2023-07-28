@@ -117,6 +117,7 @@ private extension MainViewController {
 private extension MainViewController {
     func setupCollectionView() {
         collectionView.register(ScheduleCollectionViewCell.self, forCellWithReuseIdentifier: ScheduleCollectionViewCell.reuseIdentifier)
+        collectionView.register(NoteCollectionViewCell.self, forCellWithReuseIdentifier: NoteCollectionViewCell.reuseIdentifier)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.collectionViewLayout = collectionViewLayout
@@ -146,6 +147,19 @@ extension MainViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ScheduleCollectionViewCell.reuseIdentifier, for: indexPath) as? ScheduleCollectionViewCell else { return UICollectionViewCell() }
             cell.configure(with: section)
             return cell
+        } else if let section = self.sectionsViewModel.sectionManagers[indexPath.item] as? NotesSectionsManager {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NoteCollectionViewCell.reuseIdentifier, for: indexPath) as? NoteCollectionViewCell else { return UICollectionViewCell() }
+            cell.configure(with: section)
+            cell.onEditNoteRequested { note in
+                guard let notesSectionsManager = self.mainViewModel.sectionsViewModel.currentSectionManager.value else { return }
+                let vc = EditNotesItemViewController(notesSectionsManager, note: note)
+                self.present(vc, animated: true)
+            }
+            return cell
+        } else if let section = self.sectionsViewModel.sectionManagers[indexPath.item] as? RemindersSectionsManager {
+            
+        } else if let section = self.sectionsViewModel.sectionManagers[indexPath.item] as? GoalsSectionsManager {
+            
         }
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ScheduleCollectionViewCell.reuseIdentifier, for: indexPath) as? ScheduleCollectionViewCell else { return UICollectionViewCell() }

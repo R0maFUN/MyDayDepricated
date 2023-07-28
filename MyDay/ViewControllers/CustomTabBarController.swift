@@ -46,10 +46,21 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
         self.leftButton.setTitle(self.mainViewModel.sectionsViewModel.currentSectionManager.value?.addActionTitle, for: .normal)
         mainViewModel.sectionsViewModel.currentSectionManager.onChanged {
             self.leftButton.setTitle(self.mainViewModel.sectionsViewModel.currentSectionManager.value?.addActionTitle, for: .normal)
-            self.actionHandler = {
-                let vc = AddScheduleItemViewController(self.mainViewModel.notificationsViewModel, self.mainViewModel.sectionsViewModel)
-                self.present(vc, animated: true)
+            
+            if self.mainViewModel.sectionsViewModel.currentSectionManager.value is ScheduleSectionsManager {
+                self.actionHandler = {
+                    let vc = AddScheduleItemViewController(self.mainViewModel.notificationsViewModel, self.mainViewModel.sectionsViewModel)
+                    self.present(vc, animated: true)
+                }
+            } else if self.mainViewModel.sectionsViewModel.currentSectionManager.value is NotesSectionsManager {
+                self.actionHandler = {
+                    guard let notesSectionsManager = self.mainViewModel.sectionsViewModel.currentSectionManager.value else { return }
+                    let vc = EditNotesItemViewController(notesSectionsManager)
+                    self.show(vc, sender: self)
+                }
             }
+            
+            
             // self.actionHandler = customAction
         }
     }
