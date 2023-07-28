@@ -74,7 +74,7 @@ class DatesCollectionView: UIView {
 // MARK: - Initialize
 private extension DatesCollectionView {
     func initialize() {
-        collectionView.backgroundColor = .systemGroupedBackground
+        collectionView.backgroundColor = .clear
         
         collectionView.register(DateCollectionViewCell.self, forCellWithReuseIdentifier: DateCollectionViewCell.identifier)
         collectionView.dataSource = self

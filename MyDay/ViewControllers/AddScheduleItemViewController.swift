@@ -86,12 +86,9 @@ class AddScheduleItemViewController: UIViewController {
 
 private extension AddScheduleItemViewController {
     func initialize() {
-        self.view.backgroundColor = .systemBackground
-        
         tableView.dataSource = self
         tableView.delegate = self
         tableView.allowsSelection = false
-        tableView.sectionHeaderTopPadding = 50
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 80, right: 0)
         
         self.view.addSubview(tableView)

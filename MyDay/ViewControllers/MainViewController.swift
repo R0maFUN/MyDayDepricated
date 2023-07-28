@@ -14,11 +14,11 @@ class MainViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        view.backgroundColor = .systemGroupedBackground
+        view.backgroundColor = .secondarySystemBackground
         
         view.addSubview(datesCollectionView)
         
-        datesCollectionView.backgroundColor = .red
+        //datesCollectionView.backgroundColor = .red
         
         datesCollectionView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(UIConstants.contentInset)
@@ -123,7 +123,7 @@ private extension MainViewController {
         
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 1, bottom: 0, right: 0)
         
-        collectionView.backgroundColor = .systemGroupedBackground
+        collectionView.backgroundColor = .clear
         
         view.addSubview(collectionView)
         

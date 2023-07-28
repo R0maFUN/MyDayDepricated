@@ -143,6 +143,8 @@ class ScheduleCollectionViewCell: UICollectionViewCell {
 
 private extension ScheduleCollectionViewCell {
     func initialize() {
+        //self.backgroundColor
+        
         updateSections()
         
         setupTableView()
@@ -172,6 +174,7 @@ private extension ScheduleCollectionViewCell {
     func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.backgroundColor = .clear
         
         contentView.addSubview(tableView)
         
@@ -183,8 +186,6 @@ private extension ScheduleCollectionViewCell {
 
 extension ScheduleCollectionViewCell: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        //guard let scheduleSectionViewModel = self.viewModel?.currentSection.value as? ScheduleSectionViewModel else { return 0 }
-        //return scheduleSectionViewModel.items.count > 0 ? 1 : 0 + scheduleSectionViewModel.inProgressItems.count > 0 ? 1 : 0 + scheduleSectionViewModel.nextItems.count > 0 ? 1 : 0
         self.sections.count
     }
     
@@ -201,7 +202,7 @@ extension ScheduleCollectionViewCell: UITableViewDataSource {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ScheduleItemTableViewCell.reuseIdentifier, for: indexPath) as? ScheduleItemTableViewCell else { return UITableViewCell() }
         cell.configure(with: viewModel)
-        
+        cell.backgroundColor = .tertiarySystemBackground
         return cell
     }
 }
