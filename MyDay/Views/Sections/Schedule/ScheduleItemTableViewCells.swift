@@ -32,12 +32,10 @@ class ScheduleItemTitleTableViewCell: UITableViewCell, UITextFieldDelegate {
         return true
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        guard let text = textField.text else { return false }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        guard let text = textField.text else { return }
         
         self.itemViewModel?.setTitle(title: text)
-        
-        return true
     }
     
     private func initialize() {
@@ -87,6 +85,12 @@ class ScheduleItemDescriptionTableViewCell: UITableViewCell, UITextFieldDelegate
         self.itemViewModel?.setDescription(description: textField.text ?? "")
         textField.resignFirstResponder()
         return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        guard let text = textField.text else { return }
+        
+        self.itemViewModel?.setDescription(description: text)
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
