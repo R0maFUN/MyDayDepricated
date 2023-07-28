@@ -7,6 +7,7 @@
 
 import UIKit
 
+// TODO: Make separate classes (like TitleInputTableViewCell) in the Views/Common 
 class ScheduleItemTitleTableViewCell: UITableViewCell, UITextFieldDelegate {
     public static let reuseIdentifier = "ScheduleItemTitleTableViewCell"
     public private(set) var height: CGFloat = 68

@@ -148,6 +148,7 @@
 		1EC638932A5DEC9900512524 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1EC638EB2A7445F400512524 /* Common */,
 				1EC638CC2A6E79E100512524 /* Sections */,
 				1EC6389E2A5F10FE00512524 /* DatesCollectionView.swift */,
 			);
@@ -276,6 +277,13 @@
 				1EC638DF2A6EFA5000512524 /* NotesItemTableViewCells.swift */,
 			);
 			path = Notes;
+			sourceTree = "<group>";
+		};
+		1EC638EB2A7445F400512524 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
