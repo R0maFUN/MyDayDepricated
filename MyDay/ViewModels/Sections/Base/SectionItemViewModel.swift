@@ -32,7 +32,11 @@ class SectionItemViewModel {
     public private(set) var date: Date
 }
 
-class SectionItemViewModelManagedByRealm: SectionItemViewModel, SectionRealmItemsUpdaterVisitable {
+class SectionItemViewModelManagedByRealm: SectionItemViewModel, SectionRealmItemsUpdaterVisitable, SectionRealmItemsRemoverVisitable {
+    func accept(_ remover: SectionRealmItemsRemover) {
+        fatalError("Must be overriden")
+    }
+    
     func accept(_ updater: SectionRealmItemsUpdater) {
         fatalError("Must be overriden")
     }
@@ -40,6 +44,11 @@ class SectionItemViewModelManagedByRealm: SectionItemViewModel, SectionRealmItem
     public func updateRealm() {
         let updater = SectionRealmItemsUpdater()
         updater.update(item: self)
+    }
+    
+    public func remove() {
+        let remover = SectionRealmItemsRemover()
+        remover.remove(item: self)
     }
     
     override public func setTitle(title: String) {

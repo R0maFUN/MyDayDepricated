@@ -44,6 +44,10 @@ class ScheduleItemViewModel: SectionItemViewModelManagedByRealm {
         updater.visit(self)
     }
     
+    override func accept(_ remover: SectionRealmItemsRemover) {
+        remover.visit(self)
+    }
+    
     public func toRealmObject() -> ScheduleItemRealmObject {
         if realmObject != nil {
             return realmObject!

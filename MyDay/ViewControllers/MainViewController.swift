@@ -11,23 +11,8 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         
-        view.backgroundColor = .secondarySystemBackground
-        
-        view.addSubview(datesCollectionView)
-        
-        //datesCollectionView.backgroundColor = .red
-        
-        datesCollectionView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(UIConstants.contentInset)
-            make.height.equalTo(70)
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-        }
-        
-        setupSectionsStackView()
-        setupCollectionView()
+        initialize()
     }
     
     init(mainViewModel: MainViewModel) {
@@ -35,10 +20,18 @@ class MainViewController: UIViewController {
         self.sectionsViewModel = self.mainViewModel.sectionsViewModel
         
         self.datesCollectionView = DatesCollectionView(mainViewModel: self.mainViewModel)
+        self.deleteAreaView = DeleteAreaView()
         
         super.init(nibName: nil, bundle: nil)
         
         connectToSectionsViewModel()
+        
+        self.deleteAreaView.onDeleteRequested { data in
+            let currentSection = self.sectionsViewModel.getCurrentSectionVM()
+            for uuid in data {
+                currentSection.removeBy(id: uuid)
+            }
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -49,6 +42,9 @@ class MainViewController: UIViewController {
     private enum UIConstants {
         static let contentInset: CGFloat = 16.0
         static let sectionsToDatesOffset: CGFloat = 22.0
+        
+        static let deleteAreaBottomInset = 30.0
+        static let deleteAreaHeight = 120.0
     }
     
     // MARK: - Private Properties
@@ -56,6 +52,7 @@ class MainViewController: UIViewController {
     private let sectionsViewModel: SectionsViewModel
     
     private let datesCollectionView: DatesCollectionView
+    private let deleteAreaView: DeleteAreaView
     
     private let sectionsStackView: UIStackView = {
         let xStack = UIStackView()
@@ -78,7 +75,33 @@ class MainViewController: UIViewController {
         layout.scrollDirection = .horizontal
         return layout
     }()
+    
+}
 
+private extension MainViewController {
+    func initialize() {
+
+        view.backgroundColor = .secondarySystemBackground
+        
+        view.addSubview(datesCollectionView)
+        
+        datesCollectionView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(UIConstants.contentInset)
+            make.height.equalTo(70)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+        }
+        
+        setupSectionsStackView()
+        setupCollectionView()
+        
+        view.addSubview(deleteAreaView)
+        
+        deleteAreaView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(UIConstants.contentInset)
+            make.height.equalTo(UIConstants.deleteAreaHeight)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(UIConstants.deleteAreaBottomInset)
+        }
+    }
 }
 
 private extension MainViewController {
@@ -155,6 +178,15 @@ extension MainViewController: UICollectionViewDataSource {
                 let vc = EditNotesItemViewController(notesSectionsManager, note: note)
                 self.present(vc, animated: true)
             }
+            
+            cell.onDragBegin {
+                self.deleteAreaView.show()
+            }
+            
+            cell.onDragEnd {
+                self.deleteAreaView.hide()
+            }
+            
             return cell
         } else if let section = self.sectionsViewModel.sectionManagers[indexPath.item] as? RemindersSectionsManager {
             

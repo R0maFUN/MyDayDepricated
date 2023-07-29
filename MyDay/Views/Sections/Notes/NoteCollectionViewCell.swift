@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MobileCoreServices
 
 struct NotesSection {
     let title: String
@@ -17,7 +18,7 @@ class NotesItemTableViewCell: UITableViewCell {
     
     public func configure(with viewModel: NotesItemViewModel) {
         titleLabel.text = viewModel.title
-        descriptionLabel.text = viewModel.descriptions.first?.text.isEmpty ?? false ? "No Description" : viewModel.descriptions.first?.text
+        descriptionLabel.text = viewModel.descriptions.first?.text.isEmpty ?? true ? "No Description" : viewModel.descriptions.first?.text
     }
     
     // MARK: - Init
@@ -96,6 +97,14 @@ class NoteCollectionViewCell: UICollectionViewCell {
         self.onEditNoteRequestedHandlers.append(handler)
     }
     
+    public func onDragBegin(_ handler: @escaping () -> Void) {
+        self.onDragBeginHandlers.append(handler)
+    }
+    
+    public func onDragEnd(_ handler: @escaping () -> Void) {
+        self.onDragEndHandlers.append(handler)
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -113,9 +122,11 @@ class NoteCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Private Properties
     private var sectionsManager: NotesSectionsManager?
-    private var sections: [NotesSection] = []
+    public private(set) var sections: [NotesSection] = []
     
     private var onEditNoteRequestedHandlers: [(_: NotesItemViewModel) -> Void] = []
+    internal private(set) var onDragBeginHandlers: [() -> Void] = []
+    internal private(set) var onDragEndHandlers: [() -> Void] = []
     
     private var tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .insetGrouped)
@@ -149,6 +160,10 @@ private extension NoteCollectionViewCell {
         tableView.dataSource = self
         tableView.backgroundColor = .clear
         
+        tableView.dragInteractionEnabled = true
+        tableView.dragDelegate = self
+        //tableView.dropDelegate = self
+        
         contentView.addSubview(tableView)
         
         tableView.snp.makeConstraints { make in
@@ -178,6 +193,10 @@ extension NoteCollectionViewCell: UITableViewDataSource {
         cell.backgroundColor = .tertiarySystemBackground
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        print("pizdec")
+    }
 }
 
 extension NoteCollectionViewCell: UITableViewDelegate {
@@ -194,5 +213,4 @@ extension NoteCollectionViewCell: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UIConstants.rowHeight
     }
-    
 }

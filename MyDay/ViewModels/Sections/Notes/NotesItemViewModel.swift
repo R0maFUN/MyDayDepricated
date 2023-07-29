@@ -71,6 +71,10 @@ class NotesItemViewModel: SectionItemViewModelManagedByRealm {
         updater.visit(self)
     }
     
+    override func accept(_ remover: SectionRealmItemsRemover) {
+        remover.visit(self)
+    }
+    
     public func toRealmObject() -> NotesItemRealmObject {
         if realmObject != nil {
             return realmObject!

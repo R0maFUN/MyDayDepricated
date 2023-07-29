@@ -43,6 +43,10 @@ class SectionsViewModel {
         self.selectSectionAt(index)
     }
     
+    public func getCurrentSectionVM() -> SectionViewModel {
+        return currentSectionManager.value!.currentSection.value!
+    }
+    
     public private(set) var sectionManagers: [ISectionsManager] = []
     public private(set) var currentSectionManager = PropertyBinding<ISectionsManager>()
     public private(set) var currentSectionManagerIndex = PropertyBinding<Int>()

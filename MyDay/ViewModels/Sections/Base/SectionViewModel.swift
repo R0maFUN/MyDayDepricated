@@ -46,6 +46,31 @@ class SectionViewModel: SectionCreator {
         }
     }
     
+    public func remove(_ item: SectionItemViewModelManagedByRealm) {
+        if let index = self.items.firstIndex(where: { $0.id == item.id }) {
+            self.items.remove(at: index)
+            
+            item.remove()
+            
+            for handler in onItemsChangedHandlers {
+                handler()
+            }
+        }
+    }
+    
+    public func removeBy(id: String) {
+        if let index = self.items.firstIndex(where: { $0.id == id }) {
+            let item = self.items[index]
+            self.items.remove(at: index)
+            
+            item.remove()
+            
+            for handler in onItemsChangedHandlers {
+                handler()
+            }
+        }
+    }
+    
     public func update(_ item: SectionItemViewModelManagedByRealm) {
         if !self.items.contains(where: { $0.id == item.id }) {
             add(item)

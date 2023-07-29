@@ -3,6 +3,64 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "closure #1 in ScheduleSectionsManager.initialize(visibleDates:):ScheduleSectionsManager.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MainViewModel.getVisibleDateModel(by:):MainViewModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ScheduleItemTitleTableViewCell.init(style:reuseIdentifier:):AddScheduleItemViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "DateModel.day.getter:DatesCollectionView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "dateFormatter.string(from: date)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SectionsManager.currentDate.didset:SectionsManager.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ScheduleSectionsManager.initialize():ScheduleSectionViewModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ScheduleSectionsManager.initialize(visibleDates:):ScheduleSectionViewModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "AddScheduleItemViewController.tableView(_:cellForRowAt:):AddScheduleItemViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in MainViewModel.getVisibleDateModel(by:):MainViewModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "dateModel.day">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SectionButton.title.didset:SectionButton.swift">
+      </ContextState>
+      <ContextState
+         contextName = "AddNotesItemViewController.numberOfSections(in:):AddNotesItemViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ScheduleCollectionViewCell.updateSections():ScheduleCollectionViewCell.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in NotesItemViewModel.updateRealm():NotesItemViewModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SectionRealmItemsUpdater.visit(_:):SectionRealmItemsUpdater.swift">
+      </ContextState>
+      <ContextState
+         contextName = "DeleteAreaView.dropInteraction(_:sessionDidUpdate:):DeleteAreaView+Drop.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SectionViewModel.add(_:):SectionViewModel.swift">
+      </ContextState>
+      <ContextState
          contextName = "AddScheduleItemViewController.initialize():AddScheduleItemViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -11,49 +69,37 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in MainViewModel.getVisibleDateModel(by:):MainViewModel.swift">
+         contextName = "EditNotesItemViewController.updateSections():EditNotesItemViewController.swift">
       </ContextState>
       <ContextState
-         contextName = "MainViewModel.getVisibleDateModel(by:):MainViewModel.swift">
-      </ContextState>
-      <ContextState
-         contextName = "ScheduleSectionsManager.initialize():ScheduleSectionViewModel.swift">
-      </ContextState>
-      <ContextState
-         contextName = "AddScheduleItemViewController.tableView(_:cellForRowAt:):AddScheduleItemViewController.swift">
-      </ContextState>
-      <ContextState
-         contextName = "ScheduleSectionsManager.initialize(visibleDates:):ScheduleSectionViewModel.swift">
-      </ContextState>
-      <ContextState
-         contextName = "SectionButton.updateView():SectionButton.swift">
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in ScheduleSectionsManager.initialize(visibleDates:):ScheduleSectionsManager.swift">
-      </ContextState>
-      <ContextState
-         contextName = "SectionButton.title.didset:SectionButton.swift">
-      </ContextState>
-      <ContextState
-         contextName = "ScheduleCollectionViewCell.updateSections():ScheduleCollectionViewCell.swift">
-      </ContextState>
-      <ContextState
-         contextName = "NotesItemDescriptionTableViewCell.textViewDidEndEditing(_:):NotesItemTableViewCells.swift">
-      </ContextState>
-      <ContextState
-         contextName = "AddNotesItemViewController.numberOfSections(in:):AddNotesItemViewController.swift">
+         contextName = "SectionsManager.setDate(date:):SectionsManager.swift">
       </ContextState>
       <ContextState
          contextName = "closure #1 in AddNotesItemViewController.updateSections():AddNotesItemViewController.swift">
       </ContextState>
       <ContextState
+         contextName = "EditNotesItemViewController.onDoneButtonPressed():EditNotesItemViewController.swift">
+      </ContextState>
+      <ContextState
          contextName = "SectionsManager.restoreSections&lt;&#x3c4;_0_0&gt;(_:):SectionsManager.swift">
       </ContextState>
       <ContextState
-         contextName = "SectionsManager.currentDate.didset:SectionsManager.swift">
+         contextName = "SectionItemViewModelManagedByRealm.accept(_:):SectionItemViewModel.swift">
       </ContextState>
       <ContextState
-         contextName = "ScheduleItemTitleTableViewCell.init(style:reuseIdentifier:):AddScheduleItemViewController.swift">
+         contextName = "EditNotesItemViewController.init(_:note:):EditNotesItemViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SectionButton.updateView():SectionButton.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MainViewModel.setCurrentDate(to:):MainViewModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "DatesCollectionView.selectDateAt(_:):DatesCollectionView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "NotesItemDescriptionTableViewCell.textViewDidEndEditing(_:):NotesItemTableViewCells.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

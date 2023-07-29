@@ -44,6 +44,11 @@
 		1EC638E62A7120C500512524 /* NotesItemRealmObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638E52A7120C500512524 /* NotesItemRealmObject.swift */; };
 		1EC638E82A7134E000512524 /* SectionsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638E72A7134E000512524 /* SectionsFactory.swift */; };
 		1EC638EA2A73A70A00512524 /* SectionRealmItemsUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638E92A73A70A00512524 /* SectionRealmItemsUpdater.swift */; };
+		1EC638ED2A744B3800512524 /* SectionRealmItemsRemover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638EC2A744B3800512524 /* SectionRealmItemsRemover.swift */; };
+		1EC638F02A750DF700512524 /* DeleteAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638EF2A750DF700512524 /* DeleteAreaView.swift */; };
+		1EC638F22A750E1800512524 /* DeleteAreaView+Drop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638F12A750E1800512524 /* DeleteAreaView+Drop.swift */; };
+		1EC638F52A750EDF00512524 /* DeleteAreaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638F42A750EDF00512524 /* DeleteAreaModel.swift */; };
+		1EC638F72A7512A100512524 /* NoteCollectionView+Drag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638F62A7512A100512524 /* NoteCollectionView+Drag.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +89,11 @@
 		1EC638E52A7120C500512524 /* NotesItemRealmObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesItemRealmObject.swift; sourceTree = "<group>"; };
 		1EC638E72A7134E000512524 /* SectionsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsFactory.swift; sourceTree = "<group>"; };
 		1EC638E92A73A70A00512524 /* SectionRealmItemsUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionRealmItemsUpdater.swift; sourceTree = "<group>"; };
+		1EC638EC2A744B3800512524 /* SectionRealmItemsRemover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionRealmItemsRemover.swift; sourceTree = "<group>"; };
+		1EC638EF2A750DF700512524 /* DeleteAreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAreaView.swift; sourceTree = "<group>"; };
+		1EC638F12A750E1800512524 /* DeleteAreaView+Drop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeleteAreaView+Drop.swift"; sourceTree = "<group>"; };
+		1EC638F42A750EDF00512524 /* DeleteAreaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAreaModel.swift; sourceTree = "<group>"; };
+		1EC638F62A7512A100512524 /* NoteCollectionView+Drag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteCollectionView+Drag.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +130,7 @@
 			children = (
 				1EC638C02A6B03F300512524 /* Managers */,
 				1EC638B12A63E84300512524 /* Extensions */,
+				1EC638F32A750EC300512524 /* Models */,
 				1EC638A42A63E44C00512524 /* ViewModels */,
 				1EC6389B2A5EFBFA00512524 /* Layouts */,
 				1EC638932A5DEC9900512524 /* Views */,
@@ -187,6 +198,7 @@
 				1EC638D42A6E7E9800512524 /* SectionsRealmManager.swift */,
 				1EC638E72A7134E000512524 /* SectionsFactory.swift */,
 				1EC638E92A73A70A00512524 /* SectionRealmItemsUpdater.swift */,
+				1EC638EC2A744B3800512524 /* SectionRealmItemsRemover.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -275,6 +287,7 @@
 			children = (
 				1EC638B62A652E5000512524 /* NoteCollectionViewCell.swift */,
 				1EC638DF2A6EFA5000512524 /* NotesItemTableViewCells.swift */,
+				1EC638F62A7512A100512524 /* NoteCollectionView+Drag.swift */,
 			);
 			path = Notes;
 			sourceTree = "<group>";
@@ -282,8 +295,26 @@
 		1EC638EB2A7445F400512524 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				1EC638EE2A750DA800512524 /* DeleteAreaView */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		1EC638EE2A750DA800512524 /* DeleteAreaView */ = {
+			isa = PBXGroup;
+			children = (
+				1EC638EF2A750DF700512524 /* DeleteAreaView.swift */,
+				1EC638F12A750E1800512524 /* DeleteAreaView+Drop.swift */,
+			);
+			path = DeleteAreaView;
+			sourceTree = "<group>";
+		};
+		1EC638F32A750EC300512524 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1EC638F42A750EDF00512524 /* DeleteAreaModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -366,11 +397,14 @@
 			files = (
 				1EC638812A5DD3C100512524 /* ViewController.swift in Sources */,
 				1EC638D52A6E7E9800512524 /* SectionsRealmManager.swift in Sources */,
+				1EC638F52A750EDF00512524 /* DeleteAreaModel.swift in Sources */,
 				1EC6387D2A5DD3C100512524 /* AppDelegate.swift in Sources */,
+				1EC638F72A7512A100512524 /* NoteCollectionView+Drag.swift in Sources */,
 				1EC638DB2A6EF64600512524 /* NotesItemViewModel.swift in Sources */,
 				1EC6389F2A5F10FE00512524 /* DatesCollectionView.swift in Sources */,
 				1EC638BF2A6AAE5B00512524 /* ScheduleItemTableViewCells.swift in Sources */,
 				1EC638BB2A6A842800512524 /* AddScheduleItemViewController.swift in Sources */,
+				1EC638F22A750E1800512524 /* DeleteAreaView+Drop.swift in Sources */,
 				1EC638E02A6EFA5000512524 /* NotesItemTableViewCells.swift in Sources */,
 				1EC638922A5DE7AF00512524 /* CustomTabBarController.swift in Sources */,
 				1EC638BD2A6AA39E00512524 /* NotificationsViewModel.swift in Sources */,
@@ -389,7 +423,9 @@
 				1EC638D32A6E7DB200512524 /* ScheduleItemRealmObject.swift in Sources */,
 				1EC638AA2A63E65400512524 /* ScheduleSectionViewModel.swift in Sources */,
 				1EC638B32A63E85B00512524 /* PropertyBinding.swift in Sources */,
+				1EC638ED2A744B3800512524 /* SectionRealmItemsRemover.swift in Sources */,
 				1EC638AE2A63E69300512524 /* RemindersSectionViewModel.swift in Sources */,
+				1EC638F02A750DF700512524 /* DeleteAreaView.swift in Sources */,
 				1EC638A82A63E63500512524 /* SectionViewModel.swift in Sources */,
 				1EC638A12A5F40E900512524 /* SectionButton.swift in Sources */,
 				1EC638B72A652E5000512524 /* NoteCollectionViewCell.swift in Sources */,
