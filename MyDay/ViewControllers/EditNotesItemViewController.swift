@@ -47,7 +47,7 @@ class EditNotesItemViewController: UIViewController {
     
     init(_ sectionsManager: ISectionsManager, note: NotesItemViewModel? = nil) {
         self.sectionsManager = sectionsManager
-        self.itemViewModel = note ?? NotesItemViewModel()
+        self.itemViewModel = note ?? NotesItemViewModel(title: "", editDate: Date(), date: sectionsManager.currentSection.value!.date.date)
         
         super.init(nibName: .none, bundle: .none)
         

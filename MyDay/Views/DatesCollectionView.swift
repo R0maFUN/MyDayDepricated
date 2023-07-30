@@ -186,9 +186,7 @@ class DateModel {
     
     public var day: Int {
         get {
-            dateFormatter.dateFormat = "d"
-            // 17
-            return Int(dateFormatter.string(from: date)) ?? 0
+            return Calendar.current.component(.day, from: date)
         }
     }
     

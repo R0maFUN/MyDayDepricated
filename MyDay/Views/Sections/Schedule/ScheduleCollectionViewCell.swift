@@ -102,13 +102,7 @@ class ScheduleCollectionViewCell: UICollectionViewCell {
     public func configure(with viewModel: ScheduleSectionsManager) {
         self.viewModel = viewModel
         
-        if let scheduleSectionViewModel = self.viewModel?.currentSection.value as? ScheduleSectionViewModel {
-            scheduleSectionViewModel.onItemsChanged {
-                self.updateSections()
-            }
-        }
-        
-        self.viewModel?.currentSection.onChanged {
+        self.viewModel?.onDataChanged {
             self.updateSections()
         }
         

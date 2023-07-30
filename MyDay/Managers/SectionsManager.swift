@@ -36,7 +36,13 @@ protocol ISectionsManager {
 class SectionsManager<T: SectionViewModel>: ISectionsManager {
     // MARK: - Init
     init(visibleDates: [DateModel]) {
+        self.currentSection = PropertyBinding()
+        
         initialize(visibleDates: visibleDates)
+        
+        self.currentSection.onChanged {
+            self.onDataChangedHandlers.forEach { $0() }
+        }
     }
     
     // MARK: - Public Methods
@@ -58,6 +64,12 @@ class SectionsManager<T: SectionViewModel>: ISectionsManager {
     
     public func add(section: SectionViewModel) {
         self.sections.value![getSectionKeyFrom(date: section.date)] = section
+        
+        self.connectToSection(section)
+    }
+    
+    public func onDataChanged(_ handler: @escaping () -> Void) {
+        self.onDataChangedHandlers.append(handler)
     }
     
     // MARK: - Internal Methods
@@ -80,6 +92,7 @@ class SectionsManager<T: SectionViewModel>: ISectionsManager {
             }
         }
     }
+    
     private func restoreSections<T: SectionViewModel>(_ t: T.Type) -> [DateModel:T] {
         var restoredItems: [SectionItemViewModelManagedByRealm] = []
         // TODO: Refactor pizdec
@@ -113,12 +126,18 @@ class SectionsManager<T: SectionViewModel>: ISectionsManager {
         return result
     }
     
+    private func connectToSection(_ section: SectionViewModel) {
+        section.onItemsChanged {
+            self.onDataChangedHandlers.forEach { $0() }
+        }
+    }
+    
     // MARK: - Properties
     public internal(set) var title: String = ""
     public internal(set) var addActionTitle: String = ""
     public internal(set) var isActive: PropertyBinding<Bool> = PropertyBinding<Bool>(false)
     public internal(set) var sections: PropertyBinding<[Int: SectionViewModel]> = PropertyBinding<[Int: SectionViewModel]>([:])
-    public internal(set) var currentSection: PropertyBinding<SectionViewModel> = PropertyBinding()
+    public internal(set) var currentSection: PropertyBinding<SectionViewModel>
     
     // MARK: - Private Properties
     private var currentDate: DateModel? {
@@ -127,4 +146,6 @@ class SectionsManager<T: SectionViewModel>: ISectionsManager {
             self.currentSection.value?.update()
         }
     }
+    
+    private var onDataChangedHandlers: [() -> Void] = []
 }

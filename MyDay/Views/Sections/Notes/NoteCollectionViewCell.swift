@@ -80,13 +80,7 @@ class NoteCollectionViewCell: UICollectionViewCell {
     public func configure(with sectionsManager: NotesSectionsManager) {
         self.sectionsManager = sectionsManager
         
-        if let notesSectionViewModel = self.sectionsManager?.currentSection.value as? NotesSectionViewModel {
-            notesSectionViewModel.onItemsChanged {
-                self.updateSections()
-            }
-        }
-        
-        self.sectionsManager?.currentSection.onChanged {
+        self.sectionsManager?.onDataChanged {
             self.updateSections()
         }
         
