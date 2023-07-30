@@ -19,7 +19,7 @@ struct EditNotesButton {
 
 enum EditNotesItemSection {
     case title(viewModel: NotesItemViewModel)
-    case description(viewModel: NotesItemViewModel, model: NoteDescriptionModel)
+    case description(viewModel: NotesItemViewModel, model: DescriptionModel)
     case image(viewModel: NotesItemViewModel)
     case buttons(buttons: [EditNotesButton])
 }
@@ -63,7 +63,7 @@ class EditNotesItemViewController: UIViewController {
     private let tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .insetGrouped)
         table.register(TitleInputTableViewCell.self, forCellReuseIdentifier: TitleInputTableViewCell.reuseIdentifier)
-        table.register(NotesItemDescriptionTableViewCell.self, forCellReuseIdentifier: NotesItemDescriptionTableViewCell.reuseIdentifier)
+        table.register(DescriptionInputTableViewCell.self, forCellReuseIdentifier: DescriptionInputTableViewCell.reuseIdentifier)
         table.register(NotesItemImageTableViewCell.self, forCellReuseIdentifier: NotesItemImageTableViewCell.reuseIdentifier)
         table.register(NotesItemButtonsTableViewCell.self, forCellReuseIdentifier: NotesItemButtonsTableViewCell.reuseIdentifier)
         
@@ -176,8 +176,13 @@ extension EditNotesItemViewController: UITableViewDataSource {
             
             return cell
         case .description(let viewModel, let model):
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: NotesItemDescriptionTableViewCell.reuseIdentifier, for: indexPath) as? NotesItemDescriptionTableViewCell else { return UITableViewCell() }
-            cell.configure(with: viewModel, model: model)
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: DescriptionInputTableViewCell.reuseIdentifier, for: indexPath) as? DescriptionInputTableViewCell else { return UITableViewCell() }
+            cell.configure(with: model)
+            
+            cell.onValueChanged { value in
+                viewModel.update(value)
+            }
+            
             return cell
         case .image(viewModel: let viewModel):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: NotesItemImageTableViewCell.reuseIdentifier, for: indexPath) as? NotesItemImageTableViewCell else { return UITableViewCell() }

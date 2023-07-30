@@ -51,6 +51,9 @@
 		1EC638FC2A767F0A00512524 /* InputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638FB2A767F0A00512524 /* InputTableViewCell.swift */; };
 		1EC638FE2A76820800512524 /* TitleInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638FD2A76820800512524 /* TitleInputTableViewCell.swift */; };
 		1EC639002A76827C00512524 /* TitleInputTableViewCell+TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638FF2A76827C00512524 /* TitleInputTableViewCell+TextField.swift */; };
+		1EC639022A76894F00512524 /* DescriptionInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC639012A76894F00512524 /* DescriptionInputTableViewCell.swift */; };
+		1EC639042A7689FD00512524 /* DescriptionInputTableViewCell+TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC639032A7689FD00512524 /* DescriptionInputTableViewCell+TextView.swift */; };
+		1EC639062A768F8400512524 /* DescriptionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC639052A768F8400512524 /* DescriptionModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +101,9 @@
 		1EC638FB2A767F0A00512524 /* InputTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTableViewCell.swift; sourceTree = "<group>"; };
 		1EC638FD2A76820800512524 /* TitleInputTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleInputTableViewCell.swift; sourceTree = "<group>"; };
 		1EC638FF2A76827C00512524 /* TitleInputTableViewCell+TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TitleInputTableViewCell+TextField.swift"; sourceTree = "<group>"; };
+		1EC639012A76894F00512524 /* DescriptionInputTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionInputTableViewCell.swift; sourceTree = "<group>"; };
+		1EC639032A7689FD00512524 /* DescriptionInputTableViewCell+TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DescriptionInputTableViewCell+TextView.swift"; sourceTree = "<group>"; };
+		1EC639052A768F8400512524 /* DescriptionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -317,6 +323,7 @@
 		1EC638F32A750EC300512524 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1EC639052A768F8400512524 /* DescriptionModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -327,6 +334,8 @@
 				1EC638FB2A767F0A00512524 /* InputTableViewCell.swift */,
 				1EC638FD2A76820800512524 /* TitleInputTableViewCell.swift */,
 				1EC638FF2A76827C00512524 /* TitleInputTableViewCell+TextField.swift */,
+				1EC639012A76894F00512524 /* DescriptionInputTableViewCell.swift */,
+				1EC639032A7689FD00512524 /* DescriptionInputTableViewCell+TextView.swift */,
 			);
 			path = InputTableViewCells;
 			sourceTree = "<group>";
@@ -424,8 +433,10 @@
 				1EC638BD2A6AA39E00512524 /* NotificationsViewModel.swift in Sources */,
 				1EC638C22A6B040600512524 /* SectionsManager.swift in Sources */,
 				1EC638D12A6E7D7200512524 /* ScheduleSectionsManager.swift in Sources */,
+				1EC639022A76894F00512524 /* DescriptionInputTableViewCell.swift in Sources */,
 				1EC638A62A63E46B00512524 /* SectionsViewModel.swift in Sources */,
 				1EC638E62A7120C500512524 /* NotesItemRealmObject.swift in Sources */,
+				1EC639062A768F8400512524 /* DescriptionModel.swift in Sources */,
 				1EC638B02A63E6B100512524 /* GoalsSectionViewModel.swift in Sources */,
 				1EC6387F2A5DD3C100512524 /* SceneDelegate.swift in Sources */,
 				1EC639002A76827C00512524 /* TitleInputTableViewCell+TextField.swift in Sources */,
@@ -447,6 +458,7 @@
 				1EC638B72A652E5000512524 /* NoteCollectionViewCell.swift in Sources */,
 				1EC638D92A6EF43200512524 /* EditNotesItemViewController.swift in Sources */,
 				1EC638B52A63ED3400512524 /* MainViewModel.swift in Sources */,
+				1EC639042A7689FD00512524 /* DescriptionInputTableViewCell+TextView.swift in Sources */,
 				1EC638EA2A73A70A00512524 /* SectionRealmItemsUpdater.swift in Sources */,
 				1EC638E82A7134E000512524 /* SectionsFactory.swift in Sources */,
 			);

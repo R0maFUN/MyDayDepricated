@@ -8,56 +8,6 @@
 import Foundation
 import UIKit
 
-class NotesItemDescriptionTableViewCell: UITableViewCell, UITextViewDelegate {
-    static let reuseIdentifier = "NotesItemDescriptionTableViewCell"
-    
-    public func configure(with viewModel: NotesItemViewModel, model: NoteDescriptionModel) {
-        self.itemViewModel = viewModel
-        self.descriptionModel = model
-        
-        self.textView.text = model.text
-    }
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        initialize()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        guard let text = textView.text else { return }
-        
-        self.descriptionModel?.setText(text)
-        self.itemViewModel?.update(self.descriptionModel!)
-    }
-    
-    private func initialize() {
-        textView.delegate = self
-        
-        textView.font = .systemFont(ofSize: 16, weight: .regular)
-        textView.tintColor = .label
-        textView.backgroundColor = .clear
-        
-        contentView.addSubview(textView)
-        
-        textView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(16)
-        }
-    }
-    
-    private var itemViewModel: NotesItemViewModel?
-    private var descriptionModel: NoteDescriptionModel?
-    
-    private var textView: UITextView = {
-        let textView = UITextView()
-        return textView
-    }()
-}
-
 class NotesItemImageTableViewCell: UITableViewCell {
     static let reuseIdentifier = "NotesItemImageTableViewCell"
     

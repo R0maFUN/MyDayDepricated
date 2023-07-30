@@ -16,8 +16,12 @@ class InputTableViewCell<T>: UITableViewCell {
     
     public internal(set) var value: T? {
         didSet {
-            self.onValueChangedHandlers.forEach { $0(value!) }
+            valueChanged()
         }
+    }
+    
+    internal func valueChanged() {
+        self.onValueChangedHandlers.forEach { $0(value!) }
     }
     
     private var onValueChangedHandlers: [(_ value: T) -> Void] = []

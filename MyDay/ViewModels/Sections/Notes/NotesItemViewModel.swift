@@ -9,24 +9,6 @@ import Foundation
 import UIKit
 import RealmSwift
 
-class NoteDescriptionModel {
-    
-    init() {
-        
-    }
-    
-    init(text: String) {
-        self.text = text
-    }
-    
-    public func setText(_ text: String) {
-        self.text = text
-    }
-    
-    public private(set) var id: String = UUID().uuidString
-    public private(set) var text: String = ""
-}
-
 class NotesItemViewModel: SectionItemViewModelManagedByRealm {
     
     // MARK: Init
@@ -38,7 +20,7 @@ class NotesItemViewModel: SectionItemViewModelManagedByRealm {
         super.init(title: title, description: descriptions.first ?? "", date: date)
 
         self.editDate = editDate
-        self.descriptions = descriptions.map { return NoteDescriptionModel(text: $0) }
+        self.descriptions = descriptions.map { return DescriptionModel(text: $0) }
     }
     
     convenience init(realmObject: NotesItemRealmObject) {
@@ -49,12 +31,17 @@ class NotesItemViewModel: SectionItemViewModelManagedByRealm {
     }
     
     // MARK: - Public Methods
-    public func update(_ description: NoteDescriptionModel) {
-        if let existingDescription = self.descriptions.first(where: { $0.id == description.id }) {
-            existingDescription.setText(description.text) // already set i guess
-        } else {
+    public func update(_ description: DescriptionModel) {
+        
+        if !self.descriptions.contains(where: { $0.id == description.id }) {
             add(description: description)
         }
+        
+//        if let existingDescription = self.descriptions.first(where: { $0.id == description.id }) {
+//            //existingDescription.setText(description.text) // already set i guess
+//        } else {
+//            add(description: description)
+//        }
         
         self.description = self.descriptions.first?.text ?? ""
         
@@ -64,7 +51,7 @@ class NotesItemViewModel: SectionItemViewModelManagedByRealm {
     }
     
     public func addEmptyDescription() {
-        add(description: NoteDescriptionModel())
+        add(description: DescriptionModel())
     }
     
     override func accept(_ updater: SectionRealmItemsUpdater) {
@@ -91,7 +78,7 @@ class NotesItemViewModel: SectionItemViewModelManagedByRealm {
     }
     
     // MARK: - Private Methods
-    private func add(description: NoteDescriptionModel) {
+    private func add(description: DescriptionModel) {
         if self.descriptions.contains(where: { $0.id == description.id }) {
             return
         }
@@ -102,7 +89,7 @@ class NotesItemViewModel: SectionItemViewModelManagedByRealm {
     }
     
     public private(set) var editDate: Date = Date()
-    public private(set) var descriptions: [NoteDescriptionModel] = []
+    public private(set) var descriptions: [DescriptionModel] = []
     public private(set) var images: [[UIImage]] = [[]]
     
     private var realmObject: NotesItemRealmObject?
