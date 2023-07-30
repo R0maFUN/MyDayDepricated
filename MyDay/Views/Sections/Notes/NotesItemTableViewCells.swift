@@ -8,58 +8,6 @@
 import Foundation
 import UIKit
 
-class NotesItemTitleTableViewCell: UITableViewCell, UITextFieldDelegate {
-    static let reuseIdentifier = "NotesItemTitleTableViewCell"
-    
-    public func configure(with viewModel: NotesItemViewModel) {
-        self.itemViewModel = viewModel
-        self.textField.text = viewModel.title
-    }
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        initialize()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.itemViewModel?.setTitle(title: textField.text ?? "")
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        guard let text = textField.text else { return }
-        
-        self.itemViewModel?.setTitle(title: text)
-    }
-    
-    private func initialize() {
-        textField.delegate = self
-        
-        textField.font = .systemFont(ofSize: 20, weight: .semibold)
-        textField.placeholder = "Title"
-        textField.tintColor = .label
-        
-        contentView.addSubview(textField)
-        
-        textField.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(16)
-        }
-    }
-    
-    private var itemViewModel: NotesItemViewModel?
-    
-    private var textField: UITextField = {
-        let textField = UITextField()
-        return textField
-    }()
-}
-
 class NotesItemDescriptionTableViewCell: UITableViewCell, UITextViewDelegate {
     static let reuseIdentifier = "NotesItemDescriptionTableViewCell"
     

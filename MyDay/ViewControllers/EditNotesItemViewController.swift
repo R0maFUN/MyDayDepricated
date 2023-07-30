@@ -62,7 +62,7 @@ class EditNotesItemViewController: UIViewController {
     // MARK: - Private Properties
     private let tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .insetGrouped)
-        table.register(NotesItemTitleTableViewCell.self, forCellReuseIdentifier: NotesItemTitleTableViewCell.reuseIdentifier)
+        table.register(TitleInputTableViewCell.self, forCellReuseIdentifier: TitleInputTableViewCell.reuseIdentifier)
         table.register(NotesItemDescriptionTableViewCell.self, forCellReuseIdentifier: NotesItemDescriptionTableViewCell.reuseIdentifier)
         table.register(NotesItemImageTableViewCell.self, forCellReuseIdentifier: NotesItemImageTableViewCell.reuseIdentifier)
         table.register(NotesItemButtonsTableViewCell.self, forCellReuseIdentifier: NotesItemButtonsTableViewCell.reuseIdentifier)
@@ -125,17 +125,17 @@ private extension EditNotesItemViewController {
         }
 
         self.sections.append(.buttons(buttons: [EditNotesButton(handler: {
-            print("Button 1")
-            self.itemViewModel.addEmptyDescription()
-            self.updateSections()
-            self.tableView.reloadData()
-        }, type: .text),
+                                                                    print("Button 1")
+                                                                    self.itemViewModel.addEmptyDescription()
+                                                                    self.updateSections()
+                                                                    self.tableView.reloadData()
+                                                                },
+                                                                type: .text),
                                                 EditNotesButton(handler: { print("Button 2") }, type: .image)]))
     }
     
     @objc func onDoneButtonPressed() {
         // TODO: DATE is wrong
-//        guard let scheduleSectionManager = self.sectionsViewModel.currentSectionManager.value! as? ScheduleSectionsManager else { return }
         if let section = self.sectionsManager.getSection(by: DateModel(date: self.itemViewModel.date)) {
             section.update(self.itemViewModel)
             dismiss(animated: true)
@@ -145,7 +145,6 @@ private extension EditNotesItemViewController {
             section.add(self.itemViewModel)
             dismiss(animated: true)
         }
-        //scheduleSectionManager.addScheduleItem(date: Date, title: <#T##String#>, startTime: <#T##Date#>, endTime: <#T##Date#>)
     }
 }
 
@@ -168,8 +167,13 @@ extension EditNotesItemViewController: UITableViewDataSource {
         
         switch model.self {
         case .title(let model):
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: NotesItemTitleTableViewCell.reuseIdentifier, for: indexPath) as? NotesItemTitleTableViewCell else { return UITableViewCell() }
-            cell.configure(with: model)
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: TitleInputTableViewCell.reuseIdentifier, for: indexPath) as? TitleInputTableViewCell else { return UITableViewCell() }
+            cell.configure(with: model.title)
+            
+            cell.onValueChanged { value in
+                model.setTitle(title: value)
+            }
+            
             return cell
         case .description(let viewModel, let model):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: NotesItemDescriptionTableViewCell.reuseIdentifier, for: indexPath) as? NotesItemDescriptionTableViewCell else { return UITableViewCell() }

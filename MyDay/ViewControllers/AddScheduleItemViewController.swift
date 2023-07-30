@@ -58,7 +58,7 @@ class AddScheduleItemViewController: UIViewController {
     // MARK: - Private Properties
     private let tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .insetGrouped)
-        table.register(ScheduleItemTitleTableViewCell.self, forCellReuseIdentifier: ScheduleItemTitleTableViewCell.reuseIdentifier)
+        table.register(TitleInputTableViewCell.self, forCellReuseIdentifier: TitleInputTableViewCell.reuseIdentifier)
         table.register(ScheduleItemDescriptionTableViewCell.self, forCellReuseIdentifier: ScheduleItemDescriptionTableViewCell.reuseIdentifier)
         table.register(ScheduleItemDateTableViewCell.self, forCellReuseIdentifier: ScheduleItemDateTableViewCell.reuseIdentifier)
         table.register(ScheduleItemStartTimeTableViewCell.self, forCellReuseIdentifier: ScheduleItemStartTimeTableViewCell.reuseIdentifier)
@@ -150,8 +150,13 @@ extension AddScheduleItemViewController: UITableViewDataSource {
         
         switch model.self {
         case .title(let model):
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: ScheduleItemTitleTableViewCell.reuseIdentifier, for: indexPath) as? ScheduleItemTitleTableViewCell else { return UITableViewCell() }
-            cell.configure(with: model)
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: TitleInputTableViewCell.reuseIdentifier, for: indexPath) as? TitleInputTableViewCell else { return UITableViewCell() }
+            cell.configure(with: model.title)
+            
+            cell.onValueChanged { value in
+                model.setTitle(title: value)
+            }
+            
             return cell
         case .description(let model):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ScheduleItemDescriptionTableViewCell.reuseIdentifier, for: indexPath) as? ScheduleItemDescriptionTableViewCell else { return UITableViewCell() }

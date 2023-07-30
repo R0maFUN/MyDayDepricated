@@ -47,8 +47,10 @@
 		1EC638ED2A744B3800512524 /* SectionRealmItemsRemover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638EC2A744B3800512524 /* SectionRealmItemsRemover.swift */; };
 		1EC638F02A750DF700512524 /* DeleteAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638EF2A750DF700512524 /* DeleteAreaView.swift */; };
 		1EC638F22A750E1800512524 /* DeleteAreaView+Drop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638F12A750E1800512524 /* DeleteAreaView+Drop.swift */; };
-		1EC638F52A750EDF00512524 /* DeleteAreaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638F42A750EDF00512524 /* DeleteAreaModel.swift */; };
 		1EC638F72A7512A100512524 /* NoteCollectionView+Drag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638F62A7512A100512524 /* NoteCollectionView+Drag.swift */; };
+		1EC638FC2A767F0A00512524 /* InputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638FB2A767F0A00512524 /* InputTableViewCell.swift */; };
+		1EC638FE2A76820800512524 /* TitleInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638FD2A76820800512524 /* TitleInputTableViewCell.swift */; };
+		1EC639002A76827C00512524 /* TitleInputTableViewCell+TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638FF2A76827C00512524 /* TitleInputTableViewCell+TextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,8 +94,10 @@
 		1EC638EC2A744B3800512524 /* SectionRealmItemsRemover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionRealmItemsRemover.swift; sourceTree = "<group>"; };
 		1EC638EF2A750DF700512524 /* DeleteAreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAreaView.swift; sourceTree = "<group>"; };
 		1EC638F12A750E1800512524 /* DeleteAreaView+Drop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeleteAreaView+Drop.swift"; sourceTree = "<group>"; };
-		1EC638F42A750EDF00512524 /* DeleteAreaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAreaModel.swift; sourceTree = "<group>"; };
 		1EC638F62A7512A100512524 /* NoteCollectionView+Drag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteCollectionView+Drag.swift"; sourceTree = "<group>"; };
+		1EC638FB2A767F0A00512524 /* InputTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTableViewCell.swift; sourceTree = "<group>"; };
+		1EC638FD2A76820800512524 /* TitleInputTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleInputTableViewCell.swift; sourceTree = "<group>"; };
+		1EC638FF2A76827C00512524 /* TitleInputTableViewCell+TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TitleInputTableViewCell+TextField.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -295,6 +299,7 @@
 		1EC638EB2A7445F400512524 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				1EC638FA2A767EC300512524 /* InputTableViewCells */,
 				1EC638EE2A750DA800512524 /* DeleteAreaView */,
 			);
 			path = Common;
@@ -312,9 +317,18 @@
 		1EC638F32A750EC300512524 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				1EC638F42A750EDF00512524 /* DeleteAreaModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		1EC638FA2A767EC300512524 /* InputTableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				1EC638FB2A767F0A00512524 /* InputTableViewCell.swift */,
+				1EC638FD2A76820800512524 /* TitleInputTableViewCell.swift */,
+				1EC638FF2A76827C00512524 /* TitleInputTableViewCell+TextField.swift */,
+			);
+			path = InputTableViewCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -397,7 +411,6 @@
 			files = (
 				1EC638812A5DD3C100512524 /* ViewController.swift in Sources */,
 				1EC638D52A6E7E9800512524 /* SectionsRealmManager.swift in Sources */,
-				1EC638F52A750EDF00512524 /* DeleteAreaModel.swift in Sources */,
 				1EC6387D2A5DD3C100512524 /* AppDelegate.swift in Sources */,
 				1EC638F72A7512A100512524 /* NoteCollectionView+Drag.swift in Sources */,
 				1EC638DB2A6EF64600512524 /* NotesItemViewModel.swift in Sources */,
@@ -405,6 +418,7 @@
 				1EC638BF2A6AAE5B00512524 /* ScheduleItemTableViewCells.swift in Sources */,
 				1EC638BB2A6A842800512524 /* AddScheduleItemViewController.swift in Sources */,
 				1EC638F22A750E1800512524 /* DeleteAreaView+Drop.swift in Sources */,
+				1EC638FC2A767F0A00512524 /* InputTableViewCell.swift in Sources */,
 				1EC638E02A6EFA5000512524 /* NotesItemTableViewCells.swift in Sources */,
 				1EC638922A5DE7AF00512524 /* CustomTabBarController.swift in Sources */,
 				1EC638BD2A6AA39E00512524 /* NotificationsViewModel.swift in Sources */,
@@ -414,6 +428,7 @@
 				1EC638E62A7120C500512524 /* NotesItemRealmObject.swift in Sources */,
 				1EC638B02A63E6B100512524 /* GoalsSectionViewModel.swift in Sources */,
 				1EC6387F2A5DD3C100512524 /* SceneDelegate.swift in Sources */,
+				1EC639002A76827C00512524 /* TitleInputTableViewCell+TextField.swift in Sources */,
 				1EC638CF2A6E7D5500512524 /* ScheduleItemViewModel.swift in Sources */,
 				1EC638DD2A6EF66B00512524 /* NotesSectionsManager.swift in Sources */,
 				1EC638A32A6070B500512524 /* ScheduleCollectionViewCell.swift in Sources */,
@@ -423,6 +438,7 @@
 				1EC638D32A6E7DB200512524 /* ScheduleItemRealmObject.swift in Sources */,
 				1EC638AA2A63E65400512524 /* ScheduleSectionViewModel.swift in Sources */,
 				1EC638B32A63E85B00512524 /* PropertyBinding.swift in Sources */,
+				1EC638FE2A76820800512524 /* TitleInputTableViewCell.swift in Sources */,
 				1EC638ED2A744B3800512524 /* SectionRealmItemsRemover.swift in Sources */,
 				1EC638AE2A63E69300512524 /* RemindersSectionViewModel.swift in Sources */,
 				1EC638F02A750DF700512524 /* DeleteAreaView.swift in Sources */,
