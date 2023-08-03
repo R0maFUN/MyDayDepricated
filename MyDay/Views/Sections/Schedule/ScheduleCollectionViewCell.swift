@@ -109,6 +109,14 @@ class ScheduleCollectionViewCell: UICollectionViewCell {
         updateSections()
     }
     
+    public func onDragBegin(_ handler: @escaping () -> Void) {
+        self.onDragBeginHandlers.append(handler)
+    }
+    
+    public func onDragEnd(_ handler: @escaping () -> Void) {
+        self.onDragEndHandlers.append(handler)
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -126,7 +134,10 @@ class ScheduleCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Private Properties
     private var viewModel: ScheduleSectionsManager?
-    private var sections: [ScheduleSection] = []
+    internal private(set) var sections: [ScheduleSection] = []
+    
+    internal private(set) var onDragBeginHandlers: [() -> Void] = []
+    internal private(set) var onDragEndHandlers: [() -> Void] = []
     
     private var tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .insetGrouped)
@@ -170,6 +181,9 @@ private extension ScheduleCollectionViewCell {
         tableView.dataSource = self
         tableView.backgroundColor = .clear
         
+        tableView.dragInteractionEnabled = true
+        tableView.dragDelegate = self
+        
         contentView.addSubview(tableView)
         
         tableView.snp.makeConstraints { make in
@@ -198,6 +212,10 @@ extension ScheduleCollectionViewCell: UITableViewDataSource {
         cell.configure(with: viewModel)
         cell.backgroundColor = .tertiarySystemBackground
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        print("pizdec")
     }
 }
 

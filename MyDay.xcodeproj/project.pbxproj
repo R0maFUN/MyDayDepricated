@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E9937A82A7C23720027663F /* ScheduleCollectionViewCell+Drag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9937A72A7C23720027663F /* ScheduleCollectionViewCell+Drag.swift */; };
 		1EC6387D2A5DD3C100512524 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC6387C2A5DD3C100512524 /* AppDelegate.swift */; };
 		1EC6387F2A5DD3C100512524 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC6387E2A5DD3C100512524 /* SceneDelegate.swift */; };
 		1EC638812A5DD3C100512524 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638802A5DD3C100512524 /* ViewController.swift */; };
@@ -57,6 +58,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1E9937A72A7C23720027663F /* ScheduleCollectionViewCell+Drag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScheduleCollectionViewCell+Drag.swift"; sourceTree = "<group>"; };
 		1EC638792A5DD3C100512524 /* MyDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EC6387C2A5DD3C100512524 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EC6387E2A5DD3C100512524 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 			children = (
 				1EC638A22A6070B500512524 /* ScheduleCollectionViewCell.swift */,
 				1EC638BE2A6AAE5B00512524 /* ScheduleItemTableViewCells.swift */,
+				1E9937A72A7C23720027663F /* ScheduleCollectionViewCell+Drag.swift */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -419,6 +422,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EC638812A5DD3C100512524 /* ViewController.swift in Sources */,
+				1E9937A82A7C23720027663F /* ScheduleCollectionViewCell+Drag.swift in Sources */,
 				1EC638D52A6E7E9800512524 /* SectionsRealmManager.swift in Sources */,
 				1EC6387D2A5DD3C100512524 /* AppDelegate.swift in Sources */,
 				1EC638F72A7512A100512524 /* NoteCollectionView+Drag.swift in Sources */,

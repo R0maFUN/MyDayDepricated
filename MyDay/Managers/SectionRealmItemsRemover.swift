@@ -23,7 +23,7 @@ struct SectionRealmItemsRemover {
         do {
             let realm = try Realm(configuration: config)
             try realm.write {
-                realm.delete(item.toRealmObject())
+                realm.delete(realm.objects(ScheduleItemRealmObject.self).filter("id=%@", item.id))
             }
         } catch let error as NSError {
             print("Error removing item from Realm: \(error.localizedDescription)")

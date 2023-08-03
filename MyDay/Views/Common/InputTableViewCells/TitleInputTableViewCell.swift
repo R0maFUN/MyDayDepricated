@@ -34,6 +34,8 @@ class TitleInputTableViewCell: InputTableViewCell<String> {
         
         contentView.addSubview(textField)
         
+        //self.layer.cornerCurve = .continuous
+        
         textField.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(16)
         }

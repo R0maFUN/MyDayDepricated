@@ -169,6 +169,15 @@ extension MainViewController: UICollectionViewDataSource {
         if let section = self.sectionsViewModel.sectionManagers[indexPath.item] as? ScheduleSectionsManager {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ScheduleCollectionViewCell.reuseIdentifier, for: indexPath) as? ScheduleCollectionViewCell else { return UICollectionViewCell() }
             cell.configure(with: section)
+            
+            cell.onDragBegin {
+                self.deleteAreaView.show()
+            }
+            
+            cell.onDragEnd {
+                self.deleteAreaView.hide()
+            }
+            
             return cell
         } else if let section = self.sectionsViewModel.sectionManagers[indexPath.item] as? NotesSectionsManager {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NoteCollectionViewCell.reuseIdentifier, for: indexPath) as? NoteCollectionViewCell else { return UICollectionViewCell() }
