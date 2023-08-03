@@ -25,6 +25,9 @@ class SectionButton: UIButton {
         
         self.setTitle(section.title, for: .normal)
         
+        guard let label = self.titleLabel else { return }
+        label.font = .systemFont(ofSize: 18, weight: .semibold)
+        
         updateView()
         
         self.addTarget(self, action: #selector(onTappedObjc), for: .touchUpInside)
@@ -42,25 +45,15 @@ class SectionButton: UIButton {
     private func updateView() {
         if isActive {
             guard let label = self.titleLabel else { return }
-            //self.setTitleColor(.label, for: .normal)
             UIView.transition(with: label, duration: 0.15, options: .transitionCrossDissolve, animations: {
-                label.font = .systemFont(ofSize: 20, weight: .bold)
-            }) { isFinished in
-                if isFinished {
-                    self.setTitleColor(.label, for: .normal)
-                }
-            }
+                self.setTitleColor(.label, for: .normal)
+            })
             
         } else {
             guard let label = self.titleLabel else { return }
-            //self.setTitleColor(.secondaryLabel, for: .normal)
             UIView.transition(with: label, duration: 0.15, options: .transitionCrossDissolve, animations: {
-                label.font = .systemFont(ofSize: 14, weight: .medium)
-            }) { isFinished in
-                if isFinished {
-                    self.setTitleColor(.secondaryLabel, for: .normal)
-                }
-            }
+                self.setTitleColor(.secondaryLabel, for: .normal)
+            })
         }
     }
     
