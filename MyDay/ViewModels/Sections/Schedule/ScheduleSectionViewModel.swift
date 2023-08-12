@@ -16,8 +16,8 @@ final class ScheduleSectionViewModel: SectionViewModel {
     }
     
     override public func fillWithCommonItems() {
-        self.add(ScheduleItemViewModel(title: "Test \(self.date.month)", description: "No Desc", startDate: Date(), endDate: Date(), date: self.date.date))
-        self.add(ScheduleItemViewModel(title: "Test \(self.date.day)", description: "No Desc", startDate: Date(), endDate: Date(), date: self.date.date))
+        self.add(ScheduleItemViewModel(title: "Wake Up", description: "Good Morning!", startDate: Date(), endDate: Date(), date: self.date.date))
+        self.add(ScheduleItemViewModel(title: "Fall asleep", description: "Good Night!", startDate: Date(), endDate: Date(), date: self.date.date))
     }
     
     func sort() {
