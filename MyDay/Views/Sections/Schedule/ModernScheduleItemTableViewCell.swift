@@ -18,7 +18,9 @@ class ModernScheduleItemTableViewCell: UITableViewCell {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "H:mm"
         timeStartLabel.text = dateFormatter.string(from: viewModel.startDate)
-        timeEndLabel.text = dateFormatter.string(from: viewModel.endDate)
+        if viewModel.endDate > viewModel.startDate {
+            timeEndLabel.text = dateFormatter.string(from: viewModel.endDate)
+        }
     }
     
     // MARK: - Init
