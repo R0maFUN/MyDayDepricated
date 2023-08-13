@@ -42,6 +42,7 @@ class SectionItemViewModelManagedByRealm: SectionItemViewModel, SectionRealmItem
     }
     
     public func updateRealm() {
+        // if has realmObject
         let updater = SectionRealmItemsUpdater()
         updater.update(item: self)
     }

@@ -27,6 +27,8 @@ extension NoteCollectionViewCell: UITableViewDragDelegate {
             return nil
         }
         
+        HapticsManager.shared.selectionVibrate()
+        
         return [
             UIDragItem(itemProvider: itemProvider)
         ]

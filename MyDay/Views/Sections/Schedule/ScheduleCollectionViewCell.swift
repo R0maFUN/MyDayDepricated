@@ -161,6 +161,8 @@ extension ScheduleCollectionViewCell: UITableViewDataSource {
 extension ScheduleCollectionViewCell: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        HapticsManager.shared.impactVibrate(for: .soft)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

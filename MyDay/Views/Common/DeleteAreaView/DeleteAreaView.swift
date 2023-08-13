@@ -43,8 +43,9 @@ class DeleteAreaView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private enum UIConstants {
+    internal enum UIConstants {
         static let backgroundColor = UIColor.darkGray
+        static let activeBackgroundColor = UIColor.black.withAlphaComponent(0.8)
         static let cornerRadius = 16.0
         static let animationDuration = 0.3
         

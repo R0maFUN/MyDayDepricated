@@ -19,6 +19,7 @@
 		1E9937BB2A88A4A30027663F /* QuickNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9937BA2A88A4A30027663F /* QuickNoteViewController.swift */; };
 		1E9937BD2A88BDA20027663F /* ButtonPlaceholderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9937BC2A88BDA20027663F /* ButtonPlaceholderTableViewCell.swift */; };
 		1E9937C22A88C0850027663F /* NotesColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9937C12A88C0850027663F /* NotesColors.swift */; };
+		1E9937C42A88EBCE0027663F /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9937C32A88EBCE0027663F /* HapticsManager.swift */; };
 		1EC6387D2A5DD3C100512524 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC6387C2A5DD3C100512524 /* AppDelegate.swift */; };
 		1EC6387F2A5DD3C100512524 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC6387E2A5DD3C100512524 /* SceneDelegate.swift */; };
 		1EC638812A5DD3C100512524 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638802A5DD3C100512524 /* ViewController.swift */; };
@@ -81,6 +82,7 @@
 		1E9937BA2A88A4A30027663F /* QuickNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickNoteViewController.swift; sourceTree = "<group>"; };
 		1E9937BC2A88BDA20027663F /* ButtonPlaceholderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonPlaceholderTableViewCell.swift; sourceTree = "<group>"; };
 		1E9937C12A88C0850027663F /* NotesColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesColors.swift; sourceTree = "<group>"; };
+		1E9937C32A88EBCE0027663F /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
 		1EC638792A5DD3C100512524 /* MyDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EC6387C2A5DD3C100512524 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EC6387E2A5DD3C100512524 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 				1EC638E72A7134E000512524 /* SectionsFactory.swift */,
 				1EC638E92A73A70A00512524 /* SectionRealmItemsUpdater.swift */,
 				1EC638EC2A744B3800512524 /* SectionRealmItemsRemover.swift */,
+				1E9937C32A88EBCE0027663F /* HapticsManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -508,6 +511,7 @@
 				1E9937B72A87E0040027663F /* SmartLabel.swift in Sources */,
 				1EC6387F2A5DD3C100512524 /* SceneDelegate.swift in Sources */,
 				1E9937AA2A87C44E0027663F /* ScheduleItemTableViewCell.swift in Sources */,
+				1E9937C42A88EBCE0027663F /* HapticsManager.swift in Sources */,
 				1EC639002A76827C00512524 /* TitleInputTableViewCell+TextField.swift in Sources */,
 				1EC638CF2A6E7D5500512524 /* ScheduleItemViewModel.swift in Sources */,
 				1EC638DD2A6EF66B00512524 /* NotesSectionsManager.swift in Sources */,

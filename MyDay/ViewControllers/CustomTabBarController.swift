@@ -40,6 +40,7 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
         
         self.actionHandler = {
             let vc = AddScheduleItemViewController(self.mainViewModel.notificationsViewModel, self.mainViewModel.sectionsViewModel)
+            HapticsManager.shared.impactVibrate(for: .medium, with: 0.7)
             self.present(vc, animated: true)
         }
         
@@ -52,12 +53,14 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
             if self.mainViewModel.sectionsViewModel.currentSectionManager.value is ScheduleSectionsManager {
                 self.actionHandler = {
                     let vc = AddScheduleItemViewController(self.mainViewModel.notificationsViewModel, self.mainViewModel.sectionsViewModel)
+                    HapticsManager.shared.impactVibrate(for: .medium, with: 0.7)
                     self.present(vc, animated: true)
                 }
             } else if self.mainViewModel.sectionsViewModel.currentSectionManager.value is NotesSectionsManager {
                 self.actionHandler = {
                     guard let notesSectionsManager = self.mainViewModel.sectionsViewModel.currentSectionManager.value else { return }
                     let vc = EditNotesItemViewController(notesSectionsManager)
+                    HapticsManager.shared.impactVibrate(for: .medium, with: 0.7)
                     self.show(vc, sender: self)
                 }
             }

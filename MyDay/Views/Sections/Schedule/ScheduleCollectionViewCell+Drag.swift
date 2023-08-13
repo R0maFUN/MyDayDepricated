@@ -23,6 +23,9 @@ extension ScheduleCollectionViewCell: UITableViewDragDelegate {
             return nil
         }
         
+        //HapticsManager.shared.selectionVibrate()
+        HapticsManager.shared.impactVibrate(for: .rigid)
+        
         return [
             UIDragItem(itemProvider: itemProvider)
         ]

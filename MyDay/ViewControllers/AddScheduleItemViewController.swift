@@ -109,6 +109,15 @@ private extension AddScheduleItemViewController {
     }
     
     @objc func onDoneButtonPressed() {
+        
+        if self.itemViewModel.title.isEmpty {
+            HapticsManager.shared.vibrate(for: .error)
+            dismiss(animated: true)
+            return
+        }
+        
+        HapticsManager.shared.vibrate(for: .success)
+        
         // TODO: DATE is wrong
         guard let scheduleSectionManager = self.sectionsViewModel.currentSectionManager.value! as? ScheduleSectionsManager else { return }
         if let scheduleSection = scheduleSectionManager.getSection(by: DateModel(date: self.itemViewModel.date)) as? ScheduleSectionViewModel {

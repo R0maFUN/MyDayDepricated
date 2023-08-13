@@ -141,6 +141,8 @@ private extension EditNotesItemViewController {
             self.itemViewModel.setTitle(title: "Empty")
         }
         
+        HapticsManager.shared.vibrate(for: .success)
+        
         // TODO: DATE is wrong
         if let section = self.sectionsManager.getSection(by: DateModel(date: self.itemViewModel.date)) {
             section.update(self.itemViewModel)

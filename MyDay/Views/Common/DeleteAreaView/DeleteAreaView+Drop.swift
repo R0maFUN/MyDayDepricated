@@ -13,6 +13,19 @@ extension DeleteAreaView: UIDropInteractionDelegate {
         return session.canLoadObjects(ofClass: NSString.self)
     }
     
+    func dropInteraction(_ interaction: UIDropInteraction, sessionDidEnter session: UIDropSession) {
+        HapticsManager.shared.impactVibrate(for: .soft, with: 1.5)
+        UIView.animate(withDuration: 0.3, animations: {
+            self.backgroundColor = UIConstants.activeBackgroundColor
+        })
+    }
+    
+    func dropInteraction(_ interaction: UIDropInteraction, sessionDidExit session: UIDropSession) {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.backgroundColor = UIConstants.backgroundColor
+        })
+    }
+    
     func dropInteraction(_ interaction: UIDropInteraction, sessionDidUpdate session: UIDropSession) -> UIDropProposal {
         return UIDropProposal(operation: .move)
     }
@@ -22,6 +35,8 @@ extension DeleteAreaView: UIDropInteractionDelegate {
             let uuids = items as! [String]
 
             print("uuids droped = \(uuids)")
+            
+            HapticsManager.shared.vibrate(for: .error)
             
             self.onDeleteRequestedHandlers.forEach { $0(uuids) }
         }

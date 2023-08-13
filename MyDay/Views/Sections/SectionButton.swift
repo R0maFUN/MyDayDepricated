@@ -55,6 +55,8 @@ class SectionButton: UIButton {
                 self.setTitleColor(.secondaryLabel, for: .normal)
             })
         }
+        
+        HapticsManager.shared.impactVibrate(for: .soft, with: 0.65)
     }
     
     @objc private func onTappedObjc() {

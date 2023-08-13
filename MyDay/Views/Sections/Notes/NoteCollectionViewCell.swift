@@ -206,6 +206,8 @@ extension NoteCollectionViewCell: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
+        HapticsManager.shared.impactVibrate(for: .soft)
+        
         if self.sections[indexPath.section].type == .QuickNote {
             self.onQuickNoteRequestedHandlers.forEach { handler in
                 if indexPath.row >= self.sections[indexPath.section].items.count {

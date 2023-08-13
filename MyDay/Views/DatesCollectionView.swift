@@ -140,6 +140,8 @@ extension DatesCollectionView: UICollectionViewDelegate {
         if index >= 0 && index < dates.count {
             let newSelectedDate = self.dates[index]
             self.mainViewModel.setCurrentDate(to: newSelectedDate)
+            
+            HapticsManager.shared.impactVibrate(for: .light, with: 0.75)
         }
     }
     

@@ -27,6 +27,11 @@ class ModernNotesItemTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        titleLabel.text = ""
+        descriptionLabel.text = ""
+    }
+    
     // MARK: - Private Constants
     private enum UIConstants {
         static let contentInset: CGFloat = 16
