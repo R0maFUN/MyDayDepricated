@@ -188,6 +188,12 @@ extension MainViewController: UICollectionViewDataSource {
                 self.present(vc, animated: true)
             }
             
+            cell.onQuickNoteRequested { note in
+                guard let notesSectionsManager = self.mainViewModel.sectionsViewModel.currentSectionManager.value else { return }
+                let quickNoteVc = QuickNoteViewController(notesSectionsManager, note: note)
+                self.present(quickNoteVc, animated: true)
+            }
+            
             cell.onDragBegin {
                 self.deleteAreaView.show()
             }

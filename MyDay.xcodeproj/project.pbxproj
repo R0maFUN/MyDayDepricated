@@ -12,6 +12,11 @@
 		1E9937AC2A87C4CF0027663F /* ModernScheduleItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9937AB2A87C4CF0027663F /* ModernScheduleItemTableViewCell.swift */; };
 		1E9937AF2A87D73A0027663F /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9937AE2A87D73A0027663F /* TagView.swift */; };
 		1E9937B12A87D8420027663F /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9937B02A87D8420027663F /* UIColor+Hex.swift */; };
+		1E9937B32A87DEEA0027663F /* NotesItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9937B22A87DEEA0027663F /* NotesItemTableViewCell.swift */; };
+		1E9937B52A87DF420027663F /* ModernNotesItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9937B42A87DF420027663F /* ModernNotesItemTableViewCell.swift */; };
+		1E9937B72A87E0040027663F /* SmartLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9937B62A87E0040027663F /* SmartLabel.swift */; };
+		1E9937B92A87E3C60027663F /* QuickNoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9937B82A87E3C60027663F /* QuickNoteTableViewCell.swift */; };
+		1E9937BB2A88A4A30027663F /* QuickNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9937BA2A88A4A30027663F /* QuickNoteViewController.swift */; };
 		1EC6387D2A5DD3C100512524 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC6387C2A5DD3C100512524 /* AppDelegate.swift */; };
 		1EC6387F2A5DD3C100512524 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC6387E2A5DD3C100512524 /* SceneDelegate.swift */; };
 		1EC638812A5DD3C100512524 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638802A5DD3C100512524 /* ViewController.swift */; };
@@ -67,6 +72,11 @@
 		1E9937AB2A87C4CF0027663F /* ModernScheduleItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernScheduleItemTableViewCell.swift; sourceTree = "<group>"; };
 		1E9937AE2A87D73A0027663F /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		1E9937B02A87D8420027663F /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
+		1E9937B22A87DEEA0027663F /* NotesItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesItemTableViewCell.swift; sourceTree = "<group>"; };
+		1E9937B42A87DF420027663F /* ModernNotesItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernNotesItemTableViewCell.swift; sourceTree = "<group>"; };
+		1E9937B62A87E0040027663F /* SmartLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartLabel.swift; sourceTree = "<group>"; };
+		1E9937B82A87E3C60027663F /* QuickNoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickNoteTableViewCell.swift; sourceTree = "<group>"; };
+		1E9937BA2A88A4A30027663F /* QuickNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickNoteViewController.swift; sourceTree = "<group>"; };
 		1EC638792A5DD3C100512524 /* MyDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EC6387C2A5DD3C100512524 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EC6387E2A5DD3C100512524 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				1E9937AE2A87D73A0027663F /* TagView.swift */,
+				1E9937B62A87E0040027663F /* SmartLabel.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -180,6 +191,7 @@
 				1EC638992A5E9B3E00512524 /* MainViewController.swift */,
 				1EC638BA2A6A842800512524 /* AddScheduleItemViewController.swift */,
 				1EC638D82A6EF43200512524 /* EditNotesItemViewController.swift */,
+				1E9937BA2A88A4A30027663F /* QuickNoteViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -320,6 +332,9 @@
 				1EC638B62A652E5000512524 /* NoteCollectionViewCell.swift */,
 				1EC638DF2A6EFA5000512524 /* NotesItemTableViewCells.swift */,
 				1EC638F62A7512A100512524 /* NoteCollectionView+Drag.swift */,
+				1E9937B22A87DEEA0027663F /* NotesItemTableViewCell.swift */,
+				1E9937B42A87DF420027663F /* ModernNotesItemTableViewCell.swift */,
+				1E9937B82A87E3C60027663F /* QuickNoteTableViewCell.swift */,
 			);
 			path = Notes;
 			sourceTree = "<group>";
@@ -444,6 +459,7 @@
 				1EC638812A5DD3C100512524 /* ViewController.swift in Sources */,
 				1E9937A82A7C23720027663F /* ScheduleCollectionViewCell+Drag.swift in Sources */,
 				1EC638D52A6E7E9800512524 /* SectionsRealmManager.swift in Sources */,
+				1E9937B52A87DF420027663F /* ModernNotesItemTableViewCell.swift in Sources */,
 				1EC6387D2A5DD3C100512524 /* AppDelegate.swift in Sources */,
 				1EC638F72A7512A100512524 /* NoteCollectionView+Drag.swift in Sources */,
 				1EC638DB2A6EF64600512524 /* NotesItemViewModel.swift in Sources */,
@@ -459,11 +475,13 @@
 				1EC638BD2A6AA39E00512524 /* NotificationsViewModel.swift in Sources */,
 				1EC638C22A6B040600512524 /* SectionsManager.swift in Sources */,
 				1EC638D12A6E7D7200512524 /* ScheduleSectionsManager.swift in Sources */,
+				1E9937B32A87DEEA0027663F /* NotesItemTableViewCell.swift in Sources */,
 				1EC639022A76894F00512524 /* DescriptionInputTableViewCell.swift in Sources */,
 				1EC638A62A63E46B00512524 /* SectionsViewModel.swift in Sources */,
 				1EC638E62A7120C500512524 /* NotesItemRealmObject.swift in Sources */,
 				1EC639062A768F8400512524 /* DescriptionModel.swift in Sources */,
 				1EC638B02A63E6B100512524 /* GoalsSectionViewModel.swift in Sources */,
+				1E9937B72A87E0040027663F /* SmartLabel.swift in Sources */,
 				1EC6387F2A5DD3C100512524 /* SceneDelegate.swift in Sources */,
 				1E9937AA2A87C44E0027663F /* ScheduleItemTableViewCell.swift in Sources */,
 				1EC639002A76827C00512524 /* TitleInputTableViewCell+TextField.swift in Sources */,
@@ -481,12 +499,14 @@
 				1EC638ED2A744B3800512524 /* SectionRealmItemsRemover.swift in Sources */,
 				1EC638AE2A63E69300512524 /* RemindersSectionViewModel.swift in Sources */,
 				1EC638F02A750DF700512524 /* DeleteAreaView.swift in Sources */,
+				1E9937BB2A88A4A30027663F /* QuickNoteViewController.swift in Sources */,
 				1EC638A82A63E63500512524 /* SectionViewModel.swift in Sources */,
 				1EC638A12A5F40E900512524 /* SectionButton.swift in Sources */,
 				1EC638B72A652E5000512524 /* NoteCollectionViewCell.swift in Sources */,
 				1EC638D92A6EF43200512524 /* EditNotesItemViewController.swift in Sources */,
 				1EC638B52A63ED3400512524 /* MainViewModel.swift in Sources */,
 				1EC639042A7689FD00512524 /* DescriptionInputTableViewCell+TextView.swift in Sources */,
+				1E9937B92A87E3C60027663F /* QuickNoteTableViewCell.swift in Sources */,
 				1EC638EA2A73A70A00512524 /* SectionRealmItemsUpdater.swift in Sources */,
 				1EC638E82A7134E000512524 /* SectionsFactory.swift in Sources */,
 			);

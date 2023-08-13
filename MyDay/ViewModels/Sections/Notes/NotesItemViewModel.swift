@@ -16,15 +16,16 @@ class NotesItemViewModel: SectionItemViewModelManagedByRealm {
         super.init(title: "", date: Date())
     }
     
-    init(title: String, descriptions: [String] = [], editDate: Date, date: Date) {
+    init(title: String, descriptions: [String] = [], editDate: Date, date: Date, type: NotesSection.type_ = .Common) {
         super.init(title: title, description: descriptions.first ?? "", date: date)
 
         self.editDate = editDate
         self.descriptions = descriptions.map { return DescriptionModel(text: $0) }
+        self.type = type
     }
     
     convenience init(realmObject: NotesItemRealmObject) {
-        self.init(title: realmObject.title, descriptions: Array(realmObject.descriptions), editDate: realmObject.editDate, date: realmObject.date)
+        self.init(title: realmObject.title, descriptions: Array(realmObject.descriptions), editDate: realmObject.editDate, date: realmObject.date, type: NotesSection.type_(rawValue: realmObject.type)!)
         
         self.id = realmObject.id
         self.realmObject = realmObject
@@ -72,6 +73,8 @@ class NotesItemViewModel: SectionItemViewModelManagedByRealm {
         object.descriptions.append(objectsIn: self.descriptions.map { return String($0.text) })
         object.date = self.date
         object.id = self.id
+        object.type = self.type.rawValue
+        
         
         self.realmObject = object
         return object
@@ -91,6 +94,7 @@ class NotesItemViewModel: SectionItemViewModelManagedByRealm {
     public private(set) var editDate: Date = Date()
     public private(set) var descriptions: [DescriptionModel] = []
     public private(set) var images: [[UIImage]] = [[]]
+    public private(set) var type: NotesSection.type_ = .Common
     
     private var realmObject: NotesItemRealmObject?
 }

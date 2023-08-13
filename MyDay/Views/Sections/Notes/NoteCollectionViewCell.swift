@@ -9,69 +9,16 @@ import UIKit
 import MobileCoreServices
 
 struct NotesSection {
+    
+    enum type_: Int {
+        case Common = 0
+        case QuickNote = 1
+        case Timer = 2
+    }
+    
     let title: String
     let items: [SectionItemViewModel]
-}
-
-class NotesItemTableViewCell: UITableViewCell {
-    static let reuseIdentifier = "NotesItemTableViewCell"
-    
-    public func configure(with viewModel: NotesItemViewModel) {
-        titleLabel.text = viewModel.title
-        descriptionLabel.text = viewModel.descriptions.first?.text.isEmpty ?? true ? "No Description" : viewModel.descriptions.first?.text
-    }
-    
-    // MARK: - Init
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        initialize()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    // MARK: - Private Constants
-    private enum UIConstants {
-        static let contentInset: CGFloat = 16
-        static let horizontalInset: CGFloat = 20
-        static let verticalInset: CGFloat = 8
-    }
-    
-    // MARK: - Private Properties
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 16, weight: .semibold)
-        label.textColor = .label
-        label.numberOfLines = 1
-        return label
-    }()
-    
-    private let descriptionLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 14, weight: .light)
-        label.textColor = .secondaryLabel
-        label.numberOfLines = 1
-        return label
-    }()
-}
-
-private extension NotesItemTableViewCell {
-    func initialize() {
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(descriptionLabel)
-        
-        titleLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(UIConstants.horizontalInset)
-            make.top.equalToSuperview().inset(UIConstants.verticalInset)
-        }
-        
-        descriptionLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(UIConstants.horizontalInset)
-            make.bottom.equalToSuperview().inset(UIConstants.verticalInset)
-        }
-    }
+    let type: type_
 }
 
 class NoteCollectionViewCell: UICollectionViewCell {
@@ -89,6 +36,10 @@ class NoteCollectionViewCell: UICollectionViewCell {
     
     public func onEditNoteRequested(_ handler: @escaping (_: NotesItemViewModel) -> Void) {
         self.onEditNoteRequestedHandlers.append(handler)
+    }
+    
+    public func onQuickNoteRequested(_ handler: @escaping (_: NotesItemViewModel?) -> Void) {
+        self.onQuickNoteRequestedHandlers.append(handler)
     }
     
     public func onDragBegin(_ handler: @escaping () -> Void) {
@@ -112,19 +63,30 @@ class NoteCollectionViewCell: UICollectionViewCell {
     // MARK: - Private Constants
     private enum UIConstants {
         static let rowHeight: CGFloat = 54
+        static let modernRowHeight: CGFloat = 112
+        static let quickNoteHeight: CGFloat = 80
     }
     
     // MARK: - Private Properties
     private var sectionsManager: NotesSectionsManager?
     public private(set) var sections: [NotesSection] = []
     
+    public var isModern: Bool = true {
+        didSet {
+            updateSections()
+        }
+    }
+    
     private var onEditNoteRequestedHandlers: [(_: NotesItemViewModel) -> Void] = []
+    private var onQuickNoteRequestedHandlers: [(_: NotesItemViewModel?) -> Void] = []
     internal private(set) var onDragBeginHandlers: [() -> Void] = []
     internal private(set) var onDragEndHandlers: [() -> Void] = []
     
     private var tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .insetGrouped)
         table.register(NotesItemTableViewCell.self, forCellReuseIdentifier: NotesItemTableViewCell.reuseIdentifier)
+        table.register(ModernNotesItemTableViewCell.self, forCellReuseIdentifier: ModernNotesItemTableViewCell.reuseIdentifier)
+        table.register(QuickNoteTableViewCell.self, forCellReuseIdentifier: QuickNoteTableViewCell.reuseIdentifier)
         return table
     }()
 }
@@ -139,9 +101,20 @@ private extension NoteCollectionViewCell {
     func updateSections() {
         guard let notesSectionViewModel = self.sectionsManager?.currentSection.value as? NotesSectionViewModel else { return }
         self.sections = []
-        if notesSectionViewModel.items.count > 0 {
-            self.sections.append(NotesSection(title: "", items: notesSectionViewModel.items))
+        
+        if self.isModern {
+            notesSectionViewModel.items.forEach { item in
+                if let item = item as? NotesItemViewModel {
+                    self.sections.append(NotesSection(title: "", items: [item], type: item.type))
+                }
+            }
         }
+        else if notesSectionViewModel.items.count > 0 {
+            self.sections.append(NotesSection(title: "", items: notesSectionViewModel.items, type: .Common))
+        }
+        
+//        self.sections.append(NotesSection(title: "", items: [NotesItemViewModel()], type: .QuickNote))
+        self.sections.append(NotesSection(title: "", items: [], type: .QuickNote))
         
         self.tableView.reloadData()
     }
@@ -176,16 +149,37 @@ extension NoteCollectionViewCell: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.sections[section].items.count
+        return self.isModern ? 1 : self.sections[section].items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = self.sections[indexPath.section]
+        
+        if indexPath.row >= self.sections[indexPath.section].items.count && section.type == .QuickNote {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: QuickNoteTableViewCell.reuseIdentifier, for: indexPath) as? QuickNoteTableViewCell else { return UITableViewCell() }
+            return cell
+        }
+        
         guard let viewModel = self.sections[indexPath.section].items[indexPath.row] as? NotesItemViewModel else { return UITableViewCell() }
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: NotesItemTableViewCell.reuseIdentifier, for: indexPath) as? NotesItemTableViewCell else { return UITableViewCell() }
-        cell.configure(with: viewModel)
-        cell.backgroundColor = .tertiarySystemBackground
-        return cell
+        
+        if self.isModern {
+            if section.type == .QuickNote {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: QuickNoteTableViewCell.reuseIdentifier, for: indexPath) as? QuickNoteTableViewCell else { return UITableViewCell() }
+                cell.configure(with: viewModel)
+                return cell
+            } else {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: ModernNotesItemTableViewCell.reuseIdentifier, for: indexPath) as? ModernNotesItemTableViewCell else { return UITableViewCell() }
+                cell.configure(with: viewModel)
+                cell.backgroundColor = .tertiarySystemBackground
+                return cell
+            }
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: NotesItemTableViewCell.reuseIdentifier, for: indexPath) as? NotesItemTableViewCell else { return UITableViewCell() }
+            cell.configure(with: viewModel)
+            cell.backgroundColor = .tertiarySystemBackground
+            return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
@@ -197,6 +191,19 @@ extension NoteCollectionViewCell: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
+        if self.sections[indexPath.section].type == .QuickNote {
+            self.onQuickNoteRequestedHandlers.forEach { handler in
+                if indexPath.row >= self.sections[indexPath.section].items.count {
+                    handler(nil)
+                    return
+                }
+                
+                let viewModel = self.sections[indexPath.section].items[indexPath.row] as? NotesItemViewModel
+                handler(viewModel)
+            }
+            return
+        }
+        
         guard let viewModel = self.sections[indexPath.section].items[indexPath.row] as? NotesItemViewModel else { return }
         
         self.onEditNoteRequestedHandlers.forEach { handler in
@@ -205,6 +212,12 @@ extension NoteCollectionViewCell: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UIConstants.rowHeight
+        let section = self.sections[indexPath.section]
+        
+        if section.type == .QuickNote {
+            return UIConstants.quickNoteHeight
+        }
+        
+        return self.isModern ? UIConstants.modernRowHeight : UIConstants.rowHeight
     }
 }

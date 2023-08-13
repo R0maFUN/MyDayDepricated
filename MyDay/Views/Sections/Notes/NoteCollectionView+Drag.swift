@@ -11,6 +11,10 @@ import MobileCoreServices
 
 extension NoteCollectionViewCell: UITableViewDragDelegate {
     func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        if indexPath.row >= self.sections[indexPath.section].items.count {
+            return []
+        }
+        
         guard let viewModel = self.sections[indexPath.section].items[indexPath.row] as? NotesItemViewModel else { return [] }
         
         let uuid = viewModel.id

@@ -15,6 +15,7 @@ class NotesItemRealmObject: Object {
     @Persisted var descriptions = List<String>() // NoteDescriptionModel
     @Persisted var date: Date = Date()
     @Persisted var editDate: Date = Date()
+    @Persisted var type: Int = 0
 
     // public private(set) var images: [[UIImage]] = [[]]
 }
