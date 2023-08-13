@@ -17,6 +17,8 @@
 		1E9937B72A87E0040027663F /* SmartLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9937B62A87E0040027663F /* SmartLabel.swift */; };
 		1E9937B92A87E3C60027663F /* QuickNoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9937B82A87E3C60027663F /* QuickNoteTableViewCell.swift */; };
 		1E9937BB2A88A4A30027663F /* QuickNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9937BA2A88A4A30027663F /* QuickNoteViewController.swift */; };
+		1E9937BD2A88BDA20027663F /* ButtonPlaceholderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9937BC2A88BDA20027663F /* ButtonPlaceholderTableViewCell.swift */; };
+		1E9937C22A88C0850027663F /* NotesColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9937C12A88C0850027663F /* NotesColors.swift */; };
 		1EC6387D2A5DD3C100512524 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC6387C2A5DD3C100512524 /* AppDelegate.swift */; };
 		1EC6387F2A5DD3C100512524 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC6387E2A5DD3C100512524 /* SceneDelegate.swift */; };
 		1EC638812A5DD3C100512524 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638802A5DD3C100512524 /* ViewController.swift */; };
@@ -77,6 +79,8 @@
 		1E9937B62A87E0040027663F /* SmartLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartLabel.swift; sourceTree = "<group>"; };
 		1E9937B82A87E3C60027663F /* QuickNoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickNoteTableViewCell.swift; sourceTree = "<group>"; };
 		1E9937BA2A88A4A30027663F /* QuickNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickNoteViewController.swift; sourceTree = "<group>"; };
+		1E9937BC2A88BDA20027663F /* ButtonPlaceholderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonPlaceholderTableViewCell.swift; sourceTree = "<group>"; };
+		1E9937C12A88C0850027663F /* NotesColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesColors.swift; sourceTree = "<group>"; };
 		1EC638792A5DD3C100512524 /* MyDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EC6387C2A5DD3C100512524 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EC6387E2A5DD3C100512524 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -148,6 +152,22 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		1E9937BE2A88C05A0027663F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1E9937BF2A88C0630027663F /* Colors */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		1E9937BF2A88C0630027663F /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				1E9937C12A88C0850027663F /* NotesColors.swift */,
+			);
+			path = Colors;
+			sourceTree = "<group>";
+		};
 		1EC638702A5DD3C100512524 = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +187,7 @@
 		1EC6387B2A5DD3C100512524 /* MyDay */ = {
 			isa = PBXGroup;
 			children = (
+				1E9937BE2A88C05A0027663F /* Resources */,
 				1EC638C02A6B03F300512524 /* Managers */,
 				1EC638B12A63E84300512524 /* Extensions */,
 				1EC638F32A750EC300512524 /* Models */,
@@ -310,6 +331,7 @@
 				1EC638A02A5F40E900512524 /* SectionButton.swift */,
 				1EC638DE2A6EFA1100512524 /* Notes */,
 				1EC638CD2A6E7A0100512524 /* Schedule */,
+				1E9937BC2A88BDA20027663F /* ButtonPlaceholderTableViewCell.swift */,
 			);
 			path = Sections;
 			sourceTree = "<group>";
@@ -459,10 +481,12 @@
 				1EC638812A5DD3C100512524 /* ViewController.swift in Sources */,
 				1E9937A82A7C23720027663F /* ScheduleCollectionViewCell+Drag.swift in Sources */,
 				1EC638D52A6E7E9800512524 /* SectionsRealmManager.swift in Sources */,
+				1E9937C22A88C0850027663F /* NotesColors.swift in Sources */,
 				1E9937B52A87DF420027663F /* ModernNotesItemTableViewCell.swift in Sources */,
 				1EC6387D2A5DD3C100512524 /* AppDelegate.swift in Sources */,
 				1EC638F72A7512A100512524 /* NoteCollectionView+Drag.swift in Sources */,
 				1EC638DB2A6EF64600512524 /* NotesItemViewModel.swift in Sources */,
+				1E9937BD2A88BDA20027663F /* ButtonPlaceholderTableViewCell.swift in Sources */,
 				1EC6389F2A5F10FE00512524 /* DatesCollectionView.swift in Sources */,
 				1EC638BF2A6AAE5B00512524 /* ScheduleItemTableViewCells.swift in Sources */,
 				1E9937AF2A87D73A0027663F /* TagView.swift in Sources */,
