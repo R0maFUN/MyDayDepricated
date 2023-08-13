@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 func getSectionKeyFrom(date: DateModel) -> Int {
     return 31 * date.monthInt + date.day
@@ -28,6 +29,7 @@ protocol ISectionsManager {
     // MARK: - Properties
     var title: String { get }
     var addActionTitle: String { get }
+    var addActionColor: UIColor { get }
     var isActive: PropertyBinding<Bool> { get }
     var sections: PropertyBinding<[Int: SectionViewModel]> { get }
     var currentSection: PropertyBinding<SectionViewModel> { get }
@@ -135,6 +137,7 @@ class SectionsManager<T: SectionViewModel>: ISectionsManager {
     // MARK: - Properties
     public internal(set) var title: String = ""
     public internal(set) var addActionTitle: String = ""
+    public internal(set) var addActionColor: UIColor = .link
     public internal(set) var isActive: PropertyBinding<Bool> = PropertyBinding<Bool>(false)
     public internal(set) var sections: PropertyBinding<[Int: SectionViewModel]> = PropertyBinding<[Int: SectionViewModel]>([:])
     public internal(set) var currentSection: PropertyBinding<SectionViewModel>

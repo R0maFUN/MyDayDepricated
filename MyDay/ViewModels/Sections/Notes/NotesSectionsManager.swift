@@ -14,5 +14,6 @@ final class NotesSectionsManager: SectionsManager<NotesSectionViewModel> {
         
         self.title = "Notes"
         self.addActionTitle = "Note"
+        self.addActionColor = NotesColors.primary
     }
 }

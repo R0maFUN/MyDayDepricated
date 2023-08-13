@@ -44,8 +44,10 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
         }
         
         self.leftButton.setTitle(self.mainViewModel.sectionsViewModel.currentSectionManager.value?.addActionTitle, for: .normal)
+        self.leftButton.tintColor = self.mainViewModel.sectionsViewModel.currentSectionManager.value?.addActionColor
         mainViewModel.sectionsViewModel.currentSectionManager.onChanged {
             self.leftButton.setTitle(self.mainViewModel.sectionsViewModel.currentSectionManager.value?.addActionTitle, for: .normal)
+            self.leftButton.tintColor = self.mainViewModel.sectionsViewModel.currentSectionManager.value?.addActionColor
             
             if self.mainViewModel.sectionsViewModel.currentSectionManager.value is ScheduleSectionsManager {
                 self.actionHandler = {

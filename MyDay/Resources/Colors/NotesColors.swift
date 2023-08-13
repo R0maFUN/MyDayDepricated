@@ -9,5 +9,5 @@ import Foundation
 import UIKit
 
 enum NotesColors {
-    static let primary = UIColor(named: "NotesPrimary")
+    static let primary = UIColor(named: "NotesPrimary")!
 }
