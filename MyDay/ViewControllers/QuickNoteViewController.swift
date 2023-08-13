@@ -111,6 +111,11 @@ extension QuickNoteViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let text = textField.text else { return }
         
+        if text.isEmpty {
+            self.dismiss(animated: true)
+            return
+        }
+        
         self.itemViewModel.setTitle(title: text)
         
         // TODO: DATE is wrong
