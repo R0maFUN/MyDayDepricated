@@ -153,9 +153,9 @@ extension ScheduleCollectionViewCell: UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        print("pizdec")
-    }
+//    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+//        print("pizdec")
+//    }
 }
 
 extension ScheduleCollectionViewCell: UITableViewDelegate {
