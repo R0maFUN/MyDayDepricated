@@ -135,6 +135,11 @@ private extension EditNotesItemViewController {
     }
     
     @objc func onDoneButtonPressed() {
+        
+        if self.itemViewModel.title.isEmpty {
+            self.itemViewModel.setTitle(title: "Empty")
+        }
+        
         // TODO: DATE is wrong
         if let section = self.sectionsManager.getSection(by: DateModel(date: self.itemViewModel.date)) {
             section.update(self.itemViewModel)
