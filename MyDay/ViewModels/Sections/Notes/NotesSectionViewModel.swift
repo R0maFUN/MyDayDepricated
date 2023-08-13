@@ -14,8 +14,8 @@ class NotesSectionViewModel: SectionViewModel {
     }
     
     override public func fillWithCommonItems() {
-        self.add(NotesItemViewModel(title: "Test note \(self.date.month)", descriptions: ["No Desc"], editDate: Date(), date: self.date.date))
-        self.add(NotesItemViewModel(title: "Test note \(self.date.day)", descriptions: ["No Desc"], editDate: Date(), date: self.date.date))
+        //self.add(NotesItemViewModel(title: "Test note \(self.date.month)", descriptions: ["No Desc"], editDate: Date(), date: self.date.date))
+        //self.add(NotesItemViewModel(title: "Test note \(self.date.day)", descriptions: ["No Desc"], editDate: Date(), date: self.date.date))
     }
     
 //    func sort() {

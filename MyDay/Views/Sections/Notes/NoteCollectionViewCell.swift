@@ -14,6 +14,7 @@ struct NotesSection {
         case Common = 0
         case QuickNote = 1
         case Timer = 2
+        case ButtonPlaceholder = 3
     }
     
     let title: String
@@ -42,6 +43,10 @@ class NoteCollectionViewCell: UICollectionViewCell {
         self.onQuickNoteRequestedHandlers.append(handler)
     }
     
+    public func onAddNoteRequested(_ handler: @escaping () -> Void) {
+        self.onAddNoteRequestedHandlers.append(handler)
+    }
+    
     public func onDragBegin(_ handler: @escaping () -> Void) {
         self.onDragBeginHandlers.append(handler)
     }
@@ -65,6 +70,7 @@ class NoteCollectionViewCell: UICollectionViewCell {
         static let rowHeight: CGFloat = 54
         static let modernRowHeight: CGFloat = 112
         static let quickNoteHeight: CGFloat = 80
+        static let addNoteHeight: CGFloat = 50
     }
     
     // MARK: - Private Properties
@@ -79,6 +85,7 @@ class NoteCollectionViewCell: UICollectionViewCell {
     
     private var onEditNoteRequestedHandlers: [(_: NotesItemViewModel) -> Void] = []
     private var onQuickNoteRequestedHandlers: [(_: NotesItemViewModel?) -> Void] = []
+    private var onAddNoteRequestedHandlers: [() -> Void] = []
     internal private(set) var onDragBeginHandlers: [() -> Void] = []
     internal private(set) var onDragEndHandlers: [() -> Void] = []
     
@@ -87,6 +94,7 @@ class NoteCollectionViewCell: UICollectionViewCell {
         table.register(NotesItemTableViewCell.self, forCellReuseIdentifier: NotesItemTableViewCell.reuseIdentifier)
         table.register(ModernNotesItemTableViewCell.self, forCellReuseIdentifier: ModernNotesItemTableViewCell.reuseIdentifier)
         table.register(QuickNoteTableViewCell.self, forCellReuseIdentifier: QuickNoteTableViewCell.reuseIdentifier)
+        table.register(ButtonPlaceholderTableViewCell.self, forCellReuseIdentifier: ButtonPlaceholderTableViewCell.reuseIdentifier)
         return table
     }()
 }
@@ -113,7 +121,10 @@ private extension NoteCollectionViewCell {
             self.sections.append(NotesSection(title: "", items: notesSectionViewModel.items, type: .Common))
         }
         
-//        self.sections.append(NotesSection(title: "", items: [NotesItemViewModel()], type: .QuickNote))
+        if self.sections.isEmpty {
+            self.sections.append(NotesSection(title: "", items: [], type: .ButtonPlaceholder))
+        }
+        
         self.sections.append(NotesSection(title: "", items: [], type: .QuickNote))
         
         self.tableView.reloadData()
@@ -129,7 +140,6 @@ private extension NoteCollectionViewCell {
         
         tableView.dragInteractionEnabled = true
         tableView.dragDelegate = self
-        //tableView.dropDelegate = self
         
         contentView.addSubview(tableView)
         
@@ -157,6 +167,11 @@ extension NoteCollectionViewCell: UITableViewDataSource {
         
         if indexPath.row >= self.sections[indexPath.section].items.count && section.type == .QuickNote {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: QuickNoteTableViewCell.reuseIdentifier, for: indexPath) as? QuickNoteTableViewCell else { return UITableViewCell() }
+            return cell
+        } else if indexPath.row >= self.sections[indexPath.section].items.count && section.type == .ButtonPlaceholder {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ButtonPlaceholderTableViewCell.reuseIdentifier, for: indexPath) as? ButtonPlaceholderTableViewCell else { return UITableViewCell() }
+            cell.text = "Add Note"
+            
             return cell
         }
         
@@ -202,6 +217,9 @@ extension NoteCollectionViewCell: UITableViewDelegate {
                 handler(viewModel)
             }
             return
+        } else if self.sections[indexPath.section].type == .ButtonPlaceholder {
+            self.onAddNoteRequestedHandlers.forEach { $0() }
+            return
         }
         
         guard let viewModel = self.sections[indexPath.section].items[indexPath.row] as? NotesItemViewModel else { return }
@@ -216,6 +234,8 @@ extension NoteCollectionViewCell: UITableViewDelegate {
         
         if section.type == .QuickNote {
             return UIConstants.quickNoteHeight
+        } else if section.type == .ButtonPlaceholder {
+            return UIConstants.addNoteHeight
         }
         
         return self.isModern ? UIConstants.modernRowHeight : UIConstants.rowHeight
