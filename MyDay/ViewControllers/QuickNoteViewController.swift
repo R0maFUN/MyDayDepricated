@@ -15,14 +15,20 @@ class QuickNoteViewController: UIViewController {
         // Do any additional setup after loading the view.
         initialize()
         
-        textField.becomeFirstResponder()
+        textView.becomeFirstResponder()
     }
     
     init(_ sectionsManager: ISectionsManager, note: NotesItemViewModel? = nil) {
         self.sectionsManager = sectionsManager
         self.itemViewModel = note ?? NotesItemViewModel(title: "", editDate: Date(), date: sectionsManager.currentSection.value!.date.date, type: .QuickNote)
         
-        self.textField.text = self.itemViewModel.title
+        self.textView.text = self.itemViewModel.title
+        
+        if textView.text.isEmpty {
+            textView.textColor = UIColor.lightGray
+            textView.text = "Quick Note"
+            textView.updateFloatingCursor(at: CGPoint(x: 0, y: 0))
+        }
         
         super.init(nibName: .none, bundle: .none)
     }
@@ -50,16 +56,12 @@ class QuickNoteViewController: UIViewController {
         return view
     }()
     
-    private let textField: UITextField = {
-        let textField = UITextField()
-        textField.textColor = .white
-        textField.attributedPlaceholder = NSAttributedString(
-            string: "Quick Note",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.7)]
-        )
-        textField.textAlignment = .left
-        textField.font = .systemFont(ofSize: 16, weight: .semibold)
-        return textField
+    private let textView: UITextView = {
+        let textView = UITextView()
+        textView.textColor = .white
+        textView.textAlignment = .left
+        textView.font = .systemFont(ofSize: 16, weight: .semibold)
+        return textView
     }()
 
 }
@@ -74,9 +76,11 @@ private extension QuickNoteViewController {
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.addSubview(blurEffectView)
         
-        textField.delegate = self
+        textView.delegate = self
         
-        input.addSubview(textField)
+        textView.backgroundColor = .clear
+        
+        input.addSubview(textView)
         
         input.backgroundColor = .darkGray
         input.layer.cornerRadius = 10
@@ -87,31 +91,48 @@ private extension QuickNoteViewController {
         
         view.addSubview(input)
         
-        textField.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(18)
-            make.top.bottom.equalToSuperview()
-        }
-        
         input.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(18)
             make.centerY.equalToSuperview().offset(-80)
             make.height.equalTo(80)
         }
         
+        textView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(18)
+            make.top.bottom.equalToSuperview()
+        }
+        
     }
 }
 
-extension QuickNoteViewController: UITextFieldDelegate {
+extension QuickNoteViewController: UITextViewDelegate {
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = .white
+        }
+        
+        if text == "\n" {
+            textView.resignFirstResponder()
+        }
+        
         return true
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        guard let text = textField.text else { return }
+//    func textViewDidBeginEditing(_ textView: UITextView) {
+//        if textView.textColor == UIColor.lightGray {
+//            textView.text = nil
+//            textView.textColor = UIColor.black
+//        }
+//    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+
+        guard let text = textView.text else { return }
         
-        if text.isEmpty {
+        if text.isEmpty || text == "Quick Note" {
             self.dismiss(animated: true)
             return
         }

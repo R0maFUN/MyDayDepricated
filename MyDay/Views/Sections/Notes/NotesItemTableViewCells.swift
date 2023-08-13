@@ -40,7 +40,7 @@ class NotesItemButtonCollectionViewCell: UICollectionViewCell {
     private func initialize() {
         var config = UIButton.Configuration.filled()
         config.baseBackgroundColor = .tertiarySystemBackground
-        config.baseForegroundColor = .link
+        config.baseForegroundColor = NotesColors.primary
         self.button = UIButton(configuration: config)
 
         contentView.addSubview(button!)

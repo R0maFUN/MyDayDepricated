@@ -12,7 +12,7 @@ class QuickNoteTableViewCell: UITableViewCell {
     static let reuseIdentifier = "QuickNoteTableViewCell"
     
     public func configure(with viewModel: NotesItemViewModel) {
-        textField.text = viewModel.title
+        label.text = viewModel.title
         
         if !viewModel.title.isEmpty {
             self.iconButton.isHidden = true
@@ -30,20 +30,18 @@ class QuickNoteTableViewCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
-        textField.text = ""
+        label.text = "Quick Note"
         iconButton.isHidden = false
     }
     
-    private var textField: UITextField = {
-        let textField = UITextField()
-        textField.textColor = .white
-        textField.attributedPlaceholder = NSAttributedString(
-            string: "Quick Note",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor.white]
-        )
-        textField.textAlignment = .center
-        textField.font = .systemFont(ofSize: 16, weight: .semibold)
-        return textField
+    private var label: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.text = "Quick Note"
+        label.numberOfLines = 2
+        label.textAlignment = .left
+        label.font = .systemFont(ofSize: 16, weight: .semibold)
+        return label
     }()
     
     private var iconButton: UIButton = {
@@ -63,11 +61,12 @@ private extension QuickNoteTableViewCell {
     func initialize() {
         self.backgroundColor = .darkGray
         
-        self.addSubview(textField)
+        self.addSubview(label)
         self.addSubview(iconButton)
         
-        textField.snp.makeConstraints { make in
+        label.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(18)
+            make.trailing.equalTo(iconButton.snp.leading)
             make.top.bottom.equalToSuperview()
         }
         

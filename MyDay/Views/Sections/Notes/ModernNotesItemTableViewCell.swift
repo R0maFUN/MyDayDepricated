@@ -47,7 +47,7 @@ class ModernNotesItemTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12, weight: .semibold)
         label.textColor = .secondaryLabel
-        label.numberOfLines = 3
+        label.numberOfLines = 2
         return label
     }()
     

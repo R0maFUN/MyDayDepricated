@@ -9,8 +9,16 @@ import Foundation
 
 class MainViewModel {
     
+    private enum SettingsKeys {
+        static let wakeUpTime = "wakeUpTime"
+        static let fallAsleepTime = "fallAsleepTime"
+    }
+    
     init() {
         self.notificationsViewModel = NotificationsViewModel()
+        
+        self.wakeUpTime = UserDefaults.standard.object(forKey: SettingsKeys.wakeUpTime) as? Date ?? Calendar.current.date(bySettingHour: 7, minute: 0, second: 0, of: Date())!
+        self.fallAsleepTime = UserDefaults.standard.object(forKey: SettingsKeys.fallAsleepTime) as? Date ?? Calendar.current.date(bySettingHour: 23, minute: 30, second: 0, of: Date())!
         
         let currentDate = Date()
         let datePrevMonth = Calendar.current.date(byAdding: .month, value: -1, to: currentDate)!
@@ -41,6 +49,16 @@ class MainViewModel {
         self.currentDate.value?.selected = true
     }
     
+    public func setWakeUpTime(_ value: Date) {
+        self.wakeUpTime = value
+        UserDefaults.standard.setValue(value, forKey: SettingsKeys.wakeUpTime)
+    }
+    
+    public func setFallAsleepTime(_ value: Date) {
+        self.fallAsleepTime = value
+        UserDefaults.standard.setValue(value, forKey: SettingsKeys.fallAsleepTime)
+    }
+    
     public func getVisibleDateModel(by date: Date) -> DateModel? {
         let searchingDay = Calendar.current.component(.day, from: date)
         let searchingMonth = Calendar.current.component(.month, from: date)
@@ -60,4 +78,7 @@ class MainViewModel {
     public private(set) var notificationsViewModel: NotificationsViewModel
     public private(set) var currentDate: PropertyBinding<DateModel> = PropertyBinding<DateModel>()
     public private(set) var visibleDates: [DateModel] = []
+    
+    public private(set) var wakeUpTime: Date
+    public private(set) var fallAsleepTime: Date
 }

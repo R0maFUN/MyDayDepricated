@@ -74,6 +74,7 @@ class EditNotesItemViewController: UIViewController {
     private let doneButton: UIButton = {
         var config = UIButton.Configuration.filled()
         config.title = "Done"
+        config.baseBackgroundColor = NotesColors.primary
         let button = UIButton(configuration: config)
         return button
     }()
