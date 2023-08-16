@@ -9,24 +9,28 @@ import UIKit
 
 class SnakeGraphView: UIView {
     
+    private enum UIConstants {
+        static let lineWidth = 12.0
+    }
+    
     func createUnderGraph() {
         let h = 100.0
         let w = 180.0
         
         let innerAngle = CGFloat.pi / 2
         let outerAngle = CGFloat.pi / 2
-        
+
         
         let centerAngle = 3 * CGFloat.pi / 2
         let path = UIBezierPath()
-        path.addArc(withCenter: CGPoint(x: w / 4 + 5, y: h / 2), radius: w / 4 - 10, startAngle: centerAngle - innerAngle, endAngle: centerAngle + innerAngle, clockwise: true)
-        path.addArc(withCenter: CGPoint(x: w / 4 + 5, y: h / 2), radius: w / 4, startAngle: centerAngle + innerAngle, endAngle: centerAngle - outerAngle, clockwise: false)
+        path.addArc(withCenter: CGPoint(x: w / 4 + UIConstants.lineWidth / 2, y: h / 2), radius: w / 4 - UIConstants.lineWidth, startAngle: centerAngle - innerAngle, endAngle: centerAngle + innerAngle, clockwise: true)
+        path.addArc(withCenter: CGPoint(x: w / 4 + UIConstants.lineWidth / 2, y: h / 2), radius: w / 4, startAngle: centerAngle + innerAngle, endAngle: centerAngle - outerAngle, clockwise: false)
         path.close()
         
         let centerAngle2 = CGFloat.pi / 2
         let path2 = UIBezierPath()
-        path2.addArc(withCenter: CGPoint(x: 3 * w / 4 - 5, y: h / 2), radius: w / 4 - 10, startAngle: centerAngle2 - innerAngle, endAngle: centerAngle2 + innerAngle, clockwise: true)
-        path2.addArc(withCenter: CGPoint(x: 3 * w / 4 - 5, y: h / 2), radius: w / 4, startAngle: centerAngle2 + innerAngle, endAngle: centerAngle2 - outerAngle, clockwise: false)
+        path2.addArc(withCenter: CGPoint(x: 3 * w / 4 - UIConstants.lineWidth / 2, y: h / 2), radius: w / 4 - UIConstants.lineWidth, startAngle: centerAngle2 - innerAngle, endAngle: centerAngle2 + innerAngle, clockwise: true)
+        path2.addArc(withCenter: CGPoint(x: 3 * w / 4 - UIConstants.lineWidth / 2, y: h / 2), radius: w / 4, startAngle: centerAngle2 + innerAngle, endAngle: centerAngle2 - outerAngle, clockwise: false)
         path2.close()
         
         let shapeLayer = CAShapeLayer()
@@ -74,8 +78,8 @@ class SnakeGraphView: UIView {
         
         let reversedRadiansOffset: CGFloat = CGFloat.pi - radiansOffset
         let path = UIBezierPath()
-        path.addArc(withCenter: CGPoint(x: w / 4 + 5, y: h / 2), radius: w / 4 - 10, startAngle: centerAngle - innerAngle, endAngle: centerAngle + innerAngle - reversedRadiansOffset, clockwise: true)
-        path.addArc(withCenter: CGPoint(x: w / 4 + 5, y: h / 2), radius: w / 4, startAngle: centerAngle + innerAngle - reversedRadiansOffset, endAngle: centerAngle - outerAngle, clockwise: false)
+        path.addArc(withCenter: CGPoint(x: w / 4 + UIConstants.lineWidth / 2, y: h / 2), radius: w / 4 - UIConstants.lineWidth, startAngle: centerAngle - innerAngle, endAngle: centerAngle + innerAngle - reversedRadiansOffset, clockwise: true)
+        path.addArc(withCenter: CGPoint(x: w / 4 + UIConstants.lineWidth / 2, y: h / 2), radius: w / 4, startAngle: centerAngle + innerAngle - reversedRadiansOffset, endAngle: centerAngle - outerAngle, clockwise: false)
         path.close()
         
         let shapeLayer = CAShapeLayer()
@@ -91,8 +95,8 @@ class SnakeGraphView: UIView {
         let reversedRadiansOffset2: CGFloat = CGFloat.pi - radiansOffset2
         let centerAngle2 = CGFloat.pi / 2
         let path2 = UIBezierPath()
-        path2.addArc(withCenter: CGPoint(x: 3 * w / 4 - 5, y: h / 2), radius: w / 4 - 10, startAngle: centerAngle2 - innerAngle + reversedRadiansOffset2, endAngle: centerAngle2 + innerAngle, clockwise: true)
-        path2.addArc(withCenter: CGPoint(x: 3 * w / 4 - 5, y: h / 2), radius: w / 4, startAngle: centerAngle2 + innerAngle, endAngle: centerAngle2 - outerAngle + reversedRadiansOffset2, clockwise: false)
+        path2.addArc(withCenter: CGPoint(x: 3 * w / 4 - UIConstants.lineWidth / 2, y: h / 2), radius: w / 4 - UIConstants.lineWidth, startAngle: centerAngle2 - innerAngle + reversedRadiansOffset2, endAngle: centerAngle2 + innerAngle, clockwise: true)
+        path2.addArc(withCenter: CGPoint(x: 3 * w / 4 - UIConstants.lineWidth / 2, y: h / 2), radius: w / 4, startAngle: centerAngle2 + innerAngle, endAngle: centerAngle2 - outerAngle + reversedRadiansOffset2, clockwise: false)
         path2.close()
         
         let shapeLayer2 = CAShapeLayer()
