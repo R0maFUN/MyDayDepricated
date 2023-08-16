@@ -57,4 +57,26 @@ struct SectionRealmItemsUpdater {
             print("Error updating NotesItem in Realm: \(error.localizedDescription)")
         }
     }
+    
+    func visit(_ item: GoalsItemViewModel) {
+        let config = Realm.Configuration.defaultConfiguration
+        do {
+            let realm = try Realm(configuration: config)
+            try realm.write {
+                if let existingItem = realm.objects(GoalsItemRealmObject.self).filter("id == %@", item.id).first {
+                    existingItem.title = item.title
+                    existingItem.descriptions.removeAll()
+                    existingItem.descriptions.append(objectsIn: [item.descriptions.0, item.descriptions.1])
+                    existingItem.goalValue = item.goalValue
+                    existingItem.currentValue = item.currentValue
+                    existingItem.stepValue = item.stepValue
+                    existingItem.date = item.date
+                } else {
+                    realm.add(item.toRealmObject())
+                }
+            }
+        } catch let error as NSError {
+            print("Error updating GoalsItem in Realm: \(error.localizedDescription)")
+        }
+    }
 }

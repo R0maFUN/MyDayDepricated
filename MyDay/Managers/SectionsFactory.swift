@@ -34,3 +34,10 @@ struct NoteItemsFactory: IGenericFactory {
         return item
     }
 }
+
+struct GoalItemsFactory: IGenericFactory {
+    func build(config: GoalsItemRealmObject) -> GoalsItemViewModel {
+        let item = GoalsItemViewModel(realmObject: config)
+        return item
+    }
+}

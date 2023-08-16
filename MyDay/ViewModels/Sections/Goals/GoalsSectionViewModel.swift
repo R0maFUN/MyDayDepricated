@@ -7,29 +7,16 @@
 
 import Foundation
 
-final class GoalsSectionsManager: SectionsManager<GoalsSectionViewModel> {
-    
-    override init(visibleDates: [DateModel]) {
-        super.init(visibleDates: visibleDates)
-        
-        self.title = "Goals"
-        self.addActionTitle = "Note"
-    }
-}
-
 class GoalsSectionViewModel: SectionViewModel {
     override public class func type() -> Unforgivable {
         return .goals
     }
-}
-
-class GoalsItemViewModel: SectionItemViewModel {
     
-    init(title: String, description: String = "", editDate: Date, date: Date) {
-        super.init(title: title, description: description, date: date)
-
-        self.editDate = editDate
+    override public class func create(config: DateModel) -> SectionViewModel {
+        return GoalsSectionViewModel(date: config)
     }
-
-    public private(set) var editDate: Date = Date()
+    
+    override public func fillWithCommonItems() {
+        self.add(GoalsItemViewModel(descriptions: ("Make", "push-ups"), goalValue: 150, currentValue: 0, stepValue: 5, date: self.date.date, type: .Counter))
+    }
 }

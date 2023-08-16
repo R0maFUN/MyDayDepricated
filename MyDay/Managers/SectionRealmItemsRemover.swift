@@ -41,4 +41,16 @@ struct SectionRealmItemsRemover {
             print("Error removing item from Realm: \(error.localizedDescription)")
         }
     }
+    
+    func visit(_ item: GoalsItemViewModel) {
+        let config = Realm.Configuration.defaultConfiguration
+        do {
+            let realm = try Realm(configuration: config)
+            try realm.write {
+                realm.delete(item.toRealmObject())
+            }
+        } catch let error as NSError {
+            print("Error removing item from Realm: \(error.localizedDescription)")
+        }
+    }
 }

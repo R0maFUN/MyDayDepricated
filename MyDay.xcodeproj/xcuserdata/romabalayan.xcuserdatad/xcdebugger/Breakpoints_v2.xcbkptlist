@@ -3,4 +3,437 @@
    uuid = "A3885C51-82C8-44DD-BCF4-84D973DAC840"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6B7E564B-3667-4CAD-8E15-EB3DB9F638D0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyDay/Views/Common/Components/SnakeGraphView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
+            landmarkName = "update()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BE8624E8-FE85-46E8-B6C1-F6414F705654"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyDay/Views/Common/Components/SnakeGraphView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "createUpperGraph()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5482728D-DFCB-4D41-B51B-2AF72E184850"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyDay/Managers/SectionRealmItemsUpdater.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "visit(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A8EC7766-CB26-4A89-8AC3-22A628674892"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyDay/Managers/SectionRealmItemsUpdater.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "visit(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "05EA1145-8D08-4A0F-B113-35E046149E96"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyDay/Managers/SectionRealmItemsUpdater.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "visit(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BDD66CEF-C5DD-4DD5-9955-C7F02D130BC4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyDay/Managers/SectionsManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "initialize(visibleDates:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "BDD66CEF-C5DD-4DD5-9955-C7F02D130BC4 - 7ca0f91321cb4e75"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyDay.SectionsManager.initialize(visibleDates: Swift.Array&lt;MyDay.DateModel&gt;) -&gt; ()"
+                  moduleName = "MyDay"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/romabalayan/Development/MyProjects/MyDay/MyDay/Managers/SectionsManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "83"
+                  endingLineNumber = "83"
+                  offsetFromSymbolStart = "124">
+               </Location>
+               <Location
+                  uuid = "BDD66CEF-C5DD-4DD5-9955-C7F02D130BC4 - 5af34e4238234da"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (MyDay.DateModel, &#x3c4;_0_0) -&gt; () in MyDay.SectionsManager.initialize(visibleDates: Swift.Array&lt;MyDay.DateModel&gt;) -&gt; ()"
+                  moduleName = "MyDay"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/romabalayan/Development/MyProjects/MyDay/MyDay/Managers/SectionsManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "84"
+                  endingLineNumber = "84"
+                  offsetFromSymbolStart = "76">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A06B74B7-351E-4222-B110-6BC0D9886E74"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyDay/Managers/SectionsManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
+            landmarkName = "restoreSections(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8A004F6D-4BC4-4F97-8047-BF0F7BE0ABC7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyDay/Managers/SectionsManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "restoreSections(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "25F87F47-FED6-483F-B0DE-5B5556E4E1F5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyDay/Managers/SectionsManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "initialize(visibleDates:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D6C5396B-9731-436E-A581-5001B50AA895"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyDay/Managers/SectionsRealmManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "restore(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "74F3679C-5916-4D76-81CF-DAC650CA6025"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyDay/Managers/SectionsRealmManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "restore(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "74F3679C-5916-4D76-81CF-DAC650CA6025 - 6eecb65d54875dab"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static MyDay.SectionsRealmManager.restore&lt;&#x3c4;_0_0, &#x3c4;_0_1 where &#x3c4;_0_0 == &#x3c4;_1_1.Input, &#x3c4;_1_0: MyDay.SectionItemViewModel, &#x3c4;_1_0 == &#x3c4;_1_1.Output, &#x3c4;_1_1: MyDay.IGenericFactory&gt;(&#x3c4;_1_1) -&gt; Swift.Array&lt;&#x3c4;_1_0&gt;"
+                  moduleName = "MyDay"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/romabalayan/Development/MyProjects/MyDay/MyDay/Managers/SectionsRealmManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "360">
+               </Location>
+               <Location
+                  uuid = "74F3679C-5916-4D76-81CF-DAC650CA6025 - 88ddd2b5bbb91d4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (&#x3c4;_0_0) -&gt; Swift.Optional&lt;&#x3c4;_1_0&gt; in static MyDay.SectionsRealmManager.restore&lt;&#x3c4;_0_0, &#x3c4;_0_1 where &#x3c4;_0_0 == &#x3c4;_1_1.Input, &#x3c4;_1_0: MyDay.SectionItemViewModel, &#x3c4;_1_0 == &#x3c4;_1_1.Output, &#x3c4;_1_1: MyDay.IGenericFactory&gt;(&#x3c4;_1_1) -&gt; Swift.Array&lt;&#x3c4;_1_0&gt;"
+                  moduleName = "MyDay"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/romabalayan/Development/MyProjects/MyDay/MyDay/Managers/SectionsRealmManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "84">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0722314B-0B96-4A86-B991-7722F97B4789"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyDay/Managers/SectionRealmItemsUpdater.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "visit(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0722314B-0B96-4A86-B991-7722F97B4789 - c68003d5bbd4432"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyDay.SectionRealmItemsUpdater.visit(MyDay.GoalsItemViewModel) -&gt; ()"
+                  moduleName = "MyDay"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/romabalayan/Development/MyProjects/MyDay/MyDay/Managers/SectionRealmItemsUpdater.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "65"
+                  endingLineNumber = "65"
+                  offsetFromSymbolStart = "312">
+               </Location>
+               <Location
+                  uuid = "0722314B-0B96-4A86-B991-7722F97B4789 - 100430110c8f80d9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in MyDay.SectionRealmItemsUpdater.visit(MyDay.GoalsItemViewModel) -&gt; ()"
+                  moduleName = "MyDay"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/romabalayan/Development/MyProjects/MyDay/MyDay/Managers/SectionRealmItemsUpdater.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "168">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AA6B11D4-B89F-42F6-B30F-C3C5D3B43233"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyDay/Managers/SectionsManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "initialize(visibleDates:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F16A10C9-F8DD-4495-834A-BC5014DCBEB0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyDay/Managers/SectionsManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "initialize(visibleDates:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5D546659-EC97-4BB0-8552-7749B868C321"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyDay/Managers/SectionsManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "initialize(visibleDates:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7A8151C3-1E77-446D-B645-DE2DB5301DD6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyDay/Views/Sections/Goals/GoalsCollectionViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "updateSections()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F39D168F-D55C-4173-BAD2-078DFE3375E5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyDay/ViewModels/Sections/Base/SectionViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "add(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F242F487-0AD9-434A-A7D1-96522B4213F1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyDay/ViewModels/Sections/Goals/GoalsSectionViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "fillWithCommonItems()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F242F487-0AD9-434A-A7D1-96522B4213F1 - 88d004dd04ff68e5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyDay.GoalsSectionViewModel.fillWithCommonItems() -&gt; ()"
+                  moduleName = "MyDay"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/romabalayan/Development/MyProjects/MyDay/MyDay/ViewModels/Sections/Goals/GoalsSectionViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "84">
+               </Location>
+               <Location
+                  uuid = "F242F487-0AD9-434A-A7D1-96522B4213F1 - 88d004dd04ff6923"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyDay.GoalsSectionViewModel.fillWithCommonItems() -&gt; ()"
+                  moduleName = "MyDay"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/romabalayan/Development/MyProjects/MyDay/MyDay/ViewModels/Sections/Goals/GoalsSectionViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "84">
+               </Location>
+               <Location
+                  uuid = "F242F487-0AD9-434A-A7D1-96522B4213F1 - 88d004dd04ff6923"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyDay.GoalsSectionViewModel.fillWithCommonItems() -&gt; ()"
+                  moduleName = "MyDay"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/romabalayan/Development/MyProjects/MyDay/MyDay/ViewModels/Sections/Goals/GoalsSectionViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "88">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

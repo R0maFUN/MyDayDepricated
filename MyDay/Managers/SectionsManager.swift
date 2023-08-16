@@ -109,8 +109,7 @@ class SectionsManager<T: SectionViewModel>: ISectionsManager {
             //let realmManager = SectionsRealmManager<T, ScheduleItemRealmObject>()
             return [:]
         case .goals:
-            //let realmManager = SectionsRealmManager<T, ScheduleItemRealmObject>()
-            return [:]
+            restoredItems = SectionsRealmManager<GoalsItemRealmObject>.restore(GoalItemsFactory())
         }
         
         var result: [DateModel:T] = [:]

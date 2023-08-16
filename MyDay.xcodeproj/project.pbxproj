@@ -20,6 +20,14 @@
 		1E9937BD2A88BDA20027663F /* ButtonPlaceholderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9937BC2A88BDA20027663F /* ButtonPlaceholderTableViewCell.swift */; };
 		1E9937C22A88C0850027663F /* NotesColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9937C12A88C0850027663F /* NotesColors.swift */; };
 		1E9937C42A88EBCE0027663F /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9937C32A88EBCE0027663F /* HapticsManager.swift */; };
+		1E9937C72A8B82330027663F /* GoalsItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9937C62A8B82330027663F /* GoalsItemViewModel.swift */; };
+		1E9937C92A8B82900027663F /* GoalsItemRealmObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9937C82A8B82900027663F /* GoalsItemRealmObject.swift */; };
+		1E9937CB2A8B8CA70027663F /* GoalsSectionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9937CA2A8B8CA70027663F /* GoalsSectionsManager.swift */; };
+		1E9937CE2A8B8D7F0027663F /* GoalsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9937CD2A8B8D7F0027663F /* GoalsCollectionViewCell.swift */; };
+		1E9937D02A8B91360027663F /* GoalsCollectionViewCell+Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9937CF2A8B91360027663F /* GoalsCollectionViewCell+Table.swift */; };
+		1E9937D22A8B92170027663F /* ModernGoalsItemCounterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9937D12A8B92170027663F /* ModernGoalsItemCounterTableViewCell.swift */; };
+		1E9937D42A8BE4410027663F /* SnakeGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9937D32A8BE4410027663F /* SnakeGraphView.swift */; };
+		1E9937D62A8BEF560027663F /* CGFloat+Radians.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9937D52A8BEF560027663F /* CGFloat+Radians.swift */; };
 		1EC6387D2A5DD3C100512524 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC6387C2A5DD3C100512524 /* AppDelegate.swift */; };
 		1EC6387F2A5DD3C100512524 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC6387E2A5DD3C100512524 /* SceneDelegate.swift */; };
 		1EC638812A5DD3C100512524 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638802A5DD3C100512524 /* ViewController.swift */; };
@@ -84,6 +92,14 @@
 		1E9937C12A88C0850027663F /* NotesColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesColors.swift; sourceTree = "<group>"; };
 		1E9937C32A88EBCE0027663F /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
 		1E9937C52A89F58A0027663F /* MyDay.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MyDay.entitlements; sourceTree = "<group>"; };
+		1E9937C62A8B82330027663F /* GoalsItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsItemViewModel.swift; sourceTree = "<group>"; };
+		1E9937C82A8B82900027663F /* GoalsItemRealmObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsItemRealmObject.swift; sourceTree = "<group>"; };
+		1E9937CA2A8B8CA70027663F /* GoalsSectionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsSectionsManager.swift; sourceTree = "<group>"; };
+		1E9937CD2A8B8D7F0027663F /* GoalsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsCollectionViewCell.swift; sourceTree = "<group>"; };
+		1E9937CF2A8B91360027663F /* GoalsCollectionViewCell+Table.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GoalsCollectionViewCell+Table.swift"; sourceTree = "<group>"; };
+		1E9937D12A8B92170027663F /* ModernGoalsItemCounterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernGoalsItemCounterTableViewCell.swift; sourceTree = "<group>"; };
+		1E9937D32A8BE4410027663F /* SnakeGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeGraphView.swift; sourceTree = "<group>"; };
+		1E9937D52A8BEF560027663F /* CGFloat+Radians.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Radians.swift"; sourceTree = "<group>"; };
 		1EC638792A5DD3C100512524 /* MyDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EC6387C2A5DD3C100512524 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EC6387E2A5DD3C100512524 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -151,6 +167,7 @@
 			children = (
 				1E9937AE2A87D73A0027663F /* TagView.swift */,
 				1E9937B62A87E0040027663F /* SmartLabel.swift */,
+				1E9937D32A8BE4410027663F /* SnakeGraphView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -169,6 +186,16 @@
 				1E9937C12A88C0850027663F /* NotesColors.swift */,
 			);
 			path = Colors;
+			sourceTree = "<group>";
+		};
+		1E9937CC2A8B8D510027663F /* Goals */ = {
+			isa = PBXGroup;
+			children = (
+				1E9937CD2A8B8D7F0027663F /* GoalsCollectionViewCell.swift */,
+				1E9937CF2A8B91360027663F /* GoalsCollectionViewCell+Table.swift */,
+				1E9937D12A8B92170027663F /* ModernGoalsItemCounterTableViewCell.swift */,
+			);
+			path = Goals;
 			sourceTree = "<group>";
 		};
 		1EC638702A5DD3C100512524 = {
@@ -253,6 +280,7 @@
 			children = (
 				1EC638B22A63E85B00512524 /* PropertyBinding.swift */,
 				1E9937B02A87D8420027663F /* UIColor+Hex.swift */,
+				1E9937D52A8BEF560027663F /* CGFloat+Radians.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -326,6 +354,9 @@
 			isa = PBXGroup;
 			children = (
 				1EC638AF2A63E6B100512524 /* GoalsSectionViewModel.swift */,
+				1E9937C62A8B82330027663F /* GoalsItemViewModel.swift */,
+				1E9937C82A8B82900027663F /* GoalsItemRealmObject.swift */,
+				1E9937CA2A8B8CA70027663F /* GoalsSectionsManager.swift */,
 			);
 			path = Goals;
 			sourceTree = "<group>";
@@ -334,6 +365,7 @@
 			isa = PBXGroup;
 			children = (
 				1EC638A02A5F40E900512524 /* SectionButton.swift */,
+				1E9937CC2A8B8D510027663F /* Goals */,
 				1EC638DE2A6EFA1100512524 /* Notes */,
 				1EC638CD2A6E7A0100512524 /* Schedule */,
 				1E9937BC2A88BDA20027663F /* ButtonPlaceholderTableViewCell.swift */,
@@ -507,16 +539,20 @@
 				1E9937B32A87DEEA0027663F /* NotesItemTableViewCell.swift in Sources */,
 				1EC639022A76894F00512524 /* DescriptionInputTableViewCell.swift in Sources */,
 				1EC638A62A63E46B00512524 /* SectionsViewModel.swift in Sources */,
+				1E9937C92A8B82900027663F /* GoalsItemRealmObject.swift in Sources */,
 				1EC638E62A7120C500512524 /* NotesItemRealmObject.swift in Sources */,
 				1EC639062A768F8400512524 /* DescriptionModel.swift in Sources */,
 				1EC638B02A63E6B100512524 /* GoalsSectionViewModel.swift in Sources */,
 				1E9937B72A87E0040027663F /* SmartLabel.swift in Sources */,
+				1E9937D62A8BEF560027663F /* CGFloat+Radians.swift in Sources */,
 				1EC6387F2A5DD3C100512524 /* SceneDelegate.swift in Sources */,
 				1E9937AA2A87C44E0027663F /* ScheduleItemTableViewCell.swift in Sources */,
 				1E9937C42A88EBCE0027663F /* HapticsManager.swift in Sources */,
+				1E9937D22A8B92170027663F /* ModernGoalsItemCounterTableViewCell.swift in Sources */,
 				1EC639002A76827C00512524 /* TitleInputTableViewCell+TextField.swift in Sources */,
 				1EC638CF2A6E7D5500512524 /* ScheduleItemViewModel.swift in Sources */,
 				1EC638DD2A6EF66B00512524 /* NotesSectionsManager.swift in Sources */,
+				1E9937C72A8B82330027663F /* GoalsItemViewModel.swift in Sources */,
 				1EC638A32A6070B500512524 /* ScheduleCollectionViewCell.swift in Sources */,
 				1EC638D72A6E9A7100512524 /* SectionItemViewModel.swift in Sources */,
 				1E9937AC2A87C4CF0027663F /* ModernScheduleItemTableViewCell.swift in Sources */,
@@ -524,11 +560,15 @@
 				1EC638AC2A63E67300512524 /* NotesSectionViewModel.swift in Sources */,
 				1EC638D32A6E7DB200512524 /* ScheduleItemRealmObject.swift in Sources */,
 				1EC638AA2A63E65400512524 /* ScheduleSectionViewModel.swift in Sources */,
+				1E9937CB2A8B8CA70027663F /* GoalsSectionsManager.swift in Sources */,
 				1EC638B32A63E85B00512524 /* PropertyBinding.swift in Sources */,
 				1EC638FE2A76820800512524 /* TitleInputTableViewCell.swift in Sources */,
+				1E9937D42A8BE4410027663F /* SnakeGraphView.swift in Sources */,
+				1E9937D02A8B91360027663F /* GoalsCollectionViewCell+Table.swift in Sources */,
 				1EC638ED2A744B3800512524 /* SectionRealmItemsRemover.swift in Sources */,
 				1EC638AE2A63E69300512524 /* RemindersSectionViewModel.swift in Sources */,
 				1EC638F02A750DF700512524 /* DeleteAreaView.swift in Sources */,
+				1E9937CE2A8B8D7F0027663F /* GoalsCollectionViewCell.swift in Sources */,
 				1E9937BB2A88A4A30027663F /* QuickNoteViewController.swift in Sources */,
 				1EC638A82A63E63500512524 /* SectionViewModel.swift in Sources */,
 				1EC638A12A5F40E900512524 /* SectionButton.swift in Sources */,

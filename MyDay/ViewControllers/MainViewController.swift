@@ -141,6 +141,7 @@ private extension MainViewController {
     func setupCollectionView() {
         collectionView.register(ScheduleCollectionViewCell.self, forCellWithReuseIdentifier: ScheduleCollectionViewCell.reuseIdentifier)
         collectionView.register(NoteCollectionViewCell.self, forCellWithReuseIdentifier: NoteCollectionViewCell.reuseIdentifier)
+        collectionView.register(GoalsCollectionViewCell.self, forCellWithReuseIdentifier: GoalsCollectionViewCell.reuseIdentifier)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.collectionViewLayout = collectionViewLayout
@@ -212,7 +213,29 @@ extension MainViewController: UICollectionViewDataSource {
         } else if let section = self.sectionsViewModel.sectionManagers[indexPath.item] as? RemindersSectionsManager {
             
         } else if let section = self.sectionsViewModel.sectionManagers[indexPath.item] as? GoalsSectionsManager {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GoalsCollectionViewCell.reuseIdentifier, for: indexPath) as? GoalsCollectionViewCell else { return UICollectionViewCell() }
+            cell.configure(with: section)
+//            cell.onEditNoteRequested { note in
+//                guard let notesSectionsManager = self.mainViewModel.sectionsViewModel.currentSectionManager.value else { return }
+//                let vc = EditNotesItemViewController(notesSectionsManager, note: note)
+//                self.present(vc, animated: true)
+//            }
+//
+//            cell.onAddNoteRequested {
+//                guard let notesSectionsManager = self.mainViewModel.sectionsViewModel.currentSectionManager.value else { return }
+//                let vc = EditNotesItemViewController(notesSectionsManager)
+//                self.present(vc, animated: true)
+//            }
             
+            cell.onDragBegin {
+                self.deleteAreaView.show()
+            }
+            
+            cell.onDragEnd {
+                self.deleteAreaView.hide()
+            }
+            
+            return cell
         }
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ScheduleCollectionViewCell.reuseIdentifier, for: indexPath) as? ScheduleCollectionViewCell else { return UICollectionViewCell() }
