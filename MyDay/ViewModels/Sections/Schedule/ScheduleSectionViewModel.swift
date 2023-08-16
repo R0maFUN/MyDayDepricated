@@ -7,6 +7,7 @@
 
 import Foundation
 import RealmSwift
+import HealthKit
 
 final class ScheduleSectionViewModel: SectionViewModel {
     typealias ItemInput = ScheduleItemRealmObject
@@ -31,8 +32,64 @@ final class ScheduleSectionViewModel: SectionViewModel {
     }
     
     override public func fillWithCommonItems() {
+        //requestSleepAuthorization()
+        
         self.add(ScheduleItemViewModel(title: "Wake Up", description: "Good Morning!", startDate: self.wakeUpTime, endDate: self.wakeUpTime, date: self.date.date))
         self.add(ScheduleItemViewModel(title: "Fall asleep", description: "Good Night!", startDate: self.fallAsleepTime, endDate: self.fallAsleepTime, date: self.date.date))
+    }
+    
+    func requestSleepAuthorization() {
+        let healthStore = HKHealthStore()
+        
+        if let sleepType = HKObjectType.categoryType(forIdentifier: .sleepAnalysis) {
+            let setType = Set<HKSampleType>(arrayLiteral: sleepType)
+            healthStore.requestAuthorization(toShare: setType, read: setType) { (success, error) in
+                
+                if !success || error != nil {
+                    // handle error
+                    return
+                }
+                
+                let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)
+                
+                let query = HKSampleQuery(sampleType: sleepType, predicate: nil, limit: 3, sortDescriptors: [sortDescriptor]) { (query, tmpResult, error) -> Void in
+                    if error != nil {
+                        return
+                    }
+                    
+                    var success = false
+                    
+                    if let result = tmpResult {
+                        for item in result {
+                            if let sample = item as? HKCategorySample {
+                                if sample.value == 0 {
+                                    let startDate = sample.startDate
+                                    let endDate = sample.endDate
+                                    
+                                    DispatchQueue.main.async {
+                                        self.add(ScheduleItemViewModel(title: "Wake Up", description: "Good Morning!", startDate: startDate, endDate: startDate, date: self.date.date))
+                                        self.add(ScheduleItemViewModel(title: "Fall asleep", description: "Good Night!", startDate: endDate, endDate: endDate, date: self.date.date))
+                                    }
+                                    success = true
+                                }
+                            }
+                        }
+                    }
+                    
+                    if (!success) {
+                        DispatchQueue.main.async {
+                            self.add(ScheduleItemViewModel(title: "Wake Up", description: "Good Morning!", startDate: self.wakeUpTime, endDate: self.wakeUpTime, date: self.date.date))
+                            self.add(ScheduleItemViewModel(title: "Fall asleep", description: "Good Night!", startDate: self.fallAsleepTime, endDate: self.fallAsleepTime, date: self.date.date))
+                        }
+                        
+                    }
+                }
+                
+                healthStore.execute(query)
+                
+                // handle success
+            }
+        }
     }
     
     func sort() {
