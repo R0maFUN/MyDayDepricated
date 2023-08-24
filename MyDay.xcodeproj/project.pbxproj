@@ -28,6 +28,11 @@
 		1E9937D22A8B92170027663F /* ModernGoalsItemCounterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9937D12A8B92170027663F /* ModernGoalsItemCounterTableViewCell.swift */; };
 		1E9937D42A8BE4410027663F /* SnakeGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9937D32A8BE4410027663F /* SnakeGraphView.swift */; };
 		1E9937D62A8BEF560027663F /* CGFloat+Radians.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9937D52A8BEF560027663F /* CGFloat+Radians.swift */; };
+		1E9937D82A8F51560027663F /* EditGoalsItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9937D72A8F51560027663F /* EditGoalsItemViewController.swift */; };
+		1E9937DA2A8F532E0027663F /* AddGoalInstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9937D92A8F532E0027663F /* AddGoalInstructionView.swift */; };
+		1E9937DC2A913F7A0027663F /* GoalsCollectionViewCell+Drag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9937DB2A913F7A0027663F /* GoalsCollectionViewCell+Drag.swift */; };
+		1E9937DE2A9140A60027663F /* ModernGoalsItemCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9937DD2A9140A60027663F /* ModernGoalsItemCounterView.swift */; };
+		1E9937E02A9487CB0027663F /* Date+Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9937DF2A9487CB0027663F /* Date+Time.swift */; };
 		1EC6387D2A5DD3C100512524 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC6387C2A5DD3C100512524 /* AppDelegate.swift */; };
 		1EC6387F2A5DD3C100512524 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC6387E2A5DD3C100512524 /* SceneDelegate.swift */; };
 		1EC638812A5DD3C100512524 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC638802A5DD3C100512524 /* ViewController.swift */; };
@@ -100,6 +105,11 @@
 		1E9937D12A8B92170027663F /* ModernGoalsItemCounterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernGoalsItemCounterTableViewCell.swift; sourceTree = "<group>"; };
 		1E9937D32A8BE4410027663F /* SnakeGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeGraphView.swift; sourceTree = "<group>"; };
 		1E9937D52A8BEF560027663F /* CGFloat+Radians.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Radians.swift"; sourceTree = "<group>"; };
+		1E9937D72A8F51560027663F /* EditGoalsItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGoalsItemViewController.swift; sourceTree = "<group>"; };
+		1E9937D92A8F532E0027663F /* AddGoalInstructionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalInstructionView.swift; sourceTree = "<group>"; };
+		1E9937DB2A913F7A0027663F /* GoalsCollectionViewCell+Drag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GoalsCollectionViewCell+Drag.swift"; sourceTree = "<group>"; };
+		1E9937DD2A9140A60027663F /* ModernGoalsItemCounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernGoalsItemCounterView.swift; sourceTree = "<group>"; };
+		1E9937DF2A9487CB0027663F /* Date+Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Time.swift"; sourceTree = "<group>"; };
 		1EC638792A5DD3C100512524 /* MyDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EC6387C2A5DD3C100512524 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EC6387E2A5DD3C100512524 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -193,7 +203,10 @@
 			children = (
 				1E9937CD2A8B8D7F0027663F /* GoalsCollectionViewCell.swift */,
 				1E9937CF2A8B91360027663F /* GoalsCollectionViewCell+Table.swift */,
+				1E9937DB2A913F7A0027663F /* GoalsCollectionViewCell+Drag.swift */,
 				1E9937D12A8B92170027663F /* ModernGoalsItemCounterTableViewCell.swift */,
+				1E9937DD2A9140A60027663F /* ModernGoalsItemCounterView.swift */,
+				1E9937D92A8F532E0027663F /* AddGoalInstructionView.swift */,
 			);
 			path = Goals;
 			sourceTree = "<group>";
@@ -244,6 +257,7 @@
 				1EC638BA2A6A842800512524 /* AddScheduleItemViewController.swift */,
 				1EC638D82A6EF43200512524 /* EditNotesItemViewController.swift */,
 				1E9937BA2A88A4A30027663F /* QuickNoteViewController.swift */,
+				1E9937D72A8F51560027663F /* EditGoalsItemViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -281,6 +295,7 @@
 				1EC638B22A63E85B00512524 /* PropertyBinding.swift */,
 				1E9937B02A87D8420027663F /* UIColor+Hex.swift */,
 				1E9937D52A8BEF560027663F /* CGFloat+Radians.swift */,
+				1E9937DF2A9487CB0027663F /* Date+Time.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -538,6 +553,7 @@
 				1EC638D12A6E7D7200512524 /* ScheduleSectionsManager.swift in Sources */,
 				1E9937B32A87DEEA0027663F /* NotesItemTableViewCell.swift in Sources */,
 				1EC639022A76894F00512524 /* DescriptionInputTableViewCell.swift in Sources */,
+				1E9937D82A8F51560027663F /* EditGoalsItemViewController.swift in Sources */,
 				1EC638A62A63E46B00512524 /* SectionsViewModel.swift in Sources */,
 				1E9937C92A8B82900027663F /* GoalsItemRealmObject.swift in Sources */,
 				1EC638E62A7120C500512524 /* NotesItemRealmObject.swift in Sources */,
@@ -562,7 +578,9 @@
 				1EC638AA2A63E65400512524 /* ScheduleSectionViewModel.swift in Sources */,
 				1E9937CB2A8B8CA70027663F /* GoalsSectionsManager.swift in Sources */,
 				1EC638B32A63E85B00512524 /* PropertyBinding.swift in Sources */,
+				1E9937DE2A9140A60027663F /* ModernGoalsItemCounterView.swift in Sources */,
 				1EC638FE2A76820800512524 /* TitleInputTableViewCell.swift in Sources */,
+				1E9937DC2A913F7A0027663F /* GoalsCollectionViewCell+Drag.swift in Sources */,
 				1E9937D42A8BE4410027663F /* SnakeGraphView.swift in Sources */,
 				1E9937D02A8B91360027663F /* GoalsCollectionViewCell+Table.swift in Sources */,
 				1EC638ED2A744B3800512524 /* SectionRealmItemsRemover.swift in Sources */,
@@ -570,10 +588,12 @@
 				1EC638F02A750DF700512524 /* DeleteAreaView.swift in Sources */,
 				1E9937CE2A8B8D7F0027663F /* GoalsCollectionViewCell.swift in Sources */,
 				1E9937BB2A88A4A30027663F /* QuickNoteViewController.swift in Sources */,
+				1E9937E02A9487CB0027663F /* Date+Time.swift in Sources */,
 				1EC638A82A63E63500512524 /* SectionViewModel.swift in Sources */,
 				1EC638A12A5F40E900512524 /* SectionButton.swift in Sources */,
 				1EC638B72A652E5000512524 /* NoteCollectionViewCell.swift in Sources */,
 				1EC638D92A6EF43200512524 /* EditNotesItemViewController.swift in Sources */,
+				1E9937DA2A8F532E0027663F /* AddGoalInstructionView.swift in Sources */,
 				1EC638B52A63ED3400512524 /* MainViewModel.swift in Sources */,
 				1EC639042A7689FD00512524 /* DescriptionInputTableViewCell+TextView.swift in Sources */,
 				1E9937B92A87E3C60027663F /* QuickNoteTableViewCell.swift in Sources */,
@@ -721,10 +741,11 @@
 				DEVELOPMENT_TEAM = DW33L832VN;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MyDay/Info.plist;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Sample app sleep";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Sample app sleep";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -750,10 +771,11 @@
 				DEVELOPMENT_TEAM = DW33L832VN;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MyDay/Info.plist;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Sample app sleep";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Sample app sleep";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

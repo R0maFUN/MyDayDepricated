@@ -11,110 +11,15 @@ class SnakeGraphView: UIView {
     
     private enum UIConstants {
         static let lineWidth = 12.0
-    }
-    
-    func createUnderGraph() {
-        let h = 100.0
-        let w = 180.0
-        
-        let innerAngle = CGFloat.pi / 2
-        let outerAngle = CGFloat.pi / 2
-
-        
-        let centerAngle = 3 * CGFloat.pi / 2
-        let path = UIBezierPath()
-        path.addArc(withCenter: CGPoint(x: w / 4 + UIConstants.lineWidth / 2, y: h / 2), radius: w / 4 - UIConstants.lineWidth, startAngle: centerAngle - innerAngle, endAngle: centerAngle + innerAngle, clockwise: true)
-        path.addArc(withCenter: CGPoint(x: w / 4 + UIConstants.lineWidth / 2, y: h / 2), radius: w / 4, startAngle: centerAngle + innerAngle, endAngle: centerAngle - outerAngle, clockwise: false)
-        path.close()
-        
-        let centerAngle2 = CGFloat.pi / 2
-        let path2 = UIBezierPath()
-        path2.addArc(withCenter: CGPoint(x: 3 * w / 4 - UIConstants.lineWidth / 2, y: h / 2), radius: w / 4 - UIConstants.lineWidth, startAngle: centerAngle2 - innerAngle, endAngle: centerAngle2 + innerAngle, clockwise: true)
-        path2.addArc(withCenter: CGPoint(x: 3 * w / 4 - UIConstants.lineWidth / 2, y: h / 2), radius: w / 4, startAngle: centerAngle2 + innerAngle, endAngle: centerAngle2 - outerAngle, clockwise: false)
-        path2.close()
-        
-        let shapeLayer = CAShapeLayer()
-        shapeLayer.path = path.cgPath
-        
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
-        gradientLayer.endPoint = CGPoint(x: 0.5, y: 0.5)
-        gradientLayer.colors = [UIColor.systemRed.cgColor, UIColor.systemPurple.cgColor]
-        gradientLayer.frame = CGRect(x: 0, y: 0, width: 180, height: 100)
-        gradientLayer.mask = shapeLayer
-        gradientLayer.opacity = 0.4
-        
-        let shapeLayer2 = CAShapeLayer()
-        shapeLayer2.path = path2.cgPath
-        
-        let gradientLayer2 = CAGradientLayer()
-        gradientLayer2.startPoint = CGPoint(x: 0, y: 0)
-        gradientLayer2.endPoint = CGPoint(x: 1, y: 1)
-        gradientLayer2.colors = [UIColor.systemPurple.cgColor, UIColor.systemRed.cgColor]
-        gradientLayer2.frame = CGRect(x: 0, y: 0, width: 180, height: 100)
-        gradientLayer2.mask = shapeLayer2
-        gradientLayer2.opacity = 0.4
-     
-        self.layer.addSublayer(gradientLayer)
-        self.layer.addSublayer(gradientLayer2)
-    }
-    
-    func createUpperGraph() {
-        let h = 100.0
-        let w = 180.0
-        
-        let innerAngle = CGFloat.pi / 2
-        let outerAngle = CGFloat.pi / 2
-        
-        
-        let centerAngle = 3 * CGFloat.pi / 2
-        let convertedValue = (self.currentValue - self.minValue) / (self.goalValue - self.minValue) * 100
-        var radiansOffset: CGFloat = convertedValue / 50 * CGFloat.pi
-        var radiansOffset2: CGFloat = 0
-        if convertedValue > 50 {
-            radiansOffset = CGFloat.pi
-            radiansOffset2 = (convertedValue - 50) / 50 * CGFloat.pi
-        }
-        
-        let reversedRadiansOffset: CGFloat = CGFloat.pi - radiansOffset
-        let path = UIBezierPath()
-        path.addArc(withCenter: CGPoint(x: w / 4 + UIConstants.lineWidth / 2, y: h / 2), radius: w / 4 - UIConstants.lineWidth, startAngle: centerAngle - innerAngle, endAngle: centerAngle + innerAngle - reversedRadiansOffset, clockwise: true)
-        path.addArc(withCenter: CGPoint(x: w / 4 + UIConstants.lineWidth / 2, y: h / 2), radius: w / 4, startAngle: centerAngle + innerAngle - reversedRadiansOffset, endAngle: centerAngle - outerAngle, clockwise: false)
-        path.close()
-        
-        let shapeLayer = CAShapeLayer()
-        shapeLayer.path = path.cgPath
-        
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.startPoint = CGPoint(x: 0.2, y: 0.8)
-        gradientLayer.endPoint = CGPoint(x: 0.8, y: 0.3)
-        gradientLayer.colors = [UIColor.systemRed.cgColor, UIColor.systemPurple.cgColor]
-        gradientLayer.frame = CGRect(x: 0, y: 0, width: 180, height: 100)
-        gradientLayer.mask = shapeLayer
-        
-        let reversedRadiansOffset2: CGFloat = CGFloat.pi - radiansOffset2
-        let centerAngle2 = CGFloat.pi / 2
-        let path2 = UIBezierPath()
-        path2.addArc(withCenter: CGPoint(x: 3 * w / 4 - UIConstants.lineWidth / 2, y: h / 2), radius: w / 4 - UIConstants.lineWidth, startAngle: centerAngle2 - innerAngle + reversedRadiansOffset2, endAngle: centerAngle2 + innerAngle, clockwise: true)
-        path2.addArc(withCenter: CGPoint(x: 3 * w / 4 - UIConstants.lineWidth / 2, y: h / 2), radius: w / 4, startAngle: centerAngle2 + innerAngle, endAngle: centerAngle2 - outerAngle + reversedRadiansOffset2, clockwise: false)
-        path2.close()
-        
-        let shapeLayer2 = CAShapeLayer()
-        shapeLayer2.path = path2.cgPath
-        
-        let gradientLayer2 = CAGradientLayer()
-        gradientLayer2.startPoint = CGPoint(x: 0.2, y: 0.8)
-        gradientLayer2.endPoint = CGPoint(x: 0.8, y: 0.3)
-        gradientLayer2.colors = [UIColor.systemPurple.cgColor, UIColor.systemRed.cgColor]
-        gradientLayer2.frame = CGRect(x: 0, y: 0, width: 180, height: 100)
-        gradientLayer2.mask = shapeLayer2
-        
-        self.layer.addSublayer(gradientLayer)
-        self.layer.addSublayer(gradientLayer2)
+        static let hegiht = 100.0
+        static let width = 180.0
     }
     
     init() {
         super.init(frame: .zero)
+        
+        createUnderGraph()
+        createUpperGraph()
         
         update()
     }
@@ -124,15 +29,12 @@ class SnakeGraphView: UIView {
     }
     
     private func update() {
-        self.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
-        
         if self.currentValue > self.goalValue {
             self.currentValue = self.goalValue
             return
         }
         
-        createUnderGraph()
-        createUpperGraph()
+        updateUpperGraph()
     }
     
     public var minValue = 0.0
@@ -141,5 +43,136 @@ class SnakeGraphView: UIView {
         didSet {
             self.update()
         }
+    }
+    
+    private var upperLeftShape: CAShapeLayer = {
+        let shape = CAShapeLayer()
+        return shape
+    }()
+    
+    private var upperRightShape: CAShapeLayer = {
+        let shape = CAShapeLayer()
+        return shape
+    }()
+}
+
+private extension SnakeGraphView {
+    func createUnderGraph() {
+        let h = UIConstants.hegiht
+        let w = UIConstants.width
+
+        let pathLeft = UIBezierPath(arcCenter: CGPoint(x: w / 4 + UIConstants.lineWidth / 2, y: h / 2), radius: w / 4 - UIConstants.lineWidth / 2, startAngle: CGFloat.pi, endAngle: 0, clockwise: true)
+        
+        
+        let pathRight = UIBezierPath(arcCenter: CGPoint(x: 3 * w / 4 - UIConstants.lineWidth / 2, y: h / 2), radius: w / 4 - UIConstants.lineWidth / 2, startAngle: CGFloat.pi, endAngle: CGFloat.pi * 2, clockwise: false)
+        
+        let shapeLayerLeft = CAShapeLayer()
+        shapeLayerLeft.path = pathLeft.cgPath
+        shapeLayerLeft.lineCap = CAShapeLayerLineCap.round
+        shapeLayerLeft.lineWidth = UIConstants.lineWidth
+        shapeLayerLeft.fillColor = UIColor.clear.cgColor
+        shapeLayerLeft.strokeColor = UIColor.black.cgColor
+        
+        let gradientLayerLeft = CAGradientLayer()
+        gradientLayerLeft.startPoint = CGPoint(x: 0, y: 0)
+        gradientLayerLeft.endPoint = CGPoint(x: 0.5, y: 0.5)
+        gradientLayerLeft.colors = [UIColor.systemRed.withAlphaComponent(0.4).cgColor, UIColor.systemPurple.withAlphaComponent(0.4).cgColor]
+        gradientLayerLeft.frame = CGRect(x: 0, y: 0, width: w, height: h)
+        gradientLayerLeft.mask = shapeLayerLeft
+        gradientLayerLeft.opacity = 1
+        
+        let shapeLayerRight = CAShapeLayer()
+        shapeLayerRight.path = pathRight.cgPath
+        shapeLayerRight.lineCap = CAShapeLayerLineCap.round
+        shapeLayerRight.lineWidth = UIConstants.lineWidth
+        shapeLayerRight.fillColor = UIColor.clear.cgColor
+        shapeLayerRight.strokeColor = UIColor.black.cgColor
+        
+        let gradientLayerRight = CAGradientLayer()
+        gradientLayerRight.startPoint = CGPoint(x: 0, y: 0)
+        gradientLayerRight.endPoint = CGPoint(x: 1, y: 1)
+        gradientLayerRight.colors = [UIColor.systemPurple.withAlphaComponent(0.4).cgColor, UIColor.systemRed.withAlphaComponent(0.4).cgColor]
+        gradientLayerRight.frame = CGRect(x: 0, y: 0, width: w, height: h)
+        gradientLayerRight.mask = shapeLayerRight
+        gradientLayerRight.opacity = 1
+        gradientLayerRight.backgroundColor = UIColor.tertiarySystemBackground.cgColor
+     
+        self.layer.addSublayer(gradientLayerLeft)
+        self.layer.addSublayer(gradientLayerRight)
+    }
+    
+    func createUpperGraph() {
+        let h = UIConstants.hegiht
+        let w = UIConstants.width
+        
+        upperLeftShape.path = UIBezierPath().cgPath
+        upperLeftShape.lineCap = CAShapeLayerLineCap.round
+        upperLeftShape.lineWidth = UIConstants.lineWidth
+        upperLeftShape.fillColor = UIColor.clear.cgColor
+        upperLeftShape.strokeColor = UIColor.black.cgColor
+        
+        let gradientLayerLeft = CAGradientLayer()
+        gradientLayerLeft.startPoint = CGPoint(x: 0, y: 0)
+        gradientLayerLeft.endPoint = CGPoint(x: 1, y: 0)
+        gradientLayerLeft.colors = [UIColor.systemRed.cgColor, UIColor.systemPurple.cgColor]
+        gradientLayerLeft.frame = CGRect(x: 0, y: 0, width: w, height: h)
+        gradientLayerLeft.mask = upperLeftShape
+        gradientLayerLeft.opacity = 1
+        
+        upperRightShape.path = UIBezierPath().cgPath
+        upperRightShape.lineCap = CAShapeLayerLineCap.round
+        upperRightShape.lineWidth = UIConstants.lineWidth
+        upperRightShape.fillColor = UIColor.clear.cgColor
+        upperRightShape.strokeColor = UIColor.black.cgColor
+        
+        let gradientLayerRight = CAGradientLayer()
+        gradientLayerRight.startPoint = CGPoint(x: 0, y: 0)
+        gradientLayerRight.endPoint = CGPoint(x: 1, y: 0)
+        gradientLayerRight.colors = [UIColor.systemPurple.cgColor, UIColor.systemRed.cgColor]
+        gradientLayerRight.frame = CGRect(x: 0, y: 0, width: w, height: h)
+        gradientLayerRight.mask = upperRightShape
+        gradientLayerRight.opacity = 1
+     
+        self.layer.addSublayer(gradientLayerLeft)
+        self.layer.addSublayer(gradientLayerRight)
+    }
+    
+    func updateUpperGraph() {
+        let h = UIConstants.hegiht
+        let w = UIConstants.width
+        
+        let convertedValue = (self.currentValue - self.minValue) / (self.goalValue - self.minValue) * 100
+        var radiansOffsetLeft: CGFloat = convertedValue / 50 * CGFloat.pi
+        var radiansOffsetRight: CGFloat = 0
+        if convertedValue >= 50 {
+            radiansOffsetLeft = CGFloat.pi
+            radiansOffsetRight = (convertedValue - 50) / 50 * CGFloat.pi
+        }
+
+        let pathLeft = UIBezierPath(arcCenter: CGPoint(x: w / 4 + UIConstants.lineWidth / 2, y: h / 2), radius: w / 4 - UIConstants.lineWidth / 2, startAngle: CGFloat.pi, endAngle: CGFloat.pi + radiansOffsetLeft, clockwise: true)
+        
+        let pathRight = UIBezierPath(arcCenter: CGPoint(x: 3 * w / 4 - UIConstants.lineWidth / 2, y: h / 2), radius: w / 4 - UIConstants.lineWidth / 2, startAngle: CGFloat.pi, endAngle: CGFloat.pi - radiansOffsetRight, clockwise: false)
+
+        let animationLeft = CABasicAnimation(keyPath: "path")
+        animationLeft.duration = 0.3
+
+        animationLeft.toValue = pathLeft.cgPath
+        animationLeft.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+
+        animationLeft.fillMode = CAMediaTimingFillMode.forwards
+        animationLeft.isRemovedOnCompletion = false
+
+        upperLeftShape.add(animationLeft, forKey: nil)
+        
+        let animationRight = CABasicAnimation(keyPath: "path")
+        animationRight.duration = 0.3
+
+        animationRight.toValue = pathRight.cgPath
+        animationRight.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+
+        animationRight.fillMode = CAMediaTimingFillMode.forwards
+        animationRight.isRemovedOnCompletion = false
+
+        upperRightShape.add(animationRight, forKey: nil)
     }
 }

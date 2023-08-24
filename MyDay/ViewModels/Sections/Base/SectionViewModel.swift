@@ -44,6 +44,8 @@ class SectionViewModel: SectionCreator {
         for handler in onItemsChangedHandlers {
             handler()
         }
+        
+        self.sort()
     }
     
     public func remove(_ item: SectionItemViewModelManagedByRealm) {
@@ -85,6 +87,10 @@ class SectionViewModel: SectionCreator {
     }
     
     public func update() {
+        
+    }
+    
+    public func sort() {
         
     }
     

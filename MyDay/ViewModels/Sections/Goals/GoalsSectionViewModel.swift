@@ -19,4 +19,14 @@ class GoalsSectionViewModel: SectionViewModel {
     override public func fillWithCommonItems() {
         self.add(GoalsItemViewModel(descriptions: ("Make", "push-ups"), goalValue: 150, currentValue: 0, stepValue: 5, date: self.date.date, type: .Counter))
     }
+    
+//    override public func add(_ item: SectionItemViewModelManagedByRealm) {
+//        super.add(item)
+//        
+//        if let item = item as? GoalsItemViewModel {
+//            item.onCurrentValueChanged {
+//                self.onItemsChangedHandlers.forEach { $0() }
+//            }
+//        }
+//    }
 }

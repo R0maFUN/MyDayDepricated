@@ -17,6 +17,12 @@ class SectionItemViewModel {
     
     public func setTitle(title: String) {
         self.title = title
+        
+        self.onTitleChangedHandlers.forEach { $0() }
+    }
+    
+    public func onTitleChanged(_ handler: @escaping () -> Void) {
+        onTitleChangedHandlers.append(handler)
     }
     
     public func setDescription(description: String) {
@@ -30,6 +36,8 @@ class SectionItemViewModel {
     public private(set) var title: String = ""
     public internal(set) var description: String = ""
     public private(set) var date: Date
+    
+    private var onTitleChangedHandlers: [() -> Void] = []
 }
 
 class SectionItemViewModelManagedByRealm: SectionItemViewModel, SectionRealmItemsUpdaterVisitable, SectionRealmItemsRemoverVisitable {

@@ -39,6 +39,8 @@ class GoalsCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        
+        
         initialize()
     }
     
@@ -99,7 +101,7 @@ private extension GoalsCollectionViewCell {
         tableView.backgroundColor = .clear
         
         tableView.dragInteractionEnabled = true
-        //tableView.dragDelegate = self
+        tableView.dragDelegate = self
         
         contentView.addSubview(tableView)
         

@@ -63,6 +63,13 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
                     HapticsManager.shared.impactVibrate(for: .medium, with: 0.7)
                     self.show(vc, sender: self)
                 }
+            } else if self.mainViewModel.sectionsViewModel.currentSectionManager.value is GoalsSectionsManager {
+                self.actionHandler = {
+                    guard let goalsSectionsManager = self.mainViewModel.sectionsViewModel.currentSectionManager.value else { return }
+                    let vc = UINavigationController(rootViewController: EditGoalsItemViewController(goalsSectionsManager))
+                    HapticsManager.shared.impactVibrate(for: .medium, with: 0.7)
+                    self.present(vc, animated: true)
+                }
             }
             
             

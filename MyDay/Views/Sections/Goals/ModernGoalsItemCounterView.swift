@@ -1,5 +1,5 @@
 //
-//  ModernGoalsItemTableViewCell.swift
+//  ModernGoalsItemCounterView.swift
 //  MyDay
 //
 //  Created by Рома Балаян on 15.08.2023.
@@ -7,11 +7,8 @@
 
 import Foundation
 import UIKit
-import SnapKit
 
-class ModernGoalsItemCounterTableViewCell: UITableViewCell {
-    static let reuseIdentifier = "ModernGoalsItemCounterTableViewCell"
-    
+class ModernGoalsItemCounterView: UIView {
     public func configure(with viewModel: GoalsItemViewModel) {
         descriptionLeftLabel.text = viewModel.descriptions.0
         descriptionRightLabel.text = viewModel.descriptions.1
@@ -23,34 +20,40 @@ class ModernGoalsItemCounterTableViewCell: UITableViewCell {
         self.graph.goalValue = viewModel.goalValue
         self.graph.currentValue = viewModel.currentValue
         
-//        viewModel.onCurrentValueChanged {
-//            self.graph.currentValue = viewModel.currentValue
-//            self.currentValueLabel.text = String(format: "%.0f", viewModel.currentValue)
-//        }
+        viewModel.onCurrentValueChanged {
+            self.graph.currentValue = viewModel.currentValue
+            self.currentValueLabel.text = String(format: "%.0f", viewModel.currentValue)
+        }
+        
+        viewModel.onDescriptionFirstChanged {
+            self.descriptionLeftLabel.text = viewModel.descriptions.0
+        }
+        
+        viewModel.onGoalValueChanged {
+            self.descriptionMiddleLabel.text = String(format: "%.0f", viewModel.goalValue)
+            self.graph.goalValue = viewModel.goalValue
+        }
+        
+        viewModel.onDescriptionSecondChanged {
+            self.descriptionRightLabel.text = viewModel.descriptions.1
+        }
+        
+        viewModel.onStepValueChanged {
+            self.stepValueLabel.text = String(format: "%.0f", viewModel.stepValue)
+        }
         
         self.viewModel = viewModel
     }
     
     // MARK: - Init
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    init() {
+        super.init(frame: .zero)
         
         initialize()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func prepareForReuse() {
-        descriptionLeftLabel.text = ""
-        descriptionRightLabel.text = ""
-        descriptionMiddleLabel.text = ""
-        
-        currentValueLabel.text = ""
-        stepValueLabel.text = ""
-        
-        self.viewModel = nil
     }
     
     // MARK: - Private Constants
@@ -64,25 +67,29 @@ class ModernGoalsItemCounterTableViewCell: UITableViewCell {
     
     public var descriptionLeftX: CGFloat {
         get {
-            return descriptionLeftLabel.layer.position.x + descriptionStack.frame.minX
+            let globalPoint = descriptionLeftLabel.superview?.convert(descriptionLeftLabel.frame.origin, to: nil)
+            return globalPoint?.x ?? 0.0
         }
     }
     
     public var descriptionMiddleX: CGFloat {
         get {
-            return descriptionMiddleLabel.frame.minX
+            let globalPoint = descriptionMiddleLabel.superview?.convert(descriptionMiddleLabel.frame.origin, to: nil)
+            return globalPoint?.x ?? 0.0
         }
     }
     
     public var descriptionRightX: CGFloat {
         get {
-            return descriptionRightLabel.frame.minX
+            let globalPoint = descriptionRightLabel.superview?.convert(descriptionRightLabel.frame.origin, to: nil)
+            return globalPoint?.x ?? 0.0
         }
     }
     
     public var stepValueX: CGFloat {
         get {
-            return stepValueLabel.frame.minX
+            let globalPoint = stepValueLabel.superview?.convert(stepValueLabel.frame.origin, to: nil)
+            return globalPoint?.x ?? 0.0
         }
     }
     
@@ -166,10 +173,10 @@ class ModernGoalsItemCounterTableViewCell: UITableViewCell {
     }()
 }
 
-private extension ModernGoalsItemCounterTableViewCell {
+private extension ModernGoalsItemCounterView {
     func initialize() {
         
-        contentView.addSubview(graph)
+        addSubview(graph)
         
         graph.snp.makeConstraints { make in
             make.leading.top.bottom.equalToSuperview().inset(18)
@@ -215,11 +222,13 @@ private extension ModernGoalsItemCounterTableViewCell {
         contentStack.addArrangedSubview(currentValueLabel)
         contentStack.addArrangedSubview(counterStack)
         
-        contentView.addSubview(contentStack)
+        //contentStack.backgroundColor = .red
+        
+        addSubview(contentStack)
         
         contentStack.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(UIConstants.contentInset)
-            make.leading.equalTo(graph.snp.trailing).offset(-70)
+            make.leading.equalTo(graph.snp.trailing)
             make.centerY.equalToSuperview()
         }
     }
@@ -232,3 +241,4 @@ private extension ModernGoalsItemCounterTableViewCell {
         viewModel?.increase()
     }
 }
+

@@ -40,7 +40,7 @@ class GoalsItemViewModel: SectionItemViewModelManagedByRealm {
     }
     
     // MARK: - Public Methods
-    public func update(descriptions: (String, String)? = nil, currentValue: CGFloat? = nil, stepValue: CGFloat? = nil, goalValue: CGFloat? = nil) {
+    public func updateWithRealm(descriptions: (String, String)? = nil, currentValue: CGFloat? = nil, stepValue: CGFloat? = nil, goalValue: CGFloat? = nil) {
         
         self.descriptions = descriptions ?? self.descriptions
         self.currentValue = currentValue ?? self.currentValue
@@ -48,6 +48,78 @@ class GoalsItemViewModel: SectionItemViewModelManagedByRealm {
         self.goalValue = goalValue ?? self.goalValue
         
         self.updateRealm()
+    }
+    
+    public func update(descriptions: (String, String)? = nil, currentValue: CGFloat? = nil, stepValue: CGFloat? = nil, goalValue: CGFloat? = nil) {
+        
+        self.descriptions = descriptions ?? self.descriptions
+        self.currentValue = currentValue ?? self.currentValue
+        self.stepValue = stepValue ?? self.stepValue
+        self.goalValue = goalValue ?? self.goalValue
+    }
+    
+    public func setDescriptionFirst(description: String) {
+        self.descriptions.0 = description
+        
+        self.update()
+        
+        self.descriptionFirstChanged()
+    }
+    
+    public func onDescriptionFirstChanged(_ handler: @escaping () -> Void) {
+        self.onDescriptionFirstChangedHandlers.append(handler)
+    }
+    
+    public func descriptionFirstChanged() {
+        self.onDescriptionFirstChangedHandlers.forEach { $0() }
+    }
+    
+    public func setDescriptionSecond(description: String) {
+        self.descriptions.1 = description
+        
+        self.update()
+        
+        self.descriptionSecondChanged()
+    }
+    
+    public func onDescriptionSecondChanged(_ handler: @escaping () -> Void) {
+        self.onDescriptionSecondChangedHandlers.append(handler)
+    }
+    
+    public func descriptionSecondChanged() {
+        self.onDescriptionSecondChangedHandlers.forEach { $0() }
+    }
+    
+    public func setGoalValue(value: String) {
+        self.goalValue = CGFloat(Double(value) ?? 100.0)
+        
+        self.update()
+        
+        self.goalValueChanged()
+    }
+    
+    public func onGoalValueChanged(_ handler: @escaping () -> Void) {
+        self.onGoalValueChangedHandlers.append(handler)
+    }
+    
+    public func goalValueChanged() {
+        self.onGoalValueChangedHandlers.forEach { $0() }
+    }
+    
+    public func setStepValue(value: String) {
+        self.stepValue = CGFloat(Double(value) ?? 10.0)
+        
+        self.update()
+        
+        self.stepValueChanged()
+    }
+    
+    public func onStepValueChanged(_ handler: @escaping () -> Void) {
+        self.onStepValueChangedHandlers.append(handler)
+    }
+    
+    public func stepValueChanged() {
+        self.onStepValueChangedHandlers.forEach { $0() }
     }
     
     public func onCurrentValueChanged(_ handler: @escaping () -> Void) {
@@ -117,4 +189,8 @@ class GoalsItemViewModel: SectionItemViewModelManagedByRealm {
     private var realmObject: GoalsItemRealmObject?
     
     private var onCurrentValueChangedHandlers: [() -> Void] = []
+    private var onDescriptionFirstChangedHandlers: [() -> Void] = []
+    private var onDescriptionSecondChangedHandlers: [() -> Void] = []
+    private var onGoalValueChangedHandlers: [() -> Void] = []
+    private var onStepValueChangedHandlers: [() -> Void] = []
 }
