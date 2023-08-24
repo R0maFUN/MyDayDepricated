@@ -92,10 +92,10 @@ final class ScheduleSectionViewModel: SectionViewModel {
         }
     }
     
-    func sort() {
+    public override func sort() {
         self.items.sort(by: { lhs, rhs in
             if let lhs = lhs as? ScheduleItemViewModel, let rhs = rhs as? ScheduleItemViewModel {
-                return lhs.startDate < rhs.startDate
+                return lhs.startDate.time < rhs.startDate.time
             }
             return false
         })

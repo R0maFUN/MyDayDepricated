@@ -19,6 +19,13 @@ class ScheduleCollectionViewCell: UICollectionViewCell {
     public func configure(with viewModel: ScheduleSectionsManager) {
         self.viewModel = viewModel
         
+        // can be called million times
+        if let scheduleSectionViewModel = self.viewModel?.currentSection.value as? ScheduleSectionViewModel {
+            scheduleSectionViewModel.onItemsChanged {
+                self.updateSections()
+            }
+        }
+        
         self.viewModel?.onDataChanged {
             self.updateSections()
         }
@@ -89,6 +96,12 @@ private extension ScheduleCollectionViewCell {
             scheduleSectionViewModel.items.forEach { item in
                 self.sections.append(ScheduleSection(title: "", items: [item]))
             }
+            
+//            self.sections.sort(by: { first, second in
+//                guard let leftItem = first.items.first as? ScheduleItemViewModel else { return true }
+//                guard let rightItem = second.items.first as? ScheduleItemViewModel else { return true }
+//                return leftItem.startDate > rightItem.startDate
+//            })
             
         } else if scheduleSectionViewModel.items.count > 0 {
             self.sections.append(ScheduleSection(title: "", items: scheduleSectionViewModel.items))
