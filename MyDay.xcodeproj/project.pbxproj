@@ -80,6 +80,7 @@
 		1EC639022A76894F00512524 /* DescriptionInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC639012A76894F00512524 /* DescriptionInputTableViewCell.swift */; };
 		1EC639042A7689FD00512524 /* DescriptionInputTableViewCell+TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC639032A7689FD00512524 /* DescriptionInputTableViewCell+TextView.swift */; };
 		1EC639062A768F8400512524 /* DescriptionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC639052A768F8400512524 /* DescriptionModel.swift */; };
+		1EF93C792AAAE6C000683C8B /* UITextView+NumberOfLines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF93C782AAAE6C000683C8B /* UITextView+NumberOfLines.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -157,6 +158,7 @@
 		1EC639012A76894F00512524 /* DescriptionInputTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionInputTableViewCell.swift; sourceTree = "<group>"; };
 		1EC639032A7689FD00512524 /* DescriptionInputTableViewCell+TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DescriptionInputTableViewCell+TextView.swift"; sourceTree = "<group>"; };
 		1EC639052A768F8400512524 /* DescriptionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionModel.swift; sourceTree = "<group>"; };
+		1EF93C782AAAE6C000683C8B /* UITextView+NumberOfLines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+NumberOfLines.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,6 +298,7 @@
 				1E9937B02A87D8420027663F /* UIColor+Hex.swift */,
 				1E9937D52A8BEF560027663F /* CGFloat+Radians.swift */,
 				1E9937DF2A9487CB0027663F /* Date+Time.swift */,
+				1EF93C782AAAE6C000683C8B /* UITextView+NumberOfLines.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -581,6 +584,7 @@
 				1E9937DE2A9140A60027663F /* ModernGoalsItemCounterView.swift in Sources */,
 				1EC638FE2A76820800512524 /* TitleInputTableViewCell.swift in Sources */,
 				1E9937DC2A913F7A0027663F /* GoalsCollectionViewCell+Drag.swift in Sources */,
+				1EF93C792AAAE6C000683C8B /* UITextView+NumberOfLines.swift in Sources */,
 				1E9937D42A8BE4410027663F /* SnakeGraphView.swift in Sources */,
 				1E9937D02A8B91360027663F /* GoalsCollectionViewCell+Table.swift in Sources */,
 				1EC638ED2A744B3800512524 /* SectionRealmItemsRemover.swift in Sources */,

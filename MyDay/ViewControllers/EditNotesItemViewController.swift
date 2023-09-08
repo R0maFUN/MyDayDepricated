@@ -58,6 +58,9 @@ class EditNotesItemViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    private enum UIConstants {
+        static let titleInputHeight = 68.0
+    }
     
     // MARK: - Private Properties
     private let tableView: UITableView = {
@@ -187,8 +190,22 @@ extension EditNotesItemViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: DescriptionInputTableViewCell.reuseIdentifier, for: indexPath) as? DescriptionInputTableViewCell else { return UITableViewCell() }
             cell.configure(with: model)
             
+            let textView = cell.textView
+            let sizeThatShouldFitTheContent = textView.sizeThatFits(textView.frame.size)
+            let height = sizeThatShouldFitTheContent.height
+            model.height = height
+            
             cell.onValueChanged { value in
                 viewModel.update(value)
+            }
+            
+            cell.onLinesCountUpdated {
+                self.tableView.beginUpdates()
+                let textView = cell.textView
+                let sizeThatShouldFitTheContent = textView.sizeThatFits(textView.frame.size)
+                let height = sizeThatShouldFitTheContent.height
+                model.height = height
+                self.tableView.endUpdates()
             }
             
             return cell
@@ -213,8 +230,8 @@ extension EditNotesItemViewController: UITableViewDelegate {
         switch model.self {
         case .title(_):
             return 68
-        case .description(_, _):
-            return 400 // SomeHow return based on text inside it
+        case .description(_, let model):
+            return model.height + 60
         case .image(_):
             return 160
         case .buttons(_):

@@ -14,13 +14,27 @@ class DescriptionInputTableViewCell: InputTableViewCell<DescriptionModel> {
     public func configure(with model: DescriptionModel) {
         self.value = model
         
+        self.textView.text = model.text
+        self.prevLinesCount = self.textView.numberOfLines()
+        
         self.value!.onTextChanged { text in
             self.valueChanged()
             
             self.textView.text = text
+            
+            if self.textView.numberOfLines() != self.prevLinesCount {
+                self.linesCountUpdated()
+                self.prevLinesCount = self.textView.numberOfLines()
+            }
         }
-        
-        self.textView.text = model.text
+    }
+    
+    public func onLinesCountUpdated(_ handler: @escaping () -> Void) {
+        self.linesCountUpdatedHandlers.append(handler)
+    }
+    
+    private func linesCountUpdated() {
+        self.linesCountUpdatedHandlers.forEach { $0() }
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -48,8 +62,16 @@ class DescriptionInputTableViewCell: InputTableViewCell<DescriptionModel> {
         }
     }
     
+    override func prepareForReuse() {
+        self.linesCountUpdatedHandlers = []
+    }
+    
     internal var textView: UITextView = {
         let textView = UITextView()
         return textView
     }()
+    
+    private var linesCountUpdatedHandlers: [() -> Void] = []
+    
+    private var prevLinesCount = 0
 }

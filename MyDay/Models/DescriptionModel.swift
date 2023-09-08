@@ -38,6 +38,7 @@ class DescriptionModel {
     
     public private(set) var id: String = UUID().uuidString
     public private(set) var text: String = placeholder
+    public var height: CGFloat = 0.0
     
     private var textChangedHandlers: [(_ text: String) -> Void] = []
 }

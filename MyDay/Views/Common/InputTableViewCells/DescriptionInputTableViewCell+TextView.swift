@@ -17,9 +17,20 @@ extension DescriptionInputTableViewCell: UITextViewDelegate {
         }
     }
     
-    func textViewDidEndEditing(_ textView: UITextView) {
+    func textViewDidChange(_ textView: UITextView) {
         guard let text = textView.text else { return }
         
+        if text.isEmpty {
+            textView.textColor = .lightGray
+            self.value!.setText(DescriptionModel.placeholder)
+        } else {
+            self.value!.setText(text)
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        guard let text = textView.text else { return }
+
         if text.isEmpty {
             textView.textColor = .lightGray
             self.value!.setText(DescriptionModel.placeholder)
