@@ -25,6 +25,16 @@ class SectionItemViewModel {
         onTitleChangedHandlers.append(handler)
     }
     
+    public func setVisible(visible: Bool) {
+        self.visible = visible
+        
+        self.onVisibleChangedHandlers.forEach { $0() }
+    }
+    
+    public func onVisibleChanged(_ handler: @escaping () -> Void) {
+        self.onVisibleChangedHandlers.append(handler)
+    }
+    
     public func setDescription(description: String) {
         self.description = description
     }
@@ -36,8 +46,10 @@ class SectionItemViewModel {
     public private(set) var title: String = ""
     public internal(set) var description: String = ""
     public private(set) var date: Date
+    public private(set) var visible: Bool = true
     
     private var onTitleChangedHandlers: [() -> Void] = []
+    private var onVisibleChangedHandlers: [() -> Void] = []
 }
 
 class SectionItemViewModelManagedByRealm: SectionItemViewModel, SectionRealmItemsUpdaterVisitable, SectionRealmItemsRemoverVisitable {

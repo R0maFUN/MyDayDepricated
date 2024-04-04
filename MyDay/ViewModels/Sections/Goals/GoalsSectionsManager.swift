@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 final class GoalsSectionsManager: SectionsManager<GoalsSectionViewModel> {
     
@@ -14,5 +15,6 @@ final class GoalsSectionsManager: SectionsManager<GoalsSectionViewModel> {
         
         self.title = "Goals"
         self.addActionTitle = "Goal"
+        self.addActionColor = UIColor(named: "GoalsPrimary")!
     }
 }

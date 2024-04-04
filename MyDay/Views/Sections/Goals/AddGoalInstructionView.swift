@@ -127,7 +127,7 @@ class AddGoalInstructionView: UIView {
     
     private enum UIConstants {
         static let arrowLineWidth = 1.2
-        static let inactiveOpacity: Float = 0.08
+        static let inactiveOpacity: Float = 0.0
     }
     
     public private(set) var currentIndex: Int = 0

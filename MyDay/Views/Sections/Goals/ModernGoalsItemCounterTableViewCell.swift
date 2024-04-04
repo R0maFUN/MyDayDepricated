@@ -23,10 +23,10 @@ class ModernGoalsItemCounterTableViewCell: UITableViewCell {
         self.graph.goalValue = viewModel.goalValue
         self.graph.currentValue = viewModel.currentValue
         
-//        viewModel.onCurrentValueChanged {
-//            self.graph.currentValue = viewModel.currentValue
-//            self.currentValueLabel.text = String(format: "%.0f", viewModel.currentValue)
-//        }
+        viewModel.onCurrentValueChanged {
+            self.graph.currentValue = viewModel.currentValue
+            self.currentValueLabel.text = String(format: "%.0f", viewModel.currentValue)
+        }
         
         self.viewModel = viewModel
     }

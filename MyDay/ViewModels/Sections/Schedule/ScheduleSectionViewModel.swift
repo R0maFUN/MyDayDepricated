@@ -13,16 +13,16 @@ final class ScheduleSectionViewModel: SectionViewModel {
     typealias ItemInput = ScheduleItemRealmObject
     
     init(date: DateModel, wakeUpTime: Date, fallAsleepTime: Date) {
-        self.wakeUpTime = wakeUpTime
-        self.fallAsleepTime = fallAsleepTime
+        self.commonWakeUpTime = wakeUpTime
+        self.commonFallAsleepTime = fallAsleepTime
         
         super.init(date: date)
     }
     
     required init(date: DateModel) {
         // restore
-        self.wakeUpTime = Calendar.current.date(bySettingHour: 7, minute: 0, second: 0, of: Date())!
-        self.fallAsleepTime = Calendar.current.date(bySettingHour: 23, minute: 30, second: 0, of: Date())!
+        self.commonWakeUpTime = Calendar.current.date(bySettingHour: 7, minute: 0, second: 0, of: date.date)!
+        self.commonFallAsleepTime = Calendar.current.date(bySettingHour: 23, minute: 30, second: 0, of: date.date)!
         
         super.init(date: date)
     }
@@ -34,8 +34,12 @@ final class ScheduleSectionViewModel: SectionViewModel {
     override public func fillWithCommonItems() {
         //requestSleepAuthorization()
         
-        self.add(ScheduleItemViewModel(title: "Wake Up", description: "Good Morning!", startDate: self.wakeUpTime, endDate: self.wakeUpTime, date: self.date.date))
-        self.add(ScheduleItemViewModel(title: "Fall asleep", description: "Good Night!", startDate: self.fallAsleepTime, endDate: self.fallAsleepTime, date: self.date.date))
+        // wakeUp and fallAsleep should be watchable.
+        self.add(SleepControlWakeUpScheduleItemViewModel(wakeUpDate: self.commonWakeUpTime, date: self.date.date))
+        self.add(SleepControlFallAsleepScheduleItemViewModel(fallAsleepDate: self.commonFallAsleepTime, date: self.date.date))
+        
+        //self.add(ScheduleItemViewModel(title: "Wake Up", description: "Good Morning!", startDate: self.wakeUpTime, endDate: self.wakeUpTime, date: self.date.date))
+        //self.add(ScheduleItemViewModel(title: "Fall asleep", description: "Good Night!", startDate: self.fallAsleepTime, endDate: self.fallAsleepTime, date: self.date.date))
     }
     
     func requestSleepAuthorization() {
@@ -67,8 +71,8 @@ final class ScheduleSectionViewModel: SectionViewModel {
                                     let endDate = sample.endDate
                                     
                                     DispatchQueue.main.async {
-                                        self.add(ScheduleItemViewModel(title: "Wake Up", description: "Good Morning!", startDate: startDate, endDate: startDate, date: self.date.date))
-                                        self.add(ScheduleItemViewModel(title: "Fall asleep", description: "Good Night!", startDate: endDate, endDate: endDate, date: self.date.date))
+                                        self.add(SleepControlWakeUpScheduleItemViewModel(wakeUpDate: startDate, date: self.date.date))
+                                        self.add(SleepControlFallAsleepScheduleItemViewModel(fallAsleepDate: endDate, date: self.date.date))
                                     }
                                     success = true
                                 }
@@ -78,8 +82,8 @@ final class ScheduleSectionViewModel: SectionViewModel {
                     
                     if (!success) {
                         DispatchQueue.main.async {
-                            self.add(ScheduleItemViewModel(title: "Wake Up", description: "Good Morning!", startDate: self.wakeUpTime, endDate: self.wakeUpTime, date: self.date.date))
-                            self.add(ScheduleItemViewModel(title: "Fall asleep", description: "Good Night!", startDate: self.fallAsleepTime, endDate: self.fallAsleepTime, date: self.date.date))
+                            self.add(SleepControlWakeUpScheduleItemViewModel(wakeUpDate: self.commonWakeUpTime, date: self.date.date))
+                            self.add(SleepControlFallAsleepScheduleItemViewModel(fallAsleepDate: self.commonFallAsleepTime, date: self.date.date))
                         }
                         
                     }
@@ -136,7 +140,7 @@ final class ScheduleSectionViewModel: SectionViewModel {
     public private(set) var inProgressItems: [ScheduleItemViewModel] = []
     public private(set) var nextItems: [ScheduleItemViewModel] = []
     
-    private var wakeUpTime: Date
-    private var fallAsleepTime: Date
+    private var commonWakeUpTime: Date
+    private var commonFallAsleepTime: Date
 }
 

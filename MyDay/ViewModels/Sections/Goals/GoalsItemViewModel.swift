@@ -91,7 +91,7 @@ class GoalsItemViewModel: SectionItemViewModelManagedByRealm {
     }
     
     public func setGoalValue(value: String) {
-        self.goalValue = CGFloat(Double(value) ?? 100.0)
+        self.goalValue = CGFloat(Double(value) ?? 0.0)
         
         self.update()
         
@@ -107,7 +107,7 @@ class GoalsItemViewModel: SectionItemViewModelManagedByRealm {
     }
     
     public func setStepValue(value: String) {
-        self.stepValue = CGFloat(Double(value) ?? 10.0)
+        self.stepValue = CGFloat(Double(value) ?? 1.0)
         
         self.update()
         
@@ -122,7 +122,7 @@ class GoalsItemViewModel: SectionItemViewModelManagedByRealm {
         self.onStepValueChangedHandlers.forEach { $0() }
     }
     
-    public func onCurrentValueChanged(_ handler: @escaping () -> Void) {
+    public func onCurrentValueChanged(_ reciever: AnyObject? = nil, _ handler: @escaping () -> Void) {
         self.onCurrentValueChangedHandlers.append(handler)
     }
     

@@ -69,12 +69,10 @@ class EditGoalsItemViewController: UIViewController {
         // TODO: DATE is wrong
         if let section = self.sectionsManager.getSection(by: DateModel(date: self.itemViewModel.date)) {
             section.update(self.itemViewModel)
-            //dismiss(animated: true)
         } else {
             let section = GoalsSectionViewModel(date: DateModel(date: self.itemViewModel.date))
             self.sectionsManager.add(section: section)
             section.add(self.itemViewModel)
-            //dismiss(animated: true)
         }
     }
     
@@ -96,8 +94,20 @@ class EditGoalsItemViewController: UIViewController {
         
         super.init(nibName: .none, bundle: .none)
         
+        self.isNextEnabled.onChanged {
+            self.updateBarButtons()
+        }
+        
+        self.isBackEnabled.onChanged {
+            self.updateBarButtons()
+        }
+        
         self.isReady.onChanged {
-            self.updateRightBarButton()
+            self.updateBarButtons()
+        }
+        
+        self.itemViewModel.onDescriptionFirstChanged {
+            self.updateBarButtons()
         }
     }
     
@@ -105,29 +115,38 @@ class EditGoalsItemViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private enum UIConstants {
+        static let contentInset = 18.0
+        static let segmentedTopOffset = 54.0
+        static let instructionToInputOffset = 18.0
+        static let inputToCenterOffset = 10.0
+    }
+    
     private var sectionsManager: ISectionsManager
     private var itemViewModel: GoalsItemViewModel
     private var currentIndex: Int = 0
     private var currentView: UIView
     
-    private let instructionView: AddGoalInstructionView
-    
-    private let input: UIView = {
-        let view = UIView()
-        return view
+    private let segmentedControl: UISegmentedControl = {
+        let control = UISegmentedControl()
+        return control
     }()
+    
+    private let instructionView: AddGoalInstructionView
     
     private var inputViews: [UIView] = []
     private let inputs: [GoalCounterInputType]
     
     private var isReady: PropertyBinding<Bool> = PropertyBinding(false)
+    private var isNextEnabled: PropertyBinding<Bool> = PropertyBinding(false)
+    private var isBackEnabled: PropertyBinding<Bool> = PropertyBinding(false)
 }
 
 // MARK: - Initialize
 private extension EditGoalsItemViewController {
     func initialize() {
 
-        updateRightBarButton()
+        updateBarButtons()
         
         let blurEffect = UIBlurEffect(style: .light)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
@@ -142,19 +161,15 @@ private extension EditGoalsItemViewController {
 
         instructionView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(6)
-            make.bottom.equalTo(inputViews.first!.snp.top).offset(-50)
+            make.bottom.equalTo(inputViews.first!.snp.top).offset(-1 * UIConstants.instructionToInputOffset)
             make.height.equalTo(200)
         }
-    }
-    
-    func updateRightBarButton() {
-        //UIBarButtonItem(systemItem: .close)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(onDoneBarButtonPressed))
-        navigationItem.rightBarButtonItem?.isEnabled = self.isReady.value ?? false
-    }
-    
-    func setupInputsViews() {
         
+        self.setupSegmentedControl()
+    }
+    
+    // MARK: - Setup Input Views
+    func setupInputsViews() {
         for (index, input) in self.inputs.enumerated() {
             let inputView = UIView()
             
@@ -176,9 +191,13 @@ private extension EditGoalsItemViewController {
             case .textField(let model):
                 subview = UITextField()
                 if let subview = subview as? UITextField {
-                    subview.placeholder = model.placeholder
+                    subview.textColor = .white
+                    subview.tintColor = .white
+                    subview.text = model.placeholder
                     subview.backgroundColor = .clear
                     subview.delegate = self
+                    
+                    subview.addTarget(self, action: #selector(textFieldTextChanged(textField:)), for: .editingChanged)
                     
                     if self.currentIndex == index {
                         subview.becomeFirstResponder()
@@ -188,10 +207,14 @@ private extension EditGoalsItemViewController {
             case .numberTextField(let model):
                 subview = UIView()
                 let textField = UITextField()
-                textField.placeholder = model.placeholder
+                textField.textColor = .white
+                textField.tintColor = .white
+                textField.text = model.placeholder
                 textField.keyboardType = .asciiCapableNumberPad
                 textField.backgroundColor = .clear
                 textField.delegate = self
+                
+                textField.addTarget(self, action: #selector(textFieldTextChanged(textField:)), for: .editingChanged)
                 
                 if self.currentIndex == index {
                     textField.becomeFirstResponder()
@@ -205,7 +228,7 @@ private extension EditGoalsItemViewController {
                 doneButton.tintColor = .white
                 doneButton.setTitle("Done", for: .normal)
                 doneButton.addAction(UIAction(handler: { _ in
-                    textField.resignFirstResponder()
+                    self.onNextInputRequested()
                 }), for: .touchUpInside)
                 doneButton.layer.zPosition = 9999
                 
@@ -222,7 +245,7 @@ private extension EditGoalsItemViewController {
                     make.edges.equalToSuperview()
                 }
                 break
-            case .menuTextField(var model):
+            case .menuTextField(_):
                 subview = UIView()
 
                 break
@@ -234,27 +257,27 @@ private extension EditGoalsItemViewController {
             
             // Mb crash coz inputView is not added yet
             subview.snp.makeConstraints { make in
-                make.leading.trailing.equalToSuperview().inset(18)
+                make.leading.trailing.equalToSuperview().inset(UIConstants.contentInset)
                 make.top.bottom.equalToSuperview()
             }
             
             inputView.snp.makeConstraints { make in
-                make.centerY.equalToSuperview().offset(-50)
+                make.centerY.equalToSuperview().offset(-1 * UIConstants.inputToCenterOffset)
                 make.height.equalTo(80)
             }
             
             switch (input.self) {
-            case .textField(var model):
+            case .textField(_):
                 inputView.snp.makeConstraints { make in
-                    make.leading.trailing.equalToSuperview().inset(18)
+                    make.leading.trailing.equalToSuperview().inset(UIConstants.contentInset)
                 }
                 break
-            case .numberTextField(var model):
+            case .numberTextField(_):
                 inputView.snp.makeConstraints { make in
                     make.leading.trailing.equalToSuperview().inset(70)
                 }
                 break
-            case .menuTextField(var model):
+            case .menuTextField(_):
                 inputView.snp.makeConstraints { make in
                     make.leading.trailing.equalToSuperview().inset(70)
                 }
@@ -265,10 +288,100 @@ private extension EditGoalsItemViewController {
         }
     }
     
-    func updateInputViews() {
+    // MARK: - Setup Segmented Control
+    private func setupSegmentedControl() {
+        self.segmentedControl.insertSegment(withTitle: "Amount", at: 0, animated: false)
+        self.segmentedControl.insertSegment(withTitle: "Time", at: 1, animated: false)
+        self.segmentedControl.insertSegment(withTitle: "Binary", at: 2, animated: false)
         
+        self.segmentedControl.selectedSegmentIndex = 0
+        
+        self.segmentedControl.addTarget(self, action: #selector(onSegmentedControlValueChanged), for: .valueChanged)
+        
+        self.view.addSubview(segmentedControl)
+        
+        segmentedControl.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(UIConstants.contentInset)
+            //make.top.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(16)
+            make.top.equalToSuperview().offset(UIConstants.segmentedTopOffset)
+            make.height.equalTo(50)
+        }
     }
     
+    @objc final private func onSegmentedControlValueChanged() {
+        
+    }
+}
+
+// MARK: - Bar Buttons
+private extension EditGoalsItemViewController {
+    @objc final private func onDoneBarButtonPressed() {
+        dismiss(animated: true)
+    }
+    
+    @objc private func onBackButtonPressed() {
+        self.onPrevInputRequested()
+    }
+    
+    @objc private func onNextButtonPressed() {
+        self.onNextInputRequested()
+    }
+    
+    func updateBarButtons() {
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .done, target: self, action: #selector(onBackButtonPressed))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(onDoneBarButtonPressed))
+        navigationItem.rightBarButtonItem?.isEnabled = self.isReady.value ?? false
+        
+        if self.isReady.value ?? false {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(onDoneBarButtonPressed))
+            navigationItem.rightBarButtonItem?.isEnabled = true
+            return
+        }
+        
+        if self.isNextEnabled.value ?? false {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .done, target: self, action: #selector(onNextButtonPressed))
+            navigationItem.rightBarButtonItem?.isEnabled = true
+        } else {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .done, target: self, action: #selector(onNextButtonPressed))
+            navigationItem.rightBarButtonItem?.isEnabled = false
+        }
+        
+        if self.isBackEnabled.value ?? false {
+            navigationItem.leftBarButtonItem?.isEnabled = true
+        } else {
+            navigationItem.leftBarButtonItem?.isEnabled = false
+        }
+    }
+}
+
+// MARK: - TextField
+extension EditGoalsItemViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if string == "\n" {
+            //textField.resignFirstResponder()
+            self.onNextInputRequested()
+        }
+        
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        // self.onNextInputRequested()
+    }
+    
+    @objc final private func textFieldTextChanged(textField: UITextField) {
+        guard let text = textField.text else { return }
+        
+        self.setItemValue(text)
+        
+        self.isNextEnabled.value = !text.isEmpty
+    }
+}
+
+// MARK: - Set Item Value
+private extension EditGoalsItemViewController {
+    // create edit goals viewmodel with state to process this there
     func setItemValue(_ value: String) {
         if self.currentIndex == 0 {
             self.itemViewModel.setDescriptionFirst(description: value)
@@ -281,68 +394,74 @@ private extension EditGoalsItemViewController {
             self.isReady.value = true
         }
     }
-    
-    func onValueChanged(_ value: String) {
-        setItemValue(value) // before currentIndex change
-        
+}
+
+// MARK: - Input
+private extension EditGoalsItemViewController {
+    func onNextInputRequested() {
         openNextInput()
         self.instructionView.nextStep()
+    }
+    
+    func onPrevInputRequested() {
+        openPrevInput()
+        self.instructionView.prevStep()
     }
     
     func openNextInput() {
         self.currentView.isHidden = true
         // dismiss
         if self.currentIndex >= self.inputViews.count - 1 {
-            // show last view and done button
-            navigationItem.rightBarButtonItem?.isEnabled = true
+            // done actions
             return
         }
+        
+        if self.currentIndex == self.inputViews.count - 2 {
+            // show last view and done button
+            self.isNextEnabled.value = false
+            updateBarButtons()
+        }
+        
         self.currentIndex += 1
         self.currentView = self.inputViews[self.currentIndex]
         self.currentView.isHidden = false
         
+        self.isBackEnabled.value = true
+        updateBarButtons()
+        
+        self.currentView.subviews.forEach { subview in
+            if let field = subview as? UITextField {
+                field.becomeFirstResponder()
+                return
+            }
+            
+            subview.subviews.forEach { view in
+                if let field = view as? UITextField {
+                    field.becomeFirstResponder()
+                    return
+                }
+            }
+        }
+    }
+    
+    func openPrevInput() {
+        self.currentView.isHidden = true
+        
+        if self.currentIndex <= 0 {
+            return
+        }
+        
+        self.currentIndex -= 1
+        self.currentView = self.inputViews[self.currentIndex]
+        self.currentView.isHidden = false
+        
+        if self.currentIndex == 0 {
+            self.isBackEnabled.value = false
+            updateBarButtons()
+        }
+        
         if let field = self.currentView as? UITextField {
             field.becomeFirstResponder()
         }
-    }
-    
-    @objc func onDoneBarButtonPressed() {
-        dismiss(animated: true)
-    }
-}
-
-extension EditGoalsItemViewController: UITextFieldDelegate {
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        if string == "\n" {
-            textField.resignFirstResponder()
-        }
-        
-        return true
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        guard let text = textField.text else { return }
-        
-        self.onValueChanged(text)
-        
-//        if text.isEmpty || text == "Quick Note" {
-//            self.dismiss(animated: true)
-//            return
-//        }
-//
-//        self.itemViewModel.setTitle(title: text)
-//
-//        // TODO: DATE is wrong
-//        if let section = self.sectionsManager.getSection(by: DateModel(date: self.itemViewModel.date)) {
-//            section.update(self.itemViewModel)
-//        } else {
-//            let section = NotesSectionViewModel(date: DateModel(date: self.itemViewModel.date))
-//            self.sectionsManager.add(section: section)
-//            section.add(self.itemViewModel)
-//        }
-        
-        //self.dismiss(animated: true)
     }
 }

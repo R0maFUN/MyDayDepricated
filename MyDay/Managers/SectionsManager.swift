@@ -95,7 +95,7 @@ class SectionsManager<T: SectionViewModel>: ISectionsManager {
         }
     }
     
-    private func restoreSections<T: SectionViewModel>(_ t: T.Type) -> [DateModel:T] {
+    private func restoreSections<ST: SectionViewModel>(_ t: ST.Type) -> [DateModel:ST] {
         var restoredItems: [SectionItemViewModelManagedByRealm] = []
         // TODO: Refactor pizdec
         switch T.type() {
@@ -112,13 +112,13 @@ class SectionsManager<T: SectionViewModel>: ISectionsManager {
             restoredItems = SectionsRealmManager<GoalsItemRealmObject>.restore(GoalItemsFactory())
         }
         
-        var result: [DateModel:T] = [:]
+        var result: [DateModel:ST] = [:]
         
         for item in restoredItems {
             let dateModel = DateModel(date: item.date)
             
             if !result.keys.contains(where: { $0.day == dateModel.day && $0.monthInt == dateModel.monthInt }) {
-                result[dateModel] = T(date: dateModel)
+                result[dateModel] = ST(date: dateModel)
             }
             
             result[dateModel]?.add(item)

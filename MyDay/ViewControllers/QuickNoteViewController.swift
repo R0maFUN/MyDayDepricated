@@ -24,11 +24,11 @@ class QuickNoteViewController: UIViewController {
         
         self.textView.text = self.itemViewModel.title
         
-        if textView.text.isEmpty {
-            textView.textColor = UIColor.lightGray
-            textView.text = "Quick Note"
-            textView.updateFloatingCursor(at: CGPoint(x: 0, y: 0))
-        }
+//        if textView.text.isEmpty {
+//            textView.textColor = UIColor.lightGray
+//            textView.text = "Quick Note"
+//            textView.updateFloatingCursor(at: CGPoint(x: 0, y: 0))
+//        }
         
         super.init(nibName: .none, bundle: .none)
     }
@@ -87,7 +87,7 @@ private extension QuickNoteViewController {
         }
         
         textView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(18)
+            make.leading.trailing.equalToSuperview().inset(8)
             make.top.bottom.equalToSuperview()
         }
         

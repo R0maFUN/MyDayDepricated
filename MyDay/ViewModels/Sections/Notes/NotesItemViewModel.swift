@@ -92,6 +92,7 @@ class NotesItemViewModel: SectionItemViewModelManagedByRealm {
     }
     
     public private(set) var editDate: Date = Date()
+    // Should replace with items. NotesItem (Header, Text, Image, Album)
     public private(set) var descriptions: [DescriptionModel] = []
     public private(set) var images: [[UIImage]] = [[]]
     public private(set) var type: NotesSection.type_ = .Common
